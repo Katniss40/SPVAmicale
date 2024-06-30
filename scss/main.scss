@@ -24,6 +24,7 @@ p{
 
 .hero-scene{
       position: relative;
+      margin-bottom: 15px;
       &::before{
           content:"";
           position: absolute;
@@ -77,4 +78,8 @@ p{
           transition: all 0.3s;
           text-align: center;
       }
+}
+
+.form-label{
+  color: $primary;
 }

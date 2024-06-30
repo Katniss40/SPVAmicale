@@ -11989,6 +11989,7 @@ p {
 
 .hero-scene {
   position: relative;
+  margin-bottom: 15px;
 }
 .hero-scene::before {
   content: "";
@@ -12036,4 +12037,8 @@ p {
   opacity: 0;
   transition: all 0.3s;
   text-align: center;
+}
+
+.form-label {
+  color: #906427;
 }/*# sourceMappingURL=main.css.map */
