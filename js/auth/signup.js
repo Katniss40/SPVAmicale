@@ -1,3 +1,6 @@
+// Test ==>
+alert("Hello world"); 
+
 // Implementer le JS de ma page
 
 const inputNom = document.getElementById("NomInput");
