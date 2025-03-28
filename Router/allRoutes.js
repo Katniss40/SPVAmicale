@@ -6,13 +6,15 @@ export const allRoutes = [
     new Route("/galerie", "La galerie", "/pages/galerie.html", [], "/js/galerie.js"),
     new Route("/signin", "connection", "/pages/auth/signin.html",["disconnected"], "/JS/auth/signin.js"),
     new Route("/signup", "Inscription", "/pages/auth/signup.html",["disconnected"],  "/JS/auth/signup.js"),
-    new Route("/account", "Mon compte", "/pages/auth/account.html", ["client", "admin"]),
-    new Route("/editPassword", "Modification", "/pages/auth/editPassword.html",["client", "admin"]),
-    new Route("/allResa", "Vos réservations", "/pages/reservations/allResa.html", ["client", "admin"]),
-    new Route("/reserver", "Réserver", "/pages/reservations/reserver.html", ["client", "admin"]),
-    new Route("/menus", "Menus", "/pages/menus.html", []),
+    new Route("/account", "Mon compte", "/pages/auth/account.html", ["spv", "admin"]),
+    new Route("/editPassword", "Modification", "/pages/auth/editPassword.html",["spv", "admin"]),
+    new Route("/VideGrenier", "Vide Grenier 2025", "/pages/reservations/VideGrenier.php", ["spv", "admin"]),
+    new Route("/contact", "contact", "/pages/reservations/contact.html", ["spv", "admin"]),
+    new Route("/manifestations", "Manifestations", "/pages/manifestations.html", []),
+    new Route("/calendrier", "Calendrier", "/pages/calendrier.php", ["spv", "admin"]),
+    new Route("/contact", "Contact", "/pages/contact.html", []),
 
 ];
 
 //Le titre s'affiche comme ceci : Route.titre - websitename
-export const websiteName = "Quai Antique";
+export const websiteName = "Amicales des pompiers de Léon";

@@ -1,11 +1,11 @@
 <div class="hero-scene text-center text-white">
     <div class="hero-scene-content">
-            <h1>Vos réservations</h1>
+            <h1>Vide Grenier 2025</h1>
     </div>
 </div>
 
 <div class="container text-center pb-3">
-    <a href="/reserver" class="btn btn-primary">Réserver</a>
+    <a href="#" class="btn btn-primary">Réservation</a>
 </div> 
 
 <div class="container text-center allreservations">

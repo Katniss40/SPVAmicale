@@ -8,13 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="scss/main.css"/>
-    <title>Document</title>
+    <title>Amicale des pompiers de Léon</title>
 </head>
 
 <body>
   
   <header>
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark">
      <div class="container-fluid">
       <a class="navbar-brand" href="/">Amicale des Pompiers de Léon</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,12 +29,15 @@
             <a class="nav-link" href="/galerie">Galerie</a>
               </li>
               <li class="nav-item">
-            <a class="nav-link" href="/menus">Manifestations</a>
+            <a class="nav-link" href="/manifestations">Manifestations</a>
               </li>
-              <li class="nav-item">
-            <a class="nav-link" href="/allResa">Les réservations</a>
+              <li class="nav-item" data-show="connected">
+            <a class="nav-link" href="/VideGrenier">Vide-Grenier 2025</a>
                </li>
-              <li class="nav-item">
+               <li class="nav-item" data-show="connected">
+                <a class="nav-link" href="/calendrier">Calendrier</a>
+                   </li>
+              <li class="nav-item" data-show="connected">
            <a class="nav-link" href="/account">Mon compte</a>
                </li>
                <li class="nav-item" data-show="disconnected">
@@ -75,7 +78,7 @@
     <div class="col-6 col-lg-4">
 
       <p> Adresse M@il <br>
-        aspleon40@gmail.com</p>
+       <a href="mailto:aspleon@gmail.com">aspleon40@gmail.com</a> </p>
     </div>
   </div>
 

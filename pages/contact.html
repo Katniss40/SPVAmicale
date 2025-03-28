@@ -1,0 +1,68 @@
+<div class="hero-scene text-center text-white">
+        <div class="hero-scene-content">
+                <h1>Contactez nous!</h1>
+        </div>
+</div>
+
+<h2>Contactez-nous</h2>
+    <!--<form action="/php/contact.php" method="post">
+        <label for="name">Nom:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea><br><br>
+        
+        <input type="submit" value="Envoyer">
+    </form>-->
+
+    <div class="container">
+        <form action="/php/contact.php" method="post">
+            <div class="mb-3">
+                <label for="NomInput" class="form-label">Nom : *</label>
+                <input type="text" class="form-control" id="NomInput" placeholder="Votre nom" value="Votre nom" name="Nom" required> 
+            </div>
+
+            <div class="mb-3">
+                <label for="PrenomInput" class="form-label">Prénom : *</label>
+                <input type="text" class="form-control" id="PrenomInput" placeholder="Votre prénom" value="Votre prénom" name="Prenom" required> 
+            </div>
+                               
+            <div class="mb-3">
+                <label for="Telephone" class="form-label">Téléphone</label>
+                <input type="number" class="form-control" id="Telephone" placeholder="01.02.03.04.05"  value="Telephone" name="Telephone"> 
+              </div>
+
+              <div class="mb-3">
+              <label for="email" class="form-label">Email : *</label>
+              <input type="email" class="form-control" id="email" placeholder="email"  value="mail@votreMail.com" name="email" required>  
+            </div>
+              <div class="mb-3">
+                <label for="subject" class="form-label">Sujet : *</label>
+                <input type="text" class="form-control" id="subject" placeholder="subject" value="Sujet"  name="subject" required> 
+              </div> 
+              <div class="mb-3">
+                <label for="message" class="form-label">Message : *</label>
+                <textarea id="message" class="form-control" name="message" required></textarea>
+            <div class="text-center"> 
+              </div>
+        <br>
+
+        <h5 class="contact">Les champs suivis d'un * sont obligatoires</h5>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
+        </form>
+        
+    </div>
+
+   
+       
+        
+
+        
+
+
+        

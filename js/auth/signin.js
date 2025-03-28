@@ -15,7 +15,7 @@ function checkCredentials() {
 
     // Ici, il faudra appeler l'API pour vérifier les credentials en BDD
 
-    if(mailInput.value == "admin@email.com" && passwordInput.value =="123") {
+    if(mailInput.value == "admin@email.com" && passwordInput.value =="Admin-2025") {
         // Test ==>
         // alert("vous etes connecté");
 
@@ -27,7 +27,7 @@ function checkCredentials() {
         setCookie(RoleCookieName, "admin", 7);
         window.location.replace("/");
     }
-    if(mailInput.value == "client@email.com" && passwordInput.value =="123") {
+    if(mailInput.value == "spv@email.com" && passwordInput.value =="Spv-2025") {
         // Test ==>
         // alert("vous etes connecté");
 
@@ -36,7 +36,7 @@ function checkCredentials() {
         setToken(token);
 
         // Placer ce token en cookie
-        setCookie(RoleCookieName, "client", 7);
+        setCookie(RoleCookieName, "spv", 7);
         window.location.replace("/");
     }
     else{
