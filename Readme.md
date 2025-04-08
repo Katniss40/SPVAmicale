@@ -1,5 +1,5 @@
-# Quai Antique
-Ce site est un site vitrine pour le restaurnat Quai Antique
+# Amicale des sapeurs Pompiers de Léon
+Ce site est un site vitrine pour l'amicale des Sapeurs Pompiers de Léon
 
 # Installation
 
