@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Emilys+Candy&family=Happy+Monkey&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="scss/main.css"/>
     <title>Amicale des pompiers de Léon</title>
 </head>
@@ -16,35 +18,42 @@
   <header>
     <nav class="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark">
      <div class="container-fluid">
-      <a class="navbar-brand" href="/">Amicale des Pompiers de Léon</a>
+      <a class="navbar-brand policeNav" href="/">
+        <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Pompiers de Léon</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="/">Accueil</a>
+            <a class="nav-link policeNav" href="/">Accueil</a>
+            </li>
+              <li class="nav-item">
+            <a class="nav-link policeNav" href="/galerie">Galerie</a>
               </li>
               <li class="nav-item">
-            <a class="nav-link" href="/galerie">Galerie</a>
+            <a class="nav-link policeNav" href="/manifestations">Manifestations</a>
               </li>
               <li class="nav-item">
-            <a class="nav-link" href="/manifestations">Manifestations</a>
-              </li>
-              <li class="nav-item" data-show="connected">
-            <a class="nav-link" href="/VideGrenier">Vide-Grenier 2025</a>
-               </li>
-               <li class="nav-item" data-show="connected">
-                <a class="nav-link" href="/calendrier">Calendrier</a>
-                   </li>
-              <li class="nav-item" data-show="connected">
-           <a class="nav-link" href="/account">Mon compte</a>
-               </li>
+                <a class="nav-link policeNav" href="/infos">Info diverses</a>
+                  </li>
+
+                  <li class="nav-item dropdown" data-show="connected">
+                    <a class="nav-link policeNav dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Interne
+                    </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="nav-link policeDrop" href="/VideGrenier">Vide-Grenier 2025</a></li>
+                    <li><a class="nav-link policeDrop" href="/calendrier">Calendrier</a></li>
+                    <li><a class="nav-link policeDrop" href="/liens">Liens Utiles</a></li>
+                    <li><a class="nav-link policeDrop" href="/account">Mon compte</a></li>
+                  </ul>
+                </li>
                <li class="nav-item" data-show="disconnected">
-           <a class="nav-link" href="/signin">Connexion</a>
+           <a class="nav-link policeNav" href="/signin">Connexion</a>
               </li>
               <li class="nav-item" data-show="connected">
-                <button class="nav-link" id="signout-btn">Déconnexion</button>
+                <button class="nav-link policeNav" id="signout-btn">Déconnexion</button>
                    </li>
         </ul>
           
@@ -62,12 +71,12 @@
 <footer class="bg-dark text-white text-center footer">
   <div class="row">
     <div class="col-12 col-lg-4">
-      <h3 class="text-primary"> Nous contacter</h3>
-        <p>==> <br>
+      <h3 class="text-primary policeNav"> Nous contacter</h3>
+        <p class="policeNav">==> <br>
         ==></p>
     </div>
 
-    <div class="col-6 col-lg-4">
+    <div class="col-6 col-lg-4 policeNav">
       <p> Centre de secours et d'incendie <br/>
           Route de Laguens <br/>
           40 550 Leon <br/>
@@ -77,8 +86,8 @@
 
     <div class="col-6 col-lg-4">
 
-      <p> Adresse M@il <br>
-       <a href="mailto:aspleon@gmail.com">aspleon40@gmail.com</a> </p>
+      <p class="policeNav"> Adresse M@il <br>
+       <a class="mail" href="mailto:aspleon@gmail.com">aspleon40@gmail.com</a> </p>
     </div>
   </div>
 
@@ -87,5 +96,6 @@
     <script src="JS/script.js"></script>
     <script type="module" src="Router/router.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 </body>
 </html>

@@ -12,7 +12,10 @@ export const allRoutes = [
     new Route("/contact", "contact", "/pages/reservations/contact.html", ["spv", "admin"]),
     new Route("/manifestations", "Manifestations", "/pages/manifestations.html", []),
     new Route("/calendrier", "Calendrier", "/pages/calendrier.php", ["spv", "admin"]),
+    new Route("/liens", "Liens", "/pages/liens.html", ["spv", "admin"]),
     new Route("/contact", "Contact", "/pages/contact.html", []),
+    new Route("/infos", "Infos", "/pages/infos.html", []),
+    new Route("/infosPerso", "InfosPerso", "/pages/auth/infosPerso.php",["spv", "admin"]),
 
 ];
 

@@ -8,26 +8,8 @@
     <a href="#" class="btn btn-primary">Réservation</a>
 </div> 
 
-<div class="container text-center allreservations">
-    <a href="#">
-        <span>12/05/2023</span> |
-        <span>12:10</span> |
-        <span>5 Personnes</span> |
-        <span>Pas d'allergies</span>
-    </a>
+<div class="full-page">
 
-    <a href="#">
-        <span>10/07/2023</span> |
-        <span>19:10</span> |
-        <span>3 Personnes</span> |
-        <span>Pas d'allergies</span>
-    </a>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR2te9l6QycpYyrlB4LIm_KPOmBnbYOVAY85FovGNIK7lPGlVvidho34BSzkGYD8WdzLotFS8Qm9bLU/pubhtml?gid=312686297&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
 
-    <a href="#">
-        <span>17/10/2023</span> |
-        <span>12:10</span> |
-        <span>10 Personnes</span> |
-        <span>Pas d'allergies</span>
-    </a>
-
-</div>
+</div>    

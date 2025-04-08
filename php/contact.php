@@ -21,19 +21,30 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
+    $surname = $_POST['surname'];
     $email = $_POST['email'];
+    $telephone = $_POST['telephone'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
 
     // Validation des données (exemple simple)
-    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+    if (empty($name) || empty($surname) || empty($email) || empty($telephone) || empty($subject) || empty($message)) {
         echo "Tous les champs sont obligatoires.";
     } else {
         // Envoi de l'e-mail
         $to = "bourdeloux.corinne@orange.fr";
         $headers = "From: $name <$email>";
         mail($to, $subject, $message, $headers);
-        echo "Votre message a été envoyé avec succès.";
+        
+        // Définir le message d'alerte
+        $messageA = "Votre message a été envoyé avec succès!";
+
+        // Afficher le message d'alerte en utilisant JavaScript
+        echo "<script type='text/javascript'>alert('$messageA');</script>";
+        //echo "Votre message a été envoyé avec succès.";
+        // Redirigez vers la page principale
+        header("Location: /");
+        exit();
     }
 }
 
