@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Tous les champs sont obligatoires.";
     } else {
         // Envoi de l'e-mail
-        $to = "bourdeloux.corinne@orange.fr";
+        $to = "pompiers-leon@alwaysdata.net";
         $headers = "From: $name <$email>";
         mail($to, $subject, $message, $headers);
         

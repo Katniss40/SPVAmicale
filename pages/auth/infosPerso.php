@@ -1,9 +1,11 @@
 <div class="hero-scene text-center text-white">
     <div class="hero-scene-content">
-        <h1>Vos informations de connexions</h1>
+        <h1 class="hero-scene-text">Vos informations de connexions</h1>
     </div>
 </div>
-
+<br>
+<br>
+<br>
 
 
 <h2 style="text-align: center;">Informations Personnelles</h2>

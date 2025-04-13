@@ -1,9 +1,11 @@
 <div class="hero-scene text-center text-white">
         <div class="hero-scene-content">
-                <h1>Galerie</h1>
+                <h1 class="hero-scene-text">Calendriers des Gardes et Formations SPV</h1>
         </div>
 </div>
-
+<br>
+<br>
+<br>
 <style>
         table {
             width: 100%;
@@ -22,7 +24,7 @@
         }
     </style>
 
-<h1>Calendrier Modifiable</h1>
+<h1 align="center">Formations a venir</h1>
     <table id="calendar">
         <thead>
             <tr>
@@ -70,7 +72,7 @@
     <!-- cellspacing is used to specify the 
         space between the cell and its contents -->
         <h2 align="center" style="color: orange;">
-        January 2021
+        Garde SPV Du mois en cours
     </h2>
     <br />
       

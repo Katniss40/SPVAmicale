@@ -12003,21 +12003,25 @@ p {
 
 .hero-scene {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 .hero-scene::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: 78px;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../images/image_de_fond.jpg);
+  background-image: url(/images/image_de_fond.jpg);
   background-size: cover;
   filter: brightness(0.5);
 }
 .hero-scene * {
   position: relative;
+}
+.hero-scene .hero-scene-text {
+  align-items: center;
+  margin-top: 80px;
 }
 .hero-scene .hero-scene-content {
   height: 300px;
@@ -12152,4 +12156,17 @@ iframe {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+.carte-sapeurs {
+  text-align: center;
+}
+
+.commentaires {
+  position: relative;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: first baseline;
 }/*# sourceMappingURL=main.css.map */
