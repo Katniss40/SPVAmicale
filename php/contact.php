@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Afficher le message d'alerte en utilisant JavaScript
         echo "<script type='text/javascript'>alert('$messageA');</script>";
-        //echo "Votre message a été envoyé avec succès.";
+        echo "Votre message a été envoyé avec succès.";
         // Redirigez vers la page principale
         header("Location: /");
         exit();

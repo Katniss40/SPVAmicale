@@ -48,7 +48,7 @@ function validateConfirmationPassword(inputPwd, inputConfirmPwd){
     }
 
 function validatePassword(input){
-    //Définir mon regex
+    //Définir mon regex pour le mot de passe
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/
     const passwordUser = input.value;
     if(passwordUser.match(passwordRegex)){
@@ -77,7 +77,7 @@ function validateRequired(input){
 }
 
 function validateMail(input){
-    //Définir mon regex
+    //Définir mon regex pour l'adresse mail
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const mailUser = input.value;
     if(mailUser.match(emailRegex)){
