@@ -12012,7 +12012,7 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(/images/image_de_fond.jpg);
+  background-image: url(/Images/image_de_fond.jpg);
   background-size: cover;
   filter: brightness(0.5);
 }
@@ -12143,7 +12143,7 @@ th {
   background-color: #f2f2f2;
 }
 
-.full-page, .vgP {
+.full-page {
   width: 100%;
   height: 100%;
   display: flex;

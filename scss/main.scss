@@ -4,6 +4,10 @@
 html{
   position: relative;
   min-height: 100%;
+  //margin: 0;
+  //padding: 0;
+  //height: 100%;
+  //width: 100%;
 }
 
 main{
@@ -47,7 +51,7 @@ p{
           left:0;
           width:100%;
           height:100%;
-          background-image: url(/images/image_de_fond.jpg);
+          background-image: url(/Images/image_de_fond.jpg);
           background-size: cover;
           filter: brightness(0.5);
       }
@@ -202,7 +206,7 @@ th {
 
 //page vide grenier
 
-.full-page, .vgP {
+.full-page {
   width: 100%;
   height: 100%;
   display: flex;
