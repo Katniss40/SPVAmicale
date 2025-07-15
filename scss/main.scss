@@ -10,14 +10,24 @@ html{
   //width: 100%;
 }
 
+.bg-black{
+  background-color: #F5E6CC;
+}
+.bg-white{
+  background-color: #2E7D32;
+}
+
 main{
   margin-bottom: 250px;
 }
 .policeNav{
-  color: #292222;
+  color: rgb(196, 29, 29);
+  //color: #292222;
   font-weight: bold;
 }
-
+ #contact {
+  align-items: center !important;
+ }
 .mail{
   color: #292222;
   font-weight: bold;
@@ -29,7 +39,7 @@ main{
   }
 
 footer.footer{
-  padding: 15px;
+  padding: 0px;
   position: absolute;
   bottom: 0;
   width: 100%;  
@@ -37,32 +47,35 @@ footer.footer{
 
 p{
   font-family: $font-family-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
-
+ #cre4 {
+  border: 2px solid rgb(196, 29, 29);
+ }
+ 
 .cadre {
   border: 2px solid #000; /* Bordure noire de 2 pixels */
   padding: 10px; /* Espacement intérieur de 10 pixels */
   width: fit-content; /* Ajuste la largeur au contenu */
   margin: 20px auto; /* Centre le cadre horizontalement */
-  background-color: rgb(196, 29, 29); /* Couleur de fond légèrement grise */
+  background-color: rgb(255, 255, 255); /* Couleur de fond légèrement grise */
   border-radius: 5px; /* Coins arrondis */
 }
 
 // hero-scene
 .hero-scene{
       position: relative;
-      margin-bottom: 5px;
+      //margin-bottom: 5px;
       &::before{
           content:"";
           position: absolute;
-          top:78px;
+          top:-80px;
           left:0;
           width:100%;
-          height:100%;
-          background-image: url(/Images/image_de_fond.jpg);
+          height:170%;
+          background-image: url(../Images/groupe2023.jpg);
           background-size: cover;
-          filter: brightness(0.5);
+          filter: brightness(0.6);
       }
 
       *{
@@ -72,7 +85,7 @@ p{
 
       .hero-scene-text{
         align-items: center;
-        margin-top: 80px;
+        margin-top: 90px;
       }
       
 .hero-scene-content{
@@ -174,6 +187,11 @@ p{
   align-items: center;
 }
 
+#video {
+  border: 2px solid rgb(196, 29, 29); 
+  padding: 5px; 
+}
+
 // Font google
 .emilys-candy-regular {
   font-family: "Emilys Candy", serif;
@@ -236,6 +254,30 @@ iframe {
  text-align: center;
 }
 
+
+
+// page Admin
+
+.admin {
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(196, 29, 29);
+  background-color: rgb(227, 227, 227);
+}
+
+// page SPV
+
+.spv {
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgb(196, 29, 29);
+  background-color: rgb(227, 227, 227);
+}
+
 // page galerie
 
 .commentaires {
@@ -246,3 +288,169 @@ iframe {
   justify-content: center;
   align-items: first baseline;
 }
+
+ // le Carrousel d'images de la galerie
+
+/* Définition d'un container pour gérer l'affichage */
+.container {
+    overflow: hidden;
+    /* Cache les éléments qui dépassent du container */
+}
+
+/* Définition du carousel */
+.carousel {
+    position: relative;
+    /* Le carousel est positionné relativement à son parent */
+}
+
+/* Définition de l'élément contenant les diapositives */
+.carousel-inner {
+    display: flex;
+    /* Affiche les éléments en ligne */
+    overflow: hidden;
+    /* Cache les éléments qui dépassent */
+    height: 90vh;
+    /* Hauteur égale à 100% de la hauteur de la vue */
+    flex-wrap: nowrap;
+    /* Empêche les éléments de se placer sur plusieurs lignes */
+}
+
+/* Définition des diapositives */
+.slide {
+    flex: 0 0 100%;
+    /* Largeur de chaque diapositive est de 100% */
+    height: 100%;
+    /* Hauteur de chaque diapositive est de 100% */
+    transition: .5s ease-in-out;
+    /* Ajout d'une animation douce pour la transition entre les diapositives */
+}
+
+/* Définition de l'affichage de l'image de chaque diapositive */
+.slide img {
+    width: 100%;  
+    /* Largeur de l'image est de 100% */
+    height: 100%;  
+    /* Hauteur de l'image est de 100% */
+    object-fit: cover;
+    /* Couvre tout l'espace disponible */
+}
+
+/* Définition des boutons de contrôle du carousel */
+.carousel-controls {
+    position: absolute;
+    /* Les boutons sont absolument positionnés */
+    z-index: 5;
+    /* Ils sont placés au-dessus des autres éléments */
+    left: 0%; //10%
+    /* La distance à gauche est de 10% */
+    right: 0%; //10%
+    /* La distance à droite est de 10% */
+    top: 50%;
+    /* La distance du haut est de 50% */
+    display: flex;
+    /* Affiche les boutons en ligne */
+    justify-content: space-between;
+    /* Espacement égal entre les boutons */
+}
+
+/* Style des boutons de contrôle */
+.carousel-controls button {
+    padding: 10px;
+    /* Ajout de padding pour un meilleur contrôle */
+    background-color: aquamarine;
+    /* Arrière-plan en aquamarine */
+}
+
+/* Définition des points de contrôle */
+.carousel-dots {
+    position: absolute;
+    /* Les points sont absolument positionnés */
+    z-index: 5;
+    /* Ils sont placés au-dessus des autres éléments */
+    left: 50%;
+    /* La distance à gauche est de 50% */
+    right: 50%;
+    /* La distance à droite est de 50% */
+    bottom: 10%;
+    /*La distance du bas est de 10% */
+    display: flex;
+    /* Affiche les points en ligne */
+    justify-content: center;
+    /* Centrage des points */
+}
+
+/* Style des points de contrôle */
+.carousel-dots .dot {
+    border-radius: 50%;
+    /* Les points sont en forme de cercle */
+    margin: 5px;
+    /* Ajout d'un margin pour un meilleur contrôle */
+    cursor: pointer;
+    /* Curseur en forme de main pour un meilleur contrôle */
+}
+
+/* Styles pour les points de navigation du carrousel */
+.carousel-dots .active {
+    /* Border de 10px pour le point actif */
+    border: 10px solid rgb(196, 29, 29) !important;
+    /* !important permet de surcharger les autres styles éventuels */
+}
+
+.carousel-dots .inactive {
+    /* Border de 10px pour les points inactifs */
+    border: 10px solid #156384;
+}
+
+// Pages liens utiles
+
+// decorations des liens utiles
+.liens {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+//mise en forme du cadre des liens utiles
+.liens-utiles{
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgb(196, 29, 29);
+  background-color: rgb(227, 227, 227);
+}
+
+// page calendrier
+
+.calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      max-width: 300px;
+      margin: auto;
+    }
+    .day {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .day:hover {
+      background-color: #f0f0f0;
+    }
+
+    .bleu{
+      border: 2px solid rgb(0, 13, 255); 
+      padding: 5px;
+    }
+
+    .jaune{
+      border: 2px solid #f6ff00; 
+      padding: 5px;
+    }
+
+    .verte{
+      border: 2px solid rgb(17, 255, 0); 
+      padding: 5px;
+    }
