@@ -10,17 +10,12 @@
 <br>
 <br>
 <br>
-<section>
-<div class="container-md">
-    <br>   
-        <div class="full-page">
-            <h2 class="text-center">Liste des réservations</h2>
-        </div>
-    
-        <div class="ratio ratio-4x3 full-page">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR2te9l6QycpYyrlB4LIm_KPOmBnbYOVAY85FovGNIK7lPGlVvidho34BSzkGYD8WdzLotFS8Qm9bLU/pubhtml?gid=312686297&amp;single=true&amp;widget=true&amp;headers=false"></iframe>    
-        </div>
-    <br>
+<div class="container text-center pb-3">
+    <a href="#" class="btn btn-primary">Réservation</a>
 </div> 
-</section>   
 
+<div class="full-page">
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR2te9l6QycpYyrlB4LIm_KPOmBnbYOVAY85FovGNIK7lPGlVvidho34BSzkGYD8WdzLotFS8Qm9bLU/pubhtml?gid=312686297&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+
+</div>    
