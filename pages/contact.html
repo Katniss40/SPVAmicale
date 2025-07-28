@@ -14,28 +14,28 @@
         <p>Pour toutes questions ou demandes d'information, n'hésitez pas à nous contacter via le formulaire ci-dessous.</p>
             <form action="/php/contact.php" method="post">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nom : *</label>
-                    <input type="text" class="form-control" id="name" placeholder="Votre nom" required> 
+                    <label for="name" class="form-label">Nom, prénom : *</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required> 
                 </div>
 
-                <div class="mb-3">
+               <!-- <div class="mb-3">
                     <label for="surname" class="form-label">Prénom : *</label>
-                    <input type="text" class="form-control" id="surname" placeholder="Votre prénom" required> 
+                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Votre prénom" required> 
                 </div>
                                
                 <div class="mb-3">
                     <label for="telephone" class="form-label">Téléphone</label>
-                    <input type="number" class="form-control" id="telephone" placeholder="01.02.03.04.05"> 
-                </div>
+                    <input type="number" class="form-control" id="telephone" name="telephone" placeholder="01.02.03.04.05"> 
+                </div>-->
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email : *</label>
-                    <input type="email" class="form-control" id="email" placeholder="email" required>  
+                    <input type="email" class="form-control" id="email" name="email" placeholder="email" required>  
                 </div>
 
                 <div class="mb-3">
                     <label for="subject" class="form-label">Sujet : *</label>
-                    <input type="text" class="form-control" id="subject" placeholder="subject" value="Sujet"  name="subject" required> 
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="subject" value="Sujet" required> 
                 </div>
 
                 <div class="mb-3">

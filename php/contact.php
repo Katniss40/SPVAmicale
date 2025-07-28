@@ -1,51 +1,51 @@
 <?php
-/*if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $message = htmlspecialchars($_POST['message']);
-    
-    $to = "aspleon@gmail.com"; // Remplacez par votre adresse e-mail
-    $subject = "Nouveau message de contact de $name";
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    
-    $body = "Nom: $name\nEmail: $email\n\nMessage:\n$message";
-    
-    if (mail($to, $subject, $body, $headers)) {
-        echo "Merci, votre message a été envoyé.";
-    } else {
-        echo "Désolé, une erreur s'est produite. Veuillez réessayer.";
-    }
-}*/
+
+// Configurer le serveur SMTP
+ini_set('SMTP', 'smtp.free.fr'); // Remplacez par l'adresse de votre serveur SMTP
+ini_set('smtp_port', '25'); // Port SMTP (par défaut 25, 465, ou 587 pour TLS)
+
+// Configurer l'adresse de l'expéditeur
+//ini_set('sendmail_from', 'pompiers.leon@gmail.com');
+
+// Préparer l'e-mail
+//$to = 'destinataire@example.com';
+//$subject = 'Test d\'envoi de mail';
+//$message = 'Ceci est un test d\'envoi de mail via PHP.';
+//$headers = 'From: votre-email@example.com';
+
+// Envoyer l'e-mail
+//if (mail($to, $subject, $message, $headers)) {
+//    echo 'E-mail envoyé avec succès.';
+//} else {
+//    echo 'Échec de l\'envoi de l\'e-mail.';
+//}
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
-    $surname = $_POST['surname'];
     $email = $_POST['email'];
-    $telephone = $_POST['telephone'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
 
-    // Validation des données (exemple simple)
-    if (empty($name) || empty($surname) || empty($email) || empty($telephone) || empty($subject) || empty($message)) {
+    // Validation des données
+    if(empty($name) || empty($email) || empty($subject) || empty($message)) {
         echo "Tous les champs sont obligatoires.";
     } else {
-        // Envoi de l'e-mail
-        $to = "pompiers-leon@alwaysdata.net";
-        $headers = "From: $name <$email>";
+        // envoi de l'email
+        //$to = 'aspleon40@gmail.com';
+        $to = 'pompiers.leon@gmail.com';
+        $headers = "From: $name<$email>";
+        $messageEnvoye = true; // Simulez que le message a été envoyé avec succès
         mail($to, $subject, $message, $headers);
-        
-        // Définir le message d'alerte
-        $messageA = "Votre message a été envoyé avec succès!";
-
-        // Afficher le message d'alerte en utilisant JavaScript
-        echo "<script type='text/javascript'>alert('$messageA');</script>";
         echo "Votre message a été envoyé avec succès.";
-        // Redirigez vers la page principale
-        header("Location: /");
-        exit();
+        if ($messageEnvoye) {
+        // Générer un script JavaScript pour afficher un pop-up
+        echo "<script>alert('Votre message a été envoyé avec succès !');</script>";
+    }  
     }
 }
-
-?>
+    // Redirection vers une autre page
+        header("Location: /");
+        exit();// Toujours utiliser exit après un header pour arrêter l'exécution du script
+    
+    ?>
