@@ -32,15 +32,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Tous les champs sont obligatoires.";
     } else {
         // envoi de l'email
-        //$to = 'aspleon40@gmail.com';
-        $to = 'pompiers.leon@gmail.com';
+        $to = 'aspleon40@gmail.com';
+        //$to = 'pompiers.leon@gmail.com';
         $headers = "From: $name<$email>";
         $messageEnvoye = true; // Simulez que le message a été envoyé avec succès
         mail($to, $subject, $message, $headers);
         echo "Votre message a été envoyé avec succès.";
         if ($messageEnvoye) {
         // Générer un script JavaScript pour afficher un pop-up
-        echo "<script>alert('Votre message a été envoyé avec succès !');</script>";
+       echo "<script>alert('Votre message a été envoyé avec succès !');</script>";
+       //echo "Merci, " . $name . ", votre message a été envoyé !";
     }  
     }
 }

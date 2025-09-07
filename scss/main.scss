@@ -12,6 +12,7 @@ html{
 
 .bg-black{
   background-color: #F5E6CC;
+
 }
 .bg-white{
   background-color: #2E7D32;
@@ -20,23 +21,25 @@ html{
 main{
   margin-bottom: 250px;
 }
+
 .policeNav{
   color: rgb(196, 29, 29);
   //color: #292222;
   font-weight: bold;
 }
+
  #contact {
   align-items: center !important;
  }
+
 .mail{
   color: #292222;
   font-weight: bold;
-  
 }
 
 .mail:hover{
     color: rgb(246, 203, 203);
-  }
+}
 
 footer.footer{
   padding: 0px;
@@ -49,6 +52,7 @@ p{
   font-family: $font-family-serif;
   font-size: 16px;
 }
+
  #cre4 {
   border: 2px solid rgb(196, 29, 29);
   color: rgb(196, 29, 29);
@@ -57,8 +61,8 @@ p{
   text-decoration-color: #2E7D32; /* Couleur de la ligne */
   text-decoration-thickness: 2px; /* Épaisseur de la ligne */
   text-decoration-style: wavy; /* Double ligne */
+  }
 }
- }
  
 .cadre {
   border: 2px solid #000; /* Bordure noire de 2 pixels */
@@ -68,6 +72,7 @@ p{
   background-color: rgb(255, 255, 255); /* Couleur de fond légèrement grise */
   border-radius: 5px; /* Coins arrondis */
 }
+
 
 // hero-scene
 .hero-scene{
@@ -79,8 +84,8 @@ p{
           top:-80px;
           left:0;
           width:100%;
-          height:100%;
-          background-image: url(/images/image_de_fond.jpg);
+          height:170%;
+          background-image: url(../Images/groupe2023.jpg);
           background-size: cover;
           filter: brightness(0.6);
       }
@@ -104,16 +109,17 @@ p{
       }
   }
 
+
   // texte home page
 .text-justify{
     text-align: justify;
-  }
+}
 
-  .policeDrop {
+.policeDrop {
     color:rgb(196, 29, 29);
     font-weight: 700;
 
-  }
+}
 
 .form-label{
   color: $primary;
@@ -160,7 +166,6 @@ p{
     padding: 5px;
     display: flex;
     justify-content: space-between;
-    
     opacity: 0;
     transition: all 0.3s;
   }
@@ -172,6 +177,7 @@ p{
   border: 4px solid rgb(196, 29, 29);
 }
 
+
 // Pages Manifestations
 
 #contact {
@@ -180,6 +186,7 @@ p{
   text-align: center;
   background-color: #F5E6CC;
 } 
+
 .conteneur-flex {
   display: flex;
   align-items: center; /* Centre verticalement */
@@ -202,7 +209,7 @@ p{
 }
 
 #video {
-  border: 2px solid rgb(196, 29, 29); 
+  border: 2px groove rgb(196, 29, 29); 
   padding: 5px; 
 }
 
@@ -219,9 +226,6 @@ p{
   font-style: normal;
 }
 
-// <weight>: Use a value from 100 to 900
-// <uniquifier>: Use a unique and descriptive class name
-
 .montserrat {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
@@ -236,14 +240,17 @@ table {
   border-collapse: collapse;
   margin: 20px auto;
 }
+
 th, td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
+
 th {
   background-color: #f2f2f2;
 }
+
 
 //page vide grenier
 
@@ -262,12 +269,23 @@ iframe {
   border: none;
 }
 
+.resa {
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgb(196, 29, 29);
+  background-color: #2E7D32;
+} 
+
+
 // page informations
 
 .carte-sapeurs {
  text-align: center;
 }
-
 
 
 // page Admin
@@ -278,6 +296,7 @@ iframe {
   border-color: rgb(196, 29, 29);
   background-color: rgb(227, 227, 227);
 }
+
 
 // page SPV
 
@@ -292,6 +311,7 @@ iframe {
   background-color: rgb(227, 227, 227);
 }
 
+
 // page galerie
 
 .commentaires {
@@ -303,117 +323,25 @@ iframe {
   align-items: first baseline;
 }
 
- // le Carrousel d'images de la galerie
-
-/* Définition d'un container pour gérer l'affichage */
-.container {
-    overflow: hidden;
-    /* Cache les éléments qui dépassent du container */
+// Bouton supprimer 
+.delete-button:hover {
+  background-color: #2E7D32;
+  color: white;
+  border: 1px solid rgb(196, 29, 29);
 }
 
-/* Définition du carousel */
-.carousel {
-    position: relative;
-    /* Le carousel est positionné relativement à son parent */
+.zoom img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+  box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5);
+}
+.zoom :hover img { 
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
 }
 
-/* Définition de l'élément contenant les diapositives */
-.carousel-inner {
-    display: flex;
-    /* Affiche les éléments en ligne */
-    overflow: hidden;
-    /* Cache les éléments qui dépassent */
-    height: 90vh;
-    /* Hauteur égale à 100% de la hauteur de la vue */
-    flex-wrap: nowrap;
-    /* Empêche les éléments de se placer sur plusieurs lignes */
-}
-
-/* Définition des diapositives */
-.slide {
-    flex: 0 0 100%;
-    /* Largeur de chaque diapositive est de 100% */
-    height: 100%;
-    /* Hauteur de chaque diapositive est de 100% */
-    transition: .5s ease-in-out;
-    /* Ajout d'une animation douce pour la transition entre les diapositives */
-}
-
-/* Définition de l'affichage de l'image de chaque diapositive */
-.slide img {
-    width: 100%;  
-    /* Largeur de l'image est de 100% */
-    height: 100%;  
-    /* Hauteur de l'image est de 100% */
-    object-fit: cover;
-    /* Couvre tout l'espace disponible */
-}
-
-/* Définition des boutons de contrôle du carousel */
-.carousel-controls {
-    position: absolute;
-    /* Les boutons sont absolument positionnés */
-    z-index: 5;
-    /* Ils sont placés au-dessus des autres éléments */
-    left: 0%; //10%
-    /* La distance à gauche est de 10% */
-    right: 0%; //10%
-    /* La distance à droite est de 10% */
-    top: 50%;
-    /* La distance du haut est de 50% */
-    display: flex;
-    /* Affiche les boutons en ligne */
-    justify-content: space-between;
-    /* Espacement égal entre les boutons */
-}
-
-/* Style des boutons de contrôle */
-.carousel-controls button {
-    padding: 10px;
-    /* Ajout de padding pour un meilleur contrôle */
-    background-color: aquamarine;
-    /* Arrière-plan en aquamarine */
-}
-
-/* Définition des points de contrôle */
-.carousel-dots {
-    position: absolute;
-    /* Les points sont absolument positionnés */
-    z-index: 5;
-    /* Ils sont placés au-dessus des autres éléments */
-    left: 50%;
-    /* La distance à gauche est de 50% */
-    right: 50%;
-    /* La distance à droite est de 50% */
-    bottom: 10%;
-    /*La distance du bas est de 10% */
-    display: flex;
-    /* Affiche les points en ligne */
-    justify-content: center;
-    /* Centrage des points */
-}
-
-/* Style des points de contrôle */
-.carousel-dots .dot {
-    border-radius: 50%;
-    /* Les points sont en forme de cercle */
-    margin: 5px;
-    /* Ajout d'un margin pour un meilleur contrôle */
-    cursor: pointer;
-    /* Curseur en forme de main pour un meilleur contrôle */
-}
-
-/* Styles pour les points de navigation du carrousel */
-.carousel-dots .active {
-    /* Border de 10px pour le point actif */
-    border: 10px solid rgb(196, 29, 29) !important;
-    /* !important permet de surcharger les autres styles éventuels */
-}
-
-.carousel-dots .inactive {
-    /* Border de 10px pour les points inactifs */
-    border: 10px solid #156384;
-}
 
 // Pages liens utiles
 
@@ -435,6 +363,7 @@ iframe {
   background-color: rgb(227, 227, 227);
 }
 
+
 // page calendrier
 
 .calendar {
@@ -444,7 +373,8 @@ iframe {
       max-width: 300px;
       margin: auto;
     }
-    .day {
+
+.day {
       padding: 10px;
       text-align: center;
       border: 1px solid #ccc;
@@ -454,17 +384,72 @@ iframe {
       background-color: #f0f0f0;
     }
 
-    .bleu{
-      border: 2px solid rgb(0, 13, 255); 
-      padding: 5px;
-    }
+.bleu{
+  border: 2px solid rgb(0, 13, 255); 
+  padding: 5px;
+}
 
-    .jaune{
-      border: 2px solid #f6ff00; 
-      padding: 5px;
-    }
+.jaune{
+  border: 2px solid #f6ff00; 
+  padding: 5px;
+}
 
-    .verte{
-      border: 2px solid rgb(17, 255, 0); 
-      padding: 5px;
+.verte{
+  border: 2px solid rgb(17, 255, 0); 
+  padding: 5px;
+}
+
+
+// Page VideGrenier
+
+.ratio {
+  aspect-ratio: 16 / 9; /* Ratio de l'iframe */
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgb(196, 29, 29);
+  background-color: #2E7D32;
+}
+
+
+// Blog
+
+.blog_table {
+  width: 1300px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.blog_table td, .blog_table tr {
+  border: 1px solid rgb(196, 29, 29);
+  padding: 8px;
+  text-align: left;
+}
+
+.blog_table tr {
+  background-color:  rgb(227, 227, 227);
+}
+
+.blog_table b {
+  color: #2E7D32;
+  text-decoration: rgb(196, 29, 29) wavy underline;
+}
+
+.uploads {
+  width:150px; 
+  height:auto;
+}
+
+// Mot de passe
+
+.password-container {
+      display: flex;
+      align-items: center;
+    }
+    .toggle-btn {
+      margin-left: 10px;
+      cursor: pointer;
     }

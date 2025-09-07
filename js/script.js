@@ -117,5 +117,16 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
 
 
-
+function togglePassword() {
+      const passwordField = document.getElementById('password');
+      const toggleButton = document.querySelector('.toggle-btn');
+      
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleButton.textContent = 'Masquer';
+      } else {
+        passwordField.type = 'password';
+        toggleButton.textContent = 'Afficher';
+      }
+    }
 

@@ -1,11 +1,10 @@
 <div class="hero-scene text-center text-white">
     <div class="hero-scene-content">
-            <h1 class="hero-scene-text">Vide Grenier 2025</h1>
-            <div><a href="/admin" class="btn btn-primary" data-show="admin">Retour au Tableau de bord</a></div>
+        <h1 class="hero-scene-text">Changement de mot de passe</h1>
     </div>
 </div>
-
 <br><br><br><br><br>
+
 
 <section >
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
@@ -29,7 +28,7 @@
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discutions</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/account">Mon Compte</a>
@@ -41,30 +40,29 @@
 
 </section>
 
-<br><br>
 
-<section>
-<div class="container-md">
-    <br>   
-        <div class="full-page">
-            <h2 class="text-center">Liste des réservations</h2>
+    <div class="container">
+        <br>
+        <h3> Modification</h3>
+        <br>
+        <form>
+            <div class="mb-3">
+              <label for="OdlPasswordInput" class="form-label">Ancien Mot de passe</label>
+              <input type="password" class="form-control" id="OdlPasswordInput" name="Password">
+            </div>
+            <div class="mb-3">
+              <label for="NewPasswordInput" class="form-label">Nouveau Mot de passe</label>
+              <input type="password" class="form-control" id="NewPasswordInput" name="Password">
+            </div>
+            <div class="mb-3">
+                <label for="ValidatePasswordInput" class="form-label">Validez votre mot de passe</label>
+                <input type="password" class="form-control" id="ValidatePasswordInput" name="PasswordConfirm">
+              </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Changer mon mot de passe</button>
+            </div>
+        </form>
+        <div class="text-center pt-3">
+            <a href="/account">Modifier mes informations personnelles</a>
         </div>
-
-        <div>
-
-        <p class="resa text-white">
-            2022 : 170 m² et 39 reservations soit 850 €<br>
-            2023 : 270 m² et 57 reservation soit 1350 €<br>
-            2024 : 259 m² et 59 réservation soit 1295 € <br>
-            2025 : 287 m² et 57 réservation soit 1435 €
-        </p>
-
-        </div>
-    
-        <div class="ratio ratio-4x3 full-page">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR2te9l6QycpYyrlB4LIm_KPOmBnbYOVAY85FovGNIK7lPGlVvidho34BSzkGYD8WdzLotFS8Qm9bLU/pubhtml?gid=312686297&amp;single=true&amp;widget=true&amp;headers=false"></iframe>    
-        </div>
-    <br>
-</div> 
-</section>   
-
+    </div>

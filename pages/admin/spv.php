@@ -4,36 +4,50 @@
                 <div><a href="/admin" class="btn btn-primary" data-show="admin">Retour au Tableau de bord</a></div>
         </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/admin">Admin Dashboard</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<br><br><br><br><br>
+
+<section>
+    <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/admin">Tableau de bord Administrateur</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="/spv">Liste des membres</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/calendrier">Gérer le calendrier</a>
+                            <a class="nav-link" href="/liens">Liens Utiles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/VideGrenier">Vide grenier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog">Discutions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account">Mon Compte</a>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+        </div>
+    </nav>
+<br>
+</section>
 
-
-        <section class="spv">
+<section class="spv">
     <div class="row bg-arc-mint-green-light-staff py-3">
         <div class="card-list-employe mt-3">
             <div class="card-header">
-                    Liste des Membres enregistrés
+                <h2 class="text-center text-primary">Liste des Membres enregistrés</h2>
             </div>
 
             <div class="card-body">
@@ -72,7 +86,7 @@
                         echo "<td>" . htmlspecialchars($row['PrenomInput']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['Adresse']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['PasswordInput']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['email']) . "</td>"; 
+                        echo "<td>" . htmlspecialchars($row['EmailInput']) . "</td>"; 
                         echo "<td>" . htmlspecialchars($row['Telephone']) . "</td>";                                                                                                                          
                         //echo "<td><a href='/pages/admin/modif_spv.php'" . $row['id'] . "' class='btn btn-primary btn-sm'>Modif</a> ";
                         //echo "<a href='/pages/admin/supp_spv.php'" . $row['id'] . "' class='btn btn-danger btn-sm'>Supp</a></td>";

@@ -1,6 +1,4 @@
 <?php
-
-
 // Connexion a la base de données
 $servername = 'mysql-pompiers-leon.alwaysdata.net';
 $username = '408942';
@@ -18,21 +16,17 @@ echo "Connexion réussi!";
 
 // Récuperer les données du formulaire
 
-$Role = $_POST['Role'];
-$NomInput = $_POST['NomInput'];                        
-$PrenomInput = $_POST['PrenomInput'];
-$Adresse = $_POST['Adresse'];
-$Telephone = $_POST['Telephone'];
-$EmailInput = $_POST['EmailInput'];                       
-$PasswordInput = $_POST['PasswordInput'];
+$title = $_POST['title'];
+$content = $_POST['content'];                        
+
 
 // insere les données dans la base de données
-$sql = " INSERT INTO Users(Role, NomInput, PrenomInput, Adresse, Telephone, EmailInput, PasswordInput) VALUES ('$Role', '$NomInput', '$PrenomInput', '$Adresse', '$Telephone', '$EmailInput', '$PasswordInput')";
+$sql = " INSERT INTO blog(title, content) VALUES ('$title', '$content')";
 
 
 if($conn->query($sql) === TRUE) {
     //echo "Entrée enregistrée avec succés"
-    header('Location: /admin');
+    header('Location: /blog');
     exit();
     ;
 } else {
@@ -41,5 +35,14 @@ if($conn->query($sql) === TRUE) {
 
 // fermer la connexion
 $conn->close();
-?>
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+
+    $stmt = $conn->prepare("INSERT INTO blog (title, content) VALUES (?, ?)");
+    $stmt->bind_param("ss", $title, $content);
+    $stmt->execute();
+    echo "Article ajouté avec succès !";
+}
+?>

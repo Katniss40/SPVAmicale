@@ -3,11 +3,42 @@
         <h1 class="hero-scene-text">Mon compte</h1>
     </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br><br>
+
+<section >
+    <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Blog" >Tableau de bord </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/liens">Liens Utiles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/VideGrenier">Vide grenier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Blog">Discutions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account">Mon Compte</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </nav>
+
+</section>
+
 
     <div class="container">
         <br>
