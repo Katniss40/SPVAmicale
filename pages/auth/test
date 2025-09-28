@@ -1,0 +1,23 @@
+<?php
+// Liste des noms autorisés
+$utilisateurs_autorises = ["Corinne", "Jean", "Sophie"];
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nom = trim($_POST["nom"]);
+
+    if (in_array($nom, $utilisateurs_autorises)) {
+        // Affiche les données sensibles
+        echo "<h2>Données confidentielles :</h2>";
+        echo "<p>Voici les infos réservées à $nom.</p>";
+    } else {
+        echo "<p>Accès refusé. Nom inconnu.</p>";
+    }
+}
+?>
+
+<!-- Formulaire HTML -->
+<form method="post">
+    <label for="nom">Entrez votre nom :</label>
+    <input type="text" name="nom" id="nom" required>
+    <button type="submit">Afficher les données</button>
+</form>

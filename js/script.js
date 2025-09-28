@@ -117,5 +117,30 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
 
 
+function togglePassword() {
+      const passwordField = document.getElementById('password');
+      const toggleButton = document.querySelector('.toggle-btn');
+      
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleButton.textContent = 'Masquer';
+      } else {
+        passwordField.type = 'password';
+        toggleButton.textContent = 'Afficher';
+      }
+    }
 
+// Afficher ou cacher le bouton selon le défilement
+window.onscroll = function () {
+  const button = document.getElementById("backToTop");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    button.style.display = "block";
+  } else {
+    button.style.display = "none";
+  }
+};
 
+// Fonction pour remonter en haut de la page
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}

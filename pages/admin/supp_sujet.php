@@ -17,19 +17,27 @@ echo "Connexion réussi!";
 
 // Récuperer les données du formulaire
 
-$Role = $_POST['Role'];
-$NomInput = $_POST['NomInput'];                        
-$PrenomInput = $_POST['PrenomInput'];
-$Adresse = $_POST['Adresse'];
-$Telephone = $_POST['Telephone'];
-$EmailInput = $_POST['EmailInput'];                       
-$PasswordInput = $_POST['PasswordInput'];
+$ID = $_POST['id'];
+//$NomInput = $_POST['NomInput'];                        
+//$PrenomInput = $_POST['PrenomInput'];
 
-// insere les données dans la base de données
-$sql = " INSERT INTO Users(Role, NomInput, PrenomInput, Adresse, Telephone, EmailInput, PasswordInput) VALUES ('$Role', '$NomInput', '$PrenomInput', '$Adresse', '$Telephone', '$EmailInput', '$PasswordInput')";
+// Supprime les données dans la base de données
+//$sql = " DELETE FROM Users WHERE ID = '$ID'";
+
+// réinitialise l'auto-increment
+//$sql = "ALTER TABLE Users AUTO_INCREMENT = 1;";
+
+// Supprimer une entrée
+
+$sql_delete = "DELETE FROM Users WHERE id = '$ID'";
+$conn->query($sql_delete);
+
+// Réinitialiser l'auto-increment
+$sql_reset = "ALTER TABLE Users AUTO_INCREMENT = 1";
+$conn->query($sql_reset);
 
 
-if($conn->query($sql) === TRUE) {
+if($conn->query($sql_delete) === TRUE) {
     //echo "Entrée enregistrée avec succés"
     header('Location: /admin');
     exit();
@@ -40,5 +48,5 @@ if($conn->query($sql) === TRUE) {
 
 // fermer la connexion
 $conn->close();
-?>
 
+?>

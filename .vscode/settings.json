@@ -1,5 +1,5 @@
 {
-    "livePreview.defaultPreviewPath": "/index.html"
+    "livePreview.defaultPreviewPath": "/pages/home.html"
 } //{
     //"liveServer.settings.port": 3880//5501
 //}

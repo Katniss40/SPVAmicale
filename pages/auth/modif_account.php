@@ -16,29 +16,33 @@ if($conn->connect_error) {
 echo "Connexion réussi!";
 
 // Récuperer les données du formulaire
-
-$Role = $_POST['Role'];
-$NomInput = $_POST['NomInput'];                        
-$PrenomInput = $_POST['PrenomInput'];
+$CAgent = $_POST['CAgent'];
 $Adresse = $_POST['Adresse'];
 $Telephone = $_POST['Telephone'];
-$EmailInput = $_POST['EmailInput'];                       
-$PasswordInput = $_POST['PasswordInput'];
 
 // insere les données dans la base de données
-$sql = " INSERT INTO Users(Role, NomInput, PrenomInput, Adresse, Telephone, EmailInput, PasswordInput) VALUES ('$Role', '$NomInput', '$PrenomInput', '$Adresse', '$Telephone', '$EmailInput', '$PasswordInput')";
+//$sql = "UPDATE Users SET Adresse='$Adresse', Telephone='$Telephone' WHERE ID='$ID'";
+$stmt = $conn->prepare("UPDATE Users SET Adresse = ?, Telephone = ? WHERE CAgent = ?");
+$stmt->bind_param("ssi", $Adresse, $Telephone, $CAgent);
+$stmt->execute();
 
 
-if($conn->query($sql) === TRUE) {
-    //echo "Entrée enregistrée avec succés"
-    header('Location: /admin');
+if ($stmt->execute()) {
+    header('Location: /account');
     exit();
-    ;
 } else {
-     echo "Erreur : " .$sql."<br>" .$conn->error;
+    echo "Erreur : " . $stmt->error;
 }
+
+//if($conn->query($sql) === TRUE) {
+    //echo "Entrée enregistrée avec succés"
+  // header('Location: /spv');
+  //exit();
+//} else {
+   //  echo "Erreur : " .$sql."<br>" .$conn->error;
+//}
 
 // fermer la connexion
 $conn->close();
-?>
 
+?>

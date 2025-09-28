@@ -1,4 +1,4 @@
-document.querySelector('form').addEventListener('submit', function(event) {
+document.querySelector('form-control').addEventListener('submit', function(event) {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
@@ -6,6 +6,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     if (name === '' || email === '' || subject === '' || message === '') {
         alert('Veuillez remplir tous les champs, Merci.');
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault(); // Remplir pour éviter l'envoi du formulaire vide
     }
 }); 

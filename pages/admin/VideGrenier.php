@@ -5,17 +5,69 @@
     </div>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="container text-center pb-3">
-    <a href="#" class="btn btn-primary">Réservation</a>
+<br><br><br><br><br>
+
+<section >
+    <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Blog" >Tableau de bord </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/liens">Liens Utiles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/VideGrenier">Vide grenier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Blog">Discutions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/agents">Liste des Agents</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account">Mon Compte</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </nav>
+
+</section>
+
+<br><br>
+
+<section>
+<div class="container-md">
+    <br>   
+        <div class="full-page">
+            <h2 class="text-center">Liste des réservations</h2>
+        </div>
+
+        <div>
+
+        <p class="resa text-white">
+            2022 : 170 m² et 39 reservations soit 850 €<br>
+            2023 : 270 m² et 57 reservation soit 1350 €<br>
+            2024 : 259 m² et 59 réservation soit 1295 € <br>
+            2025 : 287 m² et 57 réservation soit 1435 €
+        </p>
+
+        </div>
+    
+        <div class="ratio ratio-4x3 full-page">
+            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR2te9l6QycpYyrlB4LIm_KPOmBnbYOVAY85FovGNIK7lPGlVvidho34BSzkGYD8WdzLotFS8Qm9bLU/pubhtml?gid=312686297&amp;single=true&amp;widget=true&amp;headers=false"></iframe>    
+        </div>
+    <br>
 </div> 
+</section>   
 
-<div class="full-page">
-
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR2te9l6QycpYyrlB4LIm_KPOmBnbYOVAY85FovGNIK7lPGlVvidho34BSzkGYD8WdzLotFS8Qm9bLU/pubhtml?gid=312686297&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
-
-</div>    

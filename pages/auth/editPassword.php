@@ -1,14 +1,15 @@
 <div class="hero-scene text-center text-white">
     <div class="hero-scene-content">
-            <h1 class="hero-scene-text">Liens Utiles</h1>
+        <h1 class="hero-scene-text">Changement de mot de passe</h1>
     </div>
 </div>
 <br><br><br><br><br>
 
-<section>
+
+<section >
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/Blog">Tableau de bord</a>
+            <a class="navbar-brand" href="/Blog" >Tableau de bord </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,9 +31,6 @@
                             <a class="nav-link" href="/Blog">Discutions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/agents">Liste des Agents</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/account">Mon Compte</a>
                         </li>
                     </ul>
@@ -42,35 +40,29 @@
 
 </section>
 
-<br>
-<br>
 
-<section class="container liens-utiles">
-    
-    <div>
-    <div class="row bg-arc-mint-green-light-staff py-3">
-        <div class="card-list-employe mt-3">
-            <div class="card-header">
-                <h2 class="text-center text-primary admin">Liens Utiles</h2>
+    <div class="container">
+        <br>
+        <h3> Modification</h3>
+        <br>
+        <form>
+            <div class="mb-3">
+              <label for="OdlPasswordInput" class="form-label">Ancien Mot de passe</label>
+              <input type="password" class="form-control" id="OdlPasswordInput" name="Password">
             </div>
-
-            <div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="liens">Voici quelques liens utiles pour les pompiers :</p>
-                    </div>
-                </div>
-                    <div>
-                    <p>Site officiel : <a  href="https://www.sdis40.fr/">sdis</a>.</p>
-                    <p>Site de l'ASPL : <a href="https://www.pompiers-leon40.fr/">pompiers-leon40.fr</a>.</p>
-                    <p>Site de la FNSPF : <a href="https://www.pompiers.fr/">pompiers.fr</a>.</p>
-                    <p>Firewall : <a href="https://firewall.sdis40.fr/global-protect/login.esp">firewall.sdis.fr</a>.</p>
-                    <p>Apis : <a href="https://www.plateforme-apis.fr/login/index.php">plateforme-apis.fr</a>.</p>
-                    <p>Outlook : <a href="https://outlook.live.com/mail/">outlook.live.com</a>.</p>
-                </div>
+            <div class="mb-3">
+              <label for="NewPasswordInput" class="form-label">Nouveau Mot de passe</label>
+              <input type="password" class="form-control" id="NewPasswordInput" name="Password">
             </div>
-        </div> 
-    </div> 
-    </div> 
-    <br>    
-</section>
+            <div class="mb-3">
+                <label for="ValidatePasswordInput" class="form-label">Validez votre mot de passe</label>
+                <input type="password" class="form-control" id="ValidatePasswordInput" name="PasswordConfirm">
+              </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Changer mon mot de passe</button>
+            </div>
+        </form>
+        <div class="text-center pt-3">
+            <a href="/account">Modifier mes informations personnelles</a>
+        </div>
+    </div>
