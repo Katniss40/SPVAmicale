@@ -99,6 +99,11 @@ function showAndHideElementsForRoles(){
                     element.classList.add("d-none");
                 }
                 break;
+            case 'old': 
+                if(!userConnected || role != "old"){
+                    element.classList.add("d-none");
+                }
+                break;
         }
     })
 }

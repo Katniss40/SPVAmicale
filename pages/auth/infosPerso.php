@@ -27,11 +27,11 @@
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
-                        <!--<li class="nav-item">
-                            <a class="nav-link" href="/account">Mon Compte</a>
-                        </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
+                        </li>
                     </ul>
                 </div>
         </div>

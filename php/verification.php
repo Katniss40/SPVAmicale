@@ -15,11 +15,16 @@ try {
     die("Erreur de connexion : " . $e->getMessage());
 }
 
+if (empty($_POST['EmailInput']) || empty($_POST['PasswordInput'])) {
+    echo "Veuillez remplir tous les champs.";
+    exit;
+}
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $EmailInput = htmlspecialchars($_POST['EmailInput']);
-    $PassewordInput = $_POST['PassewordInput'];
+    $EmailInput = $_POST['EmailInput'];
+    $PasswordInput = $_POST['PasswordInput'];
 
 // Requête pour récupérer l'utilisateur
     $stmt = $pdo->prepare("SELECT * FROM Users WHERE EmailInput = :EmailInput");
@@ -29,12 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    if ($user && password_verify($PassewordInput, $user['PassewordInput'])) {
+    if ($user && password_verify($PasswordInput, $user['PasswordInput'])) {
         $_SESSION['user_id'] = $EmailInput;
         echo "Connexion réussie ! Bienvenue, " . htmlspecialchars($user['PrenomInput']) . ".";
+        header("Location: /");
+        exit;
     } else {
         echo "Nom d'utilisateur ou mot de passe incorrect.";
     }
 }
+
+
+
 
 ?>

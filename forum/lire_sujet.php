@@ -83,7 +83,8 @@ footer.footer{
 
 
 <body  style="background-color: #F5E6CC">
-
+	
+<header>
 <div class="hero-scene text-center text-white" >
         <div class="hero-scene-content">
                 <h1 class="hero-scene-text">Forum</h1>

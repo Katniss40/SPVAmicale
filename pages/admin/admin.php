@@ -31,13 +31,13 @@
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/agents">Liste des Agents</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/account">Mon Compte</a>
+                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
                         </li>
                     </ul>
                 </div>
@@ -54,14 +54,7 @@
 
     <div class="mb-3">
         <div class="column column-1">
-            <?php
-                //session_start();
-                //if($_SESSION['username'] !== ""){
-                //$user = $_SESSION['username'];
-                // afficher un message
-                //echo "Bonjour $user, vous êtes connecté";
-                //}
-            ?>
+
                 <p>Vous pouvez maintenant accéder à toutes les fonctionnalités réservées à l'administration du site.</p>
             
                 <!-- Ajout d'un nouveau membre-->

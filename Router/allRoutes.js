@@ -16,10 +16,10 @@ export const allRoutes = [
     new Route("/editPassword", "Modification", "/pages/auth/editPassword.php",["spv", "admin"]),
     new Route("/infosPerso", "Mes infos", "/pages/auth/infosPerso.php",["spv", "admin"], "/js/auth/editAccount.js"),
 
-    new Route("/reponse", "reponse", "/pages/Forum/insert_reponse.php", ["spv", "admin"]),
-    new Route("/Lsujet", "Article", "/pages/Forum/lire_sujet.php", ["spv", "admin"]),   
-    new Route("/Isujet", "sujet", "/pages/Forum/insert_sujet.php", ["spv", "admin"]),
-    new Route("/Blog", "Forum de discussion", "/pages/Forum/index.php", ["spv", "admin"]),    
+    new Route("/reponse", "reponse", "/pages/Forum/insert_reponse.php", ["spv", "old", "admin"]),
+    new Route("/Lsujet", "Article", "/pages/Forum/lire_sujet.php", ["spv", "old", "admin"]),   
+    new Route("/Isujet", "sujet", "/pages/Forum/insert_sujet.php", ["spv", "old", "admin"]),
+    new Route("/Blog", "Forum de discussion", "/pages/Forum/index.php", ["spv", "old", "admin"]),    
 
     new Route("/GalerieSPV", "Photos", "/pages/galerie/galerieSPV.php", ["spv", "admin"]),
     new Route("/VideGrenier", "Vide Grenier 2025", "/pages/admin/VideGrenier.php", ["spv", "admin"]),  
@@ -28,7 +28,6 @@ export const allRoutes = [
     new Route("/liens", "Liens", "/pages/admin/liens.html", ["spv", "admin"]),
     new Route("/admin", "Administrateur", "/pages/admin/admin.php",["admin"]),
     new Route("/spv", "SPV", "/pages/admin/spv.php",["admin"]),
-    new Route("/blog", "Forum", "/pages/Forum/index.php",["spv"]),
     
 ];
 

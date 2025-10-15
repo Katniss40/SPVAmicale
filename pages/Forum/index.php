@@ -1,6 +1,8 @@
 <div class="hero-scene text-center text-white">
         <div class="hero-scene-content">
                 <h1 class="hero-scene-text">Notre forum de discussion</h1>
+                
+                
         </div>
 </div>
 <br><br><br><br><br>
@@ -14,22 +16,22 @@
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
+                        <li class="nav-item" data-show="spv">
                             <a class="nav-link" href="/liens">Liens Utiles</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-show="spv">
                             <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-show="spv">
                             <a class="nav-link" href="/VideGrenier">Vide grenier</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-show="spv">
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-show="spv">
                             <a class="nav-link" href="/account">Mon Compte</a>
                         </li>
                     </ul>
@@ -47,8 +49,11 @@
         <h1 class="text-center text-primary admin">Bienvenue sur sur tableau de bord du forum de discution</h1>
             <!-- on place un lien permettant d'accéder à la page contenant le formulaire d'insertion d'un nouveau sujet -->  
              <br>
-            <a href="/Isujet" data-show="admin" class="btn btn-primary">Insérer un sujet</a><!-- le lien vers la page d'ajout d'un sujet fonctionne -->
-    </div>
+            
+             <a href="/Isujet" data-show="admin" class="btn btn-primary">Insérer un sujet</a><!-- le lien vers la page d'ajout d'un sujet fonctionne -->
+            
+            <a href="/admin" data-show="admin" class="btn btn-primary">Retour au tableau de bord</a>
+            </div>
             <br />
             <br />
     <div class="container">

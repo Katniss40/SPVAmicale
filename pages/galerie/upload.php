@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
      $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
+    $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+
     // Définir les formats autorisés et la taille maximale
         $allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
         $maxFileSize = 2 * 200 * 150; // 2MB

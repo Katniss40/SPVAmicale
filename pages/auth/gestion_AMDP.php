@@ -16,14 +16,13 @@ if($conn->connect_error) {
 echo "Connexion réussi!";
 
 // Récuperer les données du formulaire
-//$ID = $_POST['ID'];
 $Code_Agent = $_POST['CAgent'];
-$Apis = $_POST['Apis'];
+$PasswordInput = $_POST['PasswordInput'];
 
 // insere les données dans la base de données
 //$sql = "UPDATE Users SET Adresse='$Adresse', Telephone='$Telephone' WHERE ID='$ID'";
-$stmt = $conn->prepare("UPDATE Users SET Apis = ? WHERE CAgent = ?");
-$stmt->bind_param("si", $Apis, $Code_Agent);
+$stmt = $conn->prepare("UPDATE Users SET PasswordInput = ? WHERE CAgent = ?");
+$stmt->bind_param("si", $PasswordInput, $Code_Agent);
 $stmt->execute();
 
 

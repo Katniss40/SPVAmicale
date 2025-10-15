@@ -12130,6 +12130,15 @@ p {
   border: 4px solid rgb(196, 29, 29);
 }
 
+.amicale_spv {
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.home_spv {
+  font-size: 17px;
+}
+
 #contact {
   font-size: 20px;
   color: red;
@@ -12403,6 +12412,11 @@ iframe {
 }
 
 .w-50 {
+  display: block;
+  margin: 0 auto;
+}
+
+.recrutements {
   display: block;
   margin: 0 auto;
 }/*# sourceMappingURL=main.css.map */

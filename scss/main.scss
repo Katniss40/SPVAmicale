@@ -186,6 +186,15 @@ p{
 }
 
 
+.amicale_spv{
+font-size: 20px;
+text-decoration: underline;
+}
+
+.home_spv {
+  font-size: 17px;
+}
+
 // Pages Manifestations
 #contact {
   font-size: 20px;
@@ -488,6 +497,13 @@ iframe {
 }
 
 .w-50 {
+  display: block; 
+  margin: 0 auto;
+}
+
+// Page recrutements
+
+.recrutements {
   display: block; 
   margin: 0 auto;
 }

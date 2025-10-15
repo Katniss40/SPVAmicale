@@ -28,7 +28,7 @@ $stmt->execute();
 
 
 if ($stmt->execute()) {
-    header('Location: /account');
+    header('Location: /forum/account.php');
     exit();
 } else {
     echo "Erreur : " . $stmt->error;
