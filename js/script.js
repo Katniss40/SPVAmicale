@@ -1,8 +1,9 @@
 const tokenCookieName = "accesstoken";
 const RoleCookieName = "role";
 const signoutBtn = document.getElementById("signout-btn");
-
-signoutBtn.addEventListener("click", signout);
+if (signoutBtn) {
+  signoutBtn.addEventListener("click", signout);
+}
 
 function getRole(){
     return getCookie(RoleCookieName);
@@ -14,44 +15,43 @@ function signout(){
     window.location.reload();
 }
 
-function setToken(token){
-    setCookie(tokenCookieName, token, 7);
+function setToken(token, days=7) {
+    setCookie(tokenCookieName, token, days);
 }
 
-function getToken(){
+function getToken() {
     return getCookie(tokenCookieName);
 }
 
-function setCookie(name,value,days){
+function setCookie(name, value, days) {
     let expires = "";
-    if (days){
-        let date = new Date();
+    if (days) {
+        const date = new Date();
         date.setTime(date.getTime() + (days*24*60*60*1000));
         expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    document.cookie = name + "=" + encodeURIComponent(value || "") + expires + "; path=/; samesite=Lax";
 }
-function getCookie(name){
+
+
+function getCookie(name) {
     let nameEQ = name + "=";
     let ca = document.cookie.split(';');
     for(let i=0;i < ca.length;i++){
-        let c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        let c = ca[i].trim();
+        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length));
     }
     return null;
 }
-function eraseCookie(name){   
-    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+
+function eraseCookie(name) {
+    document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
 }
 
-function isConnected(){
-    if(getToken() == null || getToken == undefined){
-        return false;
-    }
-    else{
-        return true;
-    }
+function isConnected() {
+    const t = getToken();
+    return t !== null && t !== undefined && t !== '';
 }
 
 /* Test de co/deco
@@ -94,8 +94,13 @@ function showAndHideElementsForRoles(){
                     element.classList.add("d-none");
                 }
                 break;
-            case 'spv': 
-                if(!userConnected || role != "spv"){
+            case 'actif': 
+                if(!userConnected || role != "actif"){
+                    element.classList.add("d-none");
+                }
+                break;
+            case 'old': 
+                if(!userConnected || role != "old"){
                     element.classList.add("d-none");
                 }
                 break;
@@ -103,17 +108,20 @@ function showAndHideElementsForRoles(){
     })
 }
 
-document.querySelector('form').addEventListener('submit', function(event) {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
+const form = document.querySelector('form');
+if (form) {
+  form.addEventListener('submit', function (event) {
+    const name = document.getElementById('name')?.value || '';
+    const email = document.getElementById('email')?.value || '';
+    const subject = document.getElementById('subject')?.value || '';
+    const message = document.getElementById('message')?.value || '';
 
     if (name === '' || email === '' || subject === '' || message === '') {
-        alert('Veuillez remplir tous les champs.');
-        event.preventDefault();
+      alert('Veuillez remplir tous les champs.');
+      event.preventDefault();
     }
-});
+  });
+}
 
 
 
@@ -130,3 +138,17 @@ function togglePassword() {
       }
     }
 
+// Afficher ou cacher le bouton selon le défilement
+window.onscroll = function () {
+  const button = document.getElementById("backToTop");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    button.style.display = "block";
+  } else {
+    button.style.display = "none";
+  }
+};
+
+// Fonction pour remonter en haut de la page
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}

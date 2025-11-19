@@ -5,15 +5,23 @@
 </div>
 <br><br><br><br><br>
 
-<section >
+<section>
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/Blog" >Tableau de bord </a>
+            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item" data-show="admin">
+                            <a class="nav-link" href="/spv">Liste des membres</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/liens">Liens Utiles</a>
                         </li>
@@ -27,10 +35,13 @@
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/account">Mon Compte</a>
+                            <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
                         </li>
                     </ul>
                 </div>

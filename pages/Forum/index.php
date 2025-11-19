@@ -1,19 +1,29 @@
 <div class="hero-scene text-center text-white">
         <div class="hero-scene-content">
                 <h1 class="hero-scene-text">Notre forum de discussion</h1>
+                
+                
         </div>
 </div>
 <br><br><br><br><br>
 
-<section >
+<section>
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/Blog" >Tableau de bord </a>
+            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item" data-show="admin">
+                            <a class="nav-link" href="/spv">Liste des membres</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/liens">Liens Utiles</a>
                         </li>
@@ -27,10 +37,13 @@
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/account">Mon Compte</a>
+                            <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
                         </li>
                     </ul>
                 </div>
@@ -44,11 +57,14 @@
 
 <section>
     <div class="container">
-        <h1 class="text-center text-primary admin">Bienvenue sur sur tableau de bord du forum de discution</h1>
+        <h1 class="text-center text-primary admin">Bienvenue sur sur tableau de bord du forum de discussion</h1>
             <!-- on place un lien permettant d'accéder à la page contenant le formulaire d'insertion d'un nouveau sujet -->  
              <br>
-            <a href="/Isujet" class="btn btn-primary">Insérer un sujet</a> <!-- le lien vers la page d'ajout d'un sujet fonctionne -->
-    </div>
+            
+             <a href="/Isujet" data-show="admin" class="btn btn-primary">Insérer un sujet</a><!-- le lien vers la page d'ajout d'un sujet fonctionne -->
+            
+            <a href="/admin" data-show="admin" class="btn btn-primary">Retour au tableau de bord</a>
+            </div>
             <br />
             <br />
     <div class="container">
@@ -100,6 +116,7 @@ else {
 	echo '</td><td>';
 
 	// on affiche le titre du sujet, et sur ce sujet, on insère le lien qui nous permettra de lire les différentes réponses de ce sujet
+    //echo '<a href="/Lsujet?id_sujet_a_lire=' , $data['id'] , '">' , htmlentities(trim($data['titre'])) , '</a>';
 	echo '<a href="../forum/lire_sujet.php?id_sujet_a_lire=' , $data['id'] , '">' , htmlentities(trim($data['titre'])) , '</a>';
     //echo '<a href="/Forum/lire_sujet.php?id_sujet_a_lire=' , $data['id'] , '">' , htmlentities(trim($data['titre'])) , '</a>';
 

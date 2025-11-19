@@ -5,44 +5,44 @@
 </div>
 <br><br><br><br><br>
 
-    <article>
+
+<article>
         <div class="container p-4">
-            <!-- Liste des photos -->
-            <h2 class="text-center text-primary admin">La galerie Photos de vos pompiers préférés</h2>
-<div class="gallery"></div>
-<br>
+                    <!-- Liste des photos -->
+            <h2 class="text-center text-primary admin">La galerie Photos</h2> 
 
-                <?php
+                <div class="galerieSPV" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;">
+                    <?php
 
-// Chemin du dossier contenant les images
-$dossier = '../../uploads/';
+                    //include("connexion.php");
 
-// Vérifie si le dossier existe
-if (is_dir($dossier)) {
-    // Ouvre le dossier
-    if ($handle = opendir($dossier)) {
-        echo '<div style="display: flex; flex-wrap: wrap; gap: 10px;justify-content: space-between;">';
-        
-        // Parcourt les fichiers du dossier
-        while (($file = readdir($handle)) !== false) {
-            // Vérifie si le fichier est une image
-            if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-                echo '<img src="' . $dossier . $file . '" alt="' . $file . '" style="width: 200px; height: 200px; border: 2px solid #ccc; box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5)" class="rounded w-25">';
-            }
-        }
-        
-        echo '</div>';
-        closedir($handle);
-    }
-} else {
-    echo 'Le dossier n\'existe pas.';
-}
-?>
+                   // $result = $conn->query("SELECT * FROM photos ORDER BY id DESC");
+                   // while ($photo = $result->fetch_assoc()) {
+                   //     echo '<div style="text-align: center;">';
+                   //     echo '<img src="' . $photo['name'] . '" alt="photo" style="width: auto; height: 300px; border: 1px solid #ccc; box-shadow: 8px 8px 10px rgba(0,0,0,0.5); border-radius: 5px;" class="galerie-photo">';
+                   //     echo '<p style="margin-top: 8px; font-size: 20px; color: #333;">' . htmlspecialchars($photo['commentaire']) . '</p>';
+                        
+                   //     echo '</div>';
+                  //  }
 
 
+                include("connexion.php");
+                $result = $conn->query("SELECT * FROM photos ORDER BY id DESC");
 
-
+                while ($photo = $result->fetch_assoc()) {
+                    $src = !empty($photo['url']) ? $photo['url'] : $photo['name'];
+                    echo '<div style="text-align: center;">';
+                    echo '<img src="' . htmlspecialchars($src) . '" alt="photo" style="width:auto; height:300px; border:1px solid #ccc; box-shadow:8px 8px 10px rgba(0,0,0,0.5); border-radius:5px;" class="galerie-photo">';
+                    echo '<p style="margin-top: 8px; font-size: 20px; color: #333;">' . htmlspecialchars($photo['commentaire']) . '</p>';
+                    //echo '<form method="post" action="/pages/galerie/delete.php" onsubmit="return confirm(\'Supprimer cette photo ?\');">';
+                    echo '<input type="hidden" name="photo_id" value="' . intval($photo['id']) . '">';
+                    //echo '<button type="submit" class="delete-button"><i class="bi bi-trash"></i></button>';
+                    echo '</form>';
+                    echo '</div>';
+                }
+                ?>
+            </div>
         </div>
-
     </article>
+
 </section>  

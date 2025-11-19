@@ -1,5 +1,9 @@
 <?php
 
+// =====================================
+// 🔹 Ca fonctionne, ne plus toucher
+// =====================================
+
 
 // Connexion a la base de données
 $servername = 'mysql-pompiers-leon.alwaysdata.net';
@@ -19,6 +23,7 @@ echo "Connexion réussi!";
 // Récuperer les données du formulaire
 
 $Role = $_POST['Role'];
+$CAgent = $_POST['CAgent'];
 $NomInput = $_POST['NomInput'];                        
 $PrenomInput = $_POST['PrenomInput'];
 $Adresse = $_POST['Adresse'];
@@ -27,7 +32,7 @@ $EmailInput = $_POST['EmailInput'];
 $PasswordInput = $_POST['PasswordInput'];
 
 // insere les données dans la base de données
-$sql = " INSERT INTO Users(Role, NomInput, PrenomInput, Adresse, Telephone, EmailInput, PasswordInput) VALUES ('$Role', '$NomInput', '$PrenomInput', '$Adresse', '$Telephone', '$EmailInput', '$PasswordInput')";
+$sql = " INSERT INTO Users(Role, NomInput, PrenomInput, Adresse, CAgent, Telephone, EmailInput, PasswordInput) VALUES ('$Role', '$NomInput', '$PrenomInput', '$Adresse', '$CAgent', '$Telephone', '$EmailInput', '$PasswordInput')";
 
 
 if($conn->query($sql) === TRUE) {

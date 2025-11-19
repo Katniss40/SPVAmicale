@@ -1,19 +1,29 @@
 <div class="hero-scene text-center text-white">
-        <div class="hero-scene-content">
-                <h1 class="hero-scene-text">Galerie</h1>
-        </div>
+    <div class="hero-scene-content">
+        <h1 class="hero-scene-text">Galerie</h1>
+    </div>
 </div>
+
 <br><br><br><br><br>
 
-<section >
+
+<section>
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/Blog" >Tableau de bord </a>
+            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item" data-show="admin">
+                            <a class="nav-link" href="/spv">Liste des membres</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/liens">Liens Utiles</a>
                         </li>
@@ -27,10 +37,13 @@
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/account">Mon Compte</a>
+                                <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
                         </li>
                     </ul>
                 </div>
@@ -39,70 +52,47 @@
 
 </section>
 
+
+
 <section>
     <article>
-        <div class="container p-4" data-show="admin, spv"><br><br>
+        <div class="container p-4"><br><br>
             <h1 class="text-center text-primary admin">Ajouter Une Photo</h1>
 
-                <!-- Formulaire pour ajouter une photo -->
-                <form action="./pages/galerie/upload.php" method="POST" enctype="multipart/form-data">
-                    <label for="photo">Sélectionné la photo :</label>
-                    
-                    <input type="file" name="photo" id="photo" accept="image/*" required>
-                    <p style="font-size: x-small;">* Formats acceptés : jpg, jpeg, png, gif, webp /  Attention la photo doit etre au format 200X200 px max:-)</p>
-                    <br>
-                    
-                    <!--<label for="custom_name">Nom personnalisé :</label>
-                    <input type="text" name="custom_name" id="custom_name" placeholder="Nom de l'image" required>-->
-                    <br>
-                    <button type="submit" class="delete-button">Ajouter</button>
-                </form>
+            <!-- ✅ Formulaire d'ajout -->
+            <form method="post" action="/pages/galerie/ajouter_photo.php" enctype="multipart/form-data">
+                <input type="file" name="photo" accept="image/*" required>
+                <br><br>
+                <textarea name="commentaire" rows="6" cols="60" placeholder="Commentaire sur la photo"></textarea>
+                <br>
+                <button type="submit">Ajouter</button>
+            </form>
         </div>
     </article>
 
-<br>
-<br>
-<hr>
+    <br><br><hr>
 
-   <article>
+    <article>
+        <div class="container p-4">
+            <h2 class="text-center text-primary admin">La galerie Photos</h2>
+            <div class="galerieSPV" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;">
+                <?php
+                include("connexion.php");
+                $result = $conn->query("SELECT * FROM photos ORDER BY id DESC");
 
-   <div class="container p-4" data-show="admin, spv">
-            <!-- Liste des photos -->
-    <h2 class="text-center text-primary admin">La galerie Photos</h2> 
-
-              <?php
-              
-// Chemin du dossier contenant les images
-$dossier = '../../uploads/';
-
-// Vérifie si le dossier existe
-if (is_dir($dossier)) {
-    // Ouvre le dossier
-    if ($handle = opendir($dossier)) {
-        echo '<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;">';
-        
-        // Parcourt les fichiers du dossier
-        while (($file = readdir($handle)) !== false) {
-            // Vérifie si le fichier est une image
-            if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-                echo '<img src="' . $dossier . $file . '" alt="' . $file . '" style="width: 200px; height: 200px; border: 1px solid #ccc; box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5) justify-content: space-between" class="rounded w-25">';
-                echo '<form action="/pages/galerie/delete.php" method="POST" style="display:inline;">
-                       <input type="hidden" name="photo" value="' . $dossier . $file . '">
-                       <button type="submit" class="delete-button"><i class="bi bi-trash"></i></button>
-                    </form>';
+                while ($photo = $result->fetch_assoc()) {
+                    $src = !empty($photo['url']) ? $photo['url'] : $photo['name'];
+                    echo '<div style="text-align: center;">';
+                    echo '<img src="' . htmlspecialchars($src) . '" alt="photo" style="width:auto; height:300px; border:1px solid #ccc; box-shadow:8px 8px 10px rgba(0,0,0,0.5); border-radius:5px;" class="galerie-photo">';
+                    echo '<p style="margin-top: 8px; font-size: 20px; color: #333;">' . htmlspecialchars($photo['commentaire']) . '</p>';
+                    echo '<form method="post" action="/pages/galerie/delete.php" onsubmit="return confirm(\'Supprimer cette photo ?\');">';
+                    echo '<input type="hidden" name="photo_id" value="' . intval($photo['id']) . '">';
+                    echo '<button type="submit" class="delete-button"><i class="bi bi-trash"></i></button>';
+                    echo '</form>';
+                    echo '</div>';
                 }
-                 }
-        
-                     echo '</div>';
-                    closedir($handle);
-                }
-                } else {
-                    echo 'Le dossier n\'existe pas.';
-                }
-
-            ?>
-
+                ?>
+            </div>
         </div>
-
     </article>
-</section>  
+</section>

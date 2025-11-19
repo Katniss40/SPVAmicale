@@ -6,10 +6,15 @@
 </div>
 <br><br><br><br><br>
 
-<section data-show="admin">
+<section>
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,10 +36,13 @@
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/account">Mon Compte</a>
+                            <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
                         </li>
                     </ul>
                 </div>
@@ -51,27 +59,24 @@
 
     <div class="mb-3">
         <div class="column column-1">
-            <?php
-                //session_start();
-                //if($_SESSION['username'] !== ""){
-                //$user = $_SESSION['username'];
-                // afficher un message
-                //echo "Bonjour $user, vous êtes connecté";
-                //}
-            ?>
+
                 <p>Vous pouvez maintenant accéder à toutes les fonctionnalités réservées à l'administration du site.</p>
-                 
+            
+                <!-- Ajout d'un nouveau membre--> <!-- Ca fonctionne ne plus toucher -->
             <div class="container mt-5 bg-arc-mint-green-light">
                 <div class="card-header bg-arc-mint-green text-light">
                     <h2 class="text-center text-primary">Ajouter un nouveau membre</h2>  <!-- Ca fonctionne -->
                 </div>                    
                     <form action="/pages/admin/gestion_spv.php" method="POST">
-                        <div class="row">
-                            <div class="form-group">
-                                    <label for="Role">Rôle</label>
-                                    <input type="text" class="form-control" id="Role", name="Role", value="" required>
-                                </div>
+                        <div class="row">                                                       
                             <div class="col-md-6"> 
+                                <div class="form-group">
+                                    <label for="Role">Rôle</label>
+                                    <select class="form-control" id="Role", name="Role">
+                                        <option value="admin">admin</option>
+                                        <option value="actif">actif</option>
+                                    </select>    
+                                </div>
                                 <div class="form-group">
                                     <label for="NomInput">Nom</label>
                                     <input type="text" class="form-control" id="NomInput" name="NomInput" value="" required>
@@ -86,7 +91,11 @@
                                 </div>                                                                                                                                                     
                             </div>
 
-                            <div class="col-md-6">                                
+                            <div class="col-md-6">   
+                                <div class="form-group">
+                                    <label for="CAgent">Code Agent</label>
+                                    <input type="number" class="form-control" id="CAgent", name="CAgent", value="" required>
+                                </div>                             
                                 <div class="form-group">
                                     <label for="PasswordInput">Mot de passe</label>
                                     <input type="password" class="form-control" id="PasswordInput" name="PasswordInput" value="" required>
@@ -112,17 +121,23 @@
             </div>
                 <br>
                 <br>
+
+            <!-- Modification d'un membre--> <!-- Ca fonctionne ne plus toucher-->
             <div class="container mt-5 bg-arc-mint-green-light">
                 <div class="card-header bg-arc-mint-green text-light">
                     <h2 class="text-center text-primary">Modifier un membre</h2>  <!-- Ca fonctionne -->
                 </div>                    
                     <form action="/pages/admin/modif_spv.php" method="POST">
                         <div class="row">
+                            <div class="form-group">
+                                    <label for="ID">ID</label>
+                                    <input type="number" class="form-control" id="ID" name="ID" autocomplete="off" placeholder="" required>
+                                </div>
                             
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="ID">ID</label>
-                                    <input type="text" class="form-control" id="ID" name="ID" placeholder="" required>
+                                    <label for="Cagent">Code Agent</label>
+                                    <input type="number" class="form-control" id="CAgent" name="CAgent" value="" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="NomInput">Nom</label>
@@ -141,7 +156,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Role">Rôle</label>
-                                    <input type="text" class="form-control" id="Role" name="Role" placeholder="" required>
+                                    <select class="form-control" id="Role", name="Role">
+                                        <option value="admin">admin</option>
+                                        <option value="actif">actif</option>
+                                    </select>    
                                 </div>
                                 <div class="form-group">
                                     <label for="PasswordInput">Mot de passe</label>
@@ -163,8 +181,9 @@
                     </form>
             </div>                 
                 <br>
-                <br>  
+                <br> 
                 
+            <!-- Suppression d'un membre-->       <!-- Ca fonctionne ne plus touchez -->         
             <div class="container mt-5 bg-arc-mint-green-light">
                 <div class="card-header bg-arc-mint-green text-light">
                     <h2 class="text-center text-primary">Supprimer un membre</h2> <!-- Ca fonctionne -->
@@ -173,18 +192,18 @@
                         <div class="row">
                             <div class="form-group">
                                     <label for="ID">ID</label>
-                                    <input type="text" class="form-control" id="ID" name="ID" placeholder="" required>
+                                    <input type="number" class="form-control" id="ID" name="ID" placeholder="" required>
                                 </div>
-                            <div class="col-md-6">
+                            <!--<div class="col-md-6">
                                 <div class="form-group">
                                     <label for="NomInput">Nom</label>
-                                    <input type="text" class="form-control" id="NomInput" name="NomInput" value="" required>
+                                    <input type="text" class="form-control" id="NomInput" name="NomInput" value="" >
                                 </div>
                                 <div class="form-group">
                                     <label for="PrenomInput">Prénom</label>
-                                    <input type="text" class="form-control" id="PrenomInput" name="PrenomInput" value="" required>                              
+                                    <input type="text" class="form-control" id="PrenomInput" name="PrenomInput" value="" >                              
                                 </div>                                                                                                                                            
-                            </div>
+                            </div>-->
                         </div>
                         <br>
                             <button type="submit" class="btn btn-primary">Supprimer</button>
@@ -198,6 +217,7 @@
 
 
 <section class="container">
+    <!-- Liste des Membres enregistrés-->
     <div class="row bg-arc-mint-green-light-staff py-3">
         <div class="card-list-employe mt-3">
             <h2 class="text-center text-primary">Liste des Membres enregistrés</h2>
@@ -208,10 +228,11 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Rôle</th>
+                                <th>Code Agent</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Adresse</th>
-                                <th>Mot de Passe</th>
+                                <!--<th>Mot de Passe</th>-->
                                 <th>Em@il</th>
                                 <th>Téléphone</th>                                                           
                             </tr>
@@ -226,12 +247,13 @@
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['ID']) . "</td>";
+                        echo "<td>" . htmlspecialchars(string: $row['ID']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['Role']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['CAgent']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['NomInput']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['PrenomInput']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['Adresse']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['PasswordInput']) . "</td>";
+                        //echo "<td>" . htmlspecialchars($row['PasswordInput']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['EmailInput']) . "</td>"; 
                         echo "<td>" . htmlspecialchars($row['Telephone']) . "</td>";                                                                                                                          
                         //echo "<td><a href='/pages/admin/modif_spv.php'" . $row['id'] . "' class='btn btn-primary btn-sm'>Modif</a> ";
@@ -239,7 +261,7 @@
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='12'>Aucun employés trouvé.</td></tr>";
+                    echo "<tr><td colspan='12'>Aucun Sapeurs Pompiers trouvés trouvé.</td></tr>";
                 }
                 $conn->close();
                 ?>
@@ -248,4 +270,71 @@
             </div>
         </div>
     </div>
+</section>
+
+
+<section class="container">
+    <!-- Liste des sujets du forum-->
+    <div class="row bg-arc-mint-green-light-staff py-3">
+        <div class="card-list-employe mt-3">
+            <h2 class="text-center text-primary">Liste des Sujets du Forum</h2>
+
+            <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Auteur</th>
+                                <th>Titre</th>
+                                <th>Dernière activité</th> 
+                               <!--<th>Action</th>-->                                                  
+                            </tr>
+                        </thead>
+
+                        <?php
+                include("connexion.php");
+
+                $sql = "SELECT * FROM forum_sujets";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['auteur']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['titre']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['date_derniere_reponse']) . "</td>";                                                                                                                        
+                       // echo "<td><a href='/pages/admin/supp_sujet.php'" . $row['id'] . "' class='btn btn-danger btn-sm'>Supp</a> ";
+                        //echo "<a href='/pages/admin/supp_spv.php'" . $row['id'] . "' class='btn btn-danger btn-sm'>Supp</a></td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='12'>Aucun Sapeurs Pompiers trouvés trouvé.</td></tr>";
+                }
+                $conn->close();
+                ?>
+
+                    </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suppression d'un sujet-->  <!-- Ca fonctionne ne plus toucher-->
+     <div class="container mt-5 bg-arc-mint-green-light">
+                <div class="card-header bg-arc-mint-green text-light">
+                    <h2 class="text-center text-primary">Supprimer un sujet</h2> <!-- Ca fonctionne -->
+                </div>                    
+                    <form action="/pages/admin/supp_sujet.php" method="POST">
+                        <div class="row">
+                            <div class="form-group">
+                                    <label for="id">ID</label>
+                                    <input type="text" class="form-control" id="id" name="id" placeholder="" required>
+                            </div>
+                            
+                        </div>
+                        <br>
+                            <button type="submit" class="btn btn-primary">Supprimer</button>
+                        <br>
+                    </form>
+            </div>
 </section>

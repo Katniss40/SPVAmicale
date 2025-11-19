@@ -1,0 +1,365 @@
+/* 🌐 Global - Site Pompiers Léon 40
+   Version unifiée et modernisée pour toutes les pages hors routage
+------------------------------------------------------------- */
+
+/* =============== BASE =============== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  color: #222;
+  background-color: #F5E6CC;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: #F5E6CC;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #F5E6CC;
+}
+
+/* =============== HEADER =============== */
+header {
+ /* background-color: #2E7D32;
+  color: white;
+  padding: 0.8rem 0;*/
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  /*position: sticky;
+  position: static;
+  top: 0;
+  z-index: 1000;*/
+}
+
+
+ .navbar {
+ /* max-width: 1530px;*/
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 1rem;
+  width: 100%;
+}
+
+.navbar a {
+  color: white ;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.policeNav {
+    color: rgb(196, 29, 29) !important;
+    font-weight: bold !important;
+}
+
+.policeNav a:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.policeDrop {
+    color: rgb(196, 29, 29) !important;
+    font-weight: bold !important;
+}
+
+.policeDrop a:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+/* =============== HERO SECTION =============== */
+.hero-scene {
+  position: relative;
+  background: url('/Images/groupe.jpg') center/cover no-repeat;
+  height: 400px; 
+  align-items: center;
+  justify-content: center;
+  color: #F5E6CC !important;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+  top: 45px;
+  
+}
+.hero-scene h1 {
+  color: #F5E6CC !important;
+  text-decoration: underline;
+  font-size: 2.5rem;
+  text-shadow: 40px 20px 1px rgba(1, 10, 10, 0.5);
+}
+
+/* =============== MAIN CONTENT =============== */
+main {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.titre-section {
+  color: #b30000;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #b30000;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+/* =============== FORMULAIRES =============== */
+form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #b30000;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(179,0,0,0.1);
+}
+
+/* =============== BOUTONS =============== */
+.btn {
+  display: inline-block;
+  background-color: #b30000;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background-color: #8a0000;
+  transform: translateY(-2px);
+}
+
+/* =============== TABLEAUX =============== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.table th {
+  background-color: #b30000;
+  color: white;
+  font-weight: 600;
+}
+
+/* =============== FOOTER =============== */
+        /* Footer*/
+
+footer.footer {
+  background: #f9f9f9; /* fond clair */
+  color: #2E7D32; /* vert pompier */
+  padding: 40px 0 10px 0;
+  width: 100%;
+  border-top: 4px solid #c41d1d; /* rouge pompier */
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.footer-col {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+.footer h3 {
+  color: #2E7D32;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: #c41d1d;
+  text-underline-offset: 6px;
+}
+
+.footer a.mail {
+  color: #c41d1d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer a.mail:hover {
+  text-decoration: underline;
+}
+
+/* Boutons réseaux sociaux */
+.social-buttons button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.social-buttons button:hover {
+  transform: translateY(-3px);
+}
+
+.social-buttons .facebook {
+  background-color: #1877F2;
+}
+
+.social-buttons .instagram {
+  background: linear-gradient(45deg, #f09433, #bc1888);
+}
+
+/* Bouton mentions légales */
+.btn-mentions {
+  background-color: #2E7D32;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.btn-mentions:hover {
+  background-color: #45a049;
+}
+
+.copyright {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #c41d1d;
+}
+
+.signature {
+  background: #f5e6cc;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.85em;
+}
+
+.signature a {
+  color: #c41d1d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signature a:hover {
+  text-decoration: underline;
+}
+
+/* ====== back to top button ====== */
+/* commentaires CSS corrects : /* ... *\/  */
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: inline-block;   /* visible/invisible via classe .visible */
+  background-color: #F5E6CC;
+  color: rgb(196, 29, 29);
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(196,29,29,0.15);
+  width: 120px;
+  height: 44px;
+  opacity: 0;              /* caché par défaut */
+  transform: translateY(10px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  z-index: 9999;           /* devant tout */
+  pointer-events: none;    /* désactive les clics quand caché */
+}
+
+/* état visible */
+#backToTop.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* hover / focus — complet et valide */
+#backToTop:hover,
+#backToTop:focus {
+  text-decoration: underline;
+  text-decoration-color: #2E7D32;
+  text-decoration-thickness: 2px;
+  text-decoration-style: wavy;
+  outline: none;
+  box-shadow: 0 6px 14px rgba(46,125,50,0.12);
+}
+
+/* petite adaptation mobile (facultatif) */
+@media (max-width: 480px) {
+  #backToTop {
+    right: 12px;
+    bottom: 12px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+  }
+}
+
+
+/* =============== RESPONSIVE =============== */
+@media (max-width: 992px) {
+  header .navbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .hero-scene {
+    height: 35vh;
+  }
+  .hero-scene h1 {
+    font-size: 1.8rem;
+  }
+}

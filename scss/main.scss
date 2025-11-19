@@ -7,7 +7,14 @@ html{
   //margin: 0;
   //padding: 0;
   //height: 100%;
-  //width: 100%;
+  //width: 100%;  
+}
+
+h1, h2{
+  text-decoration: underline;
+/*text-decoration-color: rgb(196, 29, 29); *//* Couleur de la ligne */
+  text-decoration-thickness: 2px; /* Épaisseur de la ligne */
+ /* text-decoration-style: wavy; /* Double ligne */
 }
 
 .bg-black{
@@ -41,38 +48,166 @@ main{
     color: rgb(246, 203, 203);
 }
 
-footer.footer{
-  padding: 0px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;  
+// Footer
+
+footer.footer {
+  background: #f9f9f9; /* fond clair */
+  color: #2E7D32; /* vert pompier */
+  padding: 40px 0 10px 0;
+  width: 100%;
+  border-top: 4px solid #c41d1d; /* rouge pompier */
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.footer-col {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+.footer h3 {
+  color: #2E7D32;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: #c41d1d;
+  text-underline-offset: 6px;
+}
+
+.footer a.mail {
+  color: #c41d1d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer a.mail:hover {
+  text-decoration: underline;
+}
+
+/* Boutons réseaux sociaux */
+.social-buttons button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.social-buttons button:hover {
+  transform: translateY(-3px);
+}
+
+.social-buttons .facebook {
+  background-color: #1877F2;
+}
+
+.social-buttons .instagram {
+  background: linear-gradient(45deg, #f09433, #bc1888);
+}
+
+/* Bouton mentions légales */
+.btn-mentions {
+  background-color: #2E7D32;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.btn-mentions:hover {
+  background-color: #45a049;
+}
+
+.copyright {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #c41d1d;
+}
+
+.signature {
+  background: #f5e6cc;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.85em;
+}
+
+.signature a {
+  color: #c41d1d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signature a:hover {
+  text-decoration: underline;
+}
+
+/* Bouton retour en haut */
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #f5e6cc;
+  color: #c41d1d;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+  background-color: #ffe6b3;
+  transform: translateY(-3px);
+}
+
+/* Sticky footer */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 p{
   font-family: $font-family-serif;
-  font-size: 16px;
+  font-size: 20px;
 }
 
- #cre4 {
-  border: 2px solid rgb(196, 29, 29);
-  color: rgb(196, 29, 29);
-  &:hover {
-  text-decoration: underline;
-  text-decoration-color: #2E7D32; /* Couleur de la ligne */
-  text-decoration-thickness: 2px; /* Épaisseur de la ligne */
-  text-decoration-style: wavy; /* Double ligne */
-  }
-}
  
-.cadre {
-  border: 2px solid #000; /* Bordure noire de 2 pixels */
-  padding: 10px; /* Espacement intérieur de 10 pixels */
-  width: fit-content; /* Ajuste la largeur au contenu */
-  margin: 20px auto; /* Centre le cadre horizontalement */
-  background-color: rgb(255, 255, 255); /* Couleur de fond légèrement grise */
-  border-radius: 5px; /* Coins arrondis */
-}
-
 
 // hero-scene
 .hero-scene{
@@ -85,7 +220,7 @@ p{
           left:0;
           width:100%;
           height:170%;
-          background-image: url(../Images/groupe2023.jpg);
+          background-image: url(../Images/groupe.jpg);
           background-size: cover;
           filter: brightness(0.6);
       }
@@ -98,6 +233,7 @@ p{
       .hero-scene-text{
         align-items: center;
         margin-top: 90px;
+        text-shadow: 40px 20px 1px rgba(1, 10, 10, 0.5);
       }
       
 .hero-scene-content{
@@ -118,7 +254,6 @@ p{
 .policeDrop {
     color:rgb(196, 29, 29);
     font-weight: 700;
-
 }
 
 .form-label{
@@ -172,14 +307,22 @@ p{
 }
 
 .contact {
-  font-size: 12px;
+  font-size: 14px;
   color: red;
   border: 4px solid rgb(196, 29, 29);
 }
 
 
-// Pages Manifestations
+.amicale_spv{
+font-size: 20px;
+text-decoration: underline;
+}
 
+.home_spv {
+  font-size: 17px;
+}
+
+// Pages Manifestations
 #contact {
   font-size: 20px;
   color: red;
@@ -234,7 +377,6 @@ p{
 
 
 //pages infos perso
-
 table {
   width: 50%;
   border-collapse: collapse;
@@ -253,7 +395,6 @@ th {
 
 
 //page vide grenier
-
 .full-page {
   width: 100%;
   height: 100%;
@@ -282,14 +423,12 @@ iframe {
 
 
 // page informations
-
 .carte-sapeurs {
  text-align: center;
 }
 
 
 // page Admin
-
 .admin {
   border-width: 2px;
   border-style: solid;
@@ -299,7 +438,6 @@ iframe {
 
 
 // page SPV
-
 .spv {
   position: relative; 
   display: flex;
@@ -313,7 +451,6 @@ iframe {
 
 
 // page galerie
-
 .commentaires {
   position: relative;
   width: 50%;
@@ -323,25 +460,28 @@ iframe {
   align-items: first baseline;
 }
 
-// Bouton supprimer 
+.delete-button {
+  position: relative;
+}
+
 .delete-button:hover {
   background-color: #2E7D32;
   color: white;
   border: 1px solid rgb(196, 29, 29);
 }
 
-.zoom img {
-	-webkit-transform: scale(1);
-	transform: scale(1);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-  box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5);
-}
-.zoom :hover img { 
-	-webkit-transform: scale(1.3);
-	transform: scale(1.3);
+
+.galerie-photo {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
+.galerie-photo:hover {
+  transform: scale(1.8);
+  z-index: 10;
+  position: relative;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
 
 // Pages liens utiles
 
@@ -365,7 +505,6 @@ iframe {
 
 
 // page calendrier
-
 .calendar {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -401,7 +540,6 @@ iframe {
 
 
 // Page VideGrenier
-
 .ratio {
   aspect-ratio: 16 / 9; /* Ratio de l'iframe */
   position: relative; 
@@ -416,7 +554,6 @@ iframe {
 
 
 // Blog
-
 .blog_table {
   width: 1300px;
   margin: 0 auto;
@@ -444,7 +581,6 @@ iframe {
 }
 
 // Mot de passe
-
 .password-container {
       display: flex;
       align-items: center;
@@ -453,3 +589,19 @@ iframe {
       margin-left: 10px;
       cursor: pointer;
     }
+
+.heros {
+  text-align: center;
+}
+
+.w-50 {
+  display: block; 
+  margin: 0 auto;
+}
+
+// Page recrutements
+
+.recrutements {
+  display: block; 
+  margin: 0 auto;
+}
