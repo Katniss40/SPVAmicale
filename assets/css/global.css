@@ -107,7 +107,7 @@ header {
 /* =============== MAIN CONTENT =============== */
 main {
   max-width: 1200px;
-  margin: 3rem auto;
+  margin: 1rem auto 0.5rem auto;
   padding: 0 1.5rem;
 }
 

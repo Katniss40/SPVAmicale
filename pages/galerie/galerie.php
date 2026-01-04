@@ -4,12 +4,10 @@
         </div>
 </div>
 <br><br><br><br><br>
-
-
 <article>
-        <div class="container p-4">
+        <div class="container" style="padding: 20px;">
                     <!-- Liste des photos -->
-            <h2 class="text-center text-primary admin">La galerie Photos</h2> 
+            <h2 class="text-center" style="color: #2E7D32; margin-bottom: 25px; font-size: 2rem; font-weight: bold;">La galerie Photos</h2> 
 
                 <div class="galerie-public">
                     <?php
@@ -41,8 +39,6 @@
             </div>
         </div>
     </article>
-
-</section>
 
 <!-- Lightbox Carrousel -->
 <div id="photoLightbox" class="photo-lightbox" style="display: none;">
