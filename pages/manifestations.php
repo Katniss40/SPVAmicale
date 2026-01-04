@@ -19,7 +19,7 @@ $isAdmin = (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin');
     <div class="container p-4"><br><br>
   <h2 class="text-center text-primary"><span id="title_bal_pompiers">Bal des Pompiers 2025</span></h2>
   <h2 class="text-center text-primary">Annulation du bal des pompiers pour cette année</h2><br><br><br>
-        <div class="row row-cols-2 align-items-center">
+        <div class="row row-cols-1 row-cols-lg-2 align-items-center">
           <div class="col">
             <p class="text-justify">
               Nous sommes désolés de vous annoncer que le bal des pompiers prévu pour le <span id="date_bal_pompiers">1er août 2025</span> a été annulé.
@@ -48,7 +48,7 @@ $isAdmin = (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin');
   <article class="bg-black text-white">
     <div class="container p-4">
   <h2 class="text-center"><span id="date_vide_grenier">15 Août 2025</span> : Vide-grenier Annuel</h2>
-        <div class="row row-cols-2 align-items-center">
+        <div class="row row-cols-1 row-cols-lg-2 align-items-center">
           <div class="col">
             <img class="w-50 rounded" src="/Images/vide_grenier.jpg"/>
           </div>

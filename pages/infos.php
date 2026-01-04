@@ -13,7 +13,7 @@
         <article class="bg-white text-black">
                 <div class="container p-4">
                         <h2 class="text-center text-primary"><span id="date_calendrier_period">Novembre à Janvier</span> : Passage de vos pompiers pour vous présenter le calendrier annuel</h2>
-                                <div class="row row-cols-2 align-items-center">
+                                <div class="row row-cols-1 row-cols-lg-2 align-items-center">
                                         
                                         <div class="col">
                                                 <p class="text-justify">
@@ -50,7 +50,7 @@
         <article class="bg-black text-white">
                 <div class="container p-4">
                         <h2 class="text-center text-secondary">Rentrée de septembre</h2>
-                                <div class="row row-cols-2 align-items-center">
+                                <div class="row row-cols-1 row-cols-lg-2 align-items-center">
                                         <div class="col">
                                                 <img class="w-75 rounded" src="/Images/salon_assos.jpg"/>   
                                         </div>
@@ -76,7 +76,7 @@
         <article class="bg-white text-black">
                 <div class="container p-4">
                         <h2 class="text-center text-primary"> 🚨 Journée Portes Ouvertes à la Caserne des Pompiers de Léon ! 🚒</h2>
-                                <div class="row row-cols-2 align-items-center">
+                                <div class="row row-cols-1 row-cols-lg-2 align-items-center">
                                        
                                         <div class="col">
                                                 <p class="text-justify">                                               
@@ -111,7 +111,7 @@
         <article class="bg-black text-white">
                 <div class="container p-4">
                         <h2 class="text-center text-secondary">Le Marché de Noël</h2>
-                                <div class="row row-cols-2 align-items-center">
+                                <div class="row row-cols-1 row-cols-lg-2 align-items-center">
                                         <div class="col">
                                                 <img class="w-50 rounded" src="/Images/marche noel 2025 st michel.png"/>   
                                         </div>

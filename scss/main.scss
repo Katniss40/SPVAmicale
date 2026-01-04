@@ -214,11 +214,61 @@ main {
     flex-direction: column;
     align-items: center;
   }
+  
+  /* Tailles police responsive */
+  p {
+    font-size: 16px !important;
+  }
+  
+  h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  h4, h5 {
+    font-size: 1.1rem !important;
+  }
+  
+  /* Réduire hero-scene sur mobile */
+  .hero-scene {
+    height: 250px !important;
+  }
+  
+  .hero-scene-text {
+    margin-top: 30px !important;
+    font-size: 1.5rem !important;
+  }
 }
 
-p{
+/* Images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.w-50, .w-75 {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Retirer text-justify sur mobile pour meilleure lisibilité */
+@media (max-width: 768px) {
+  .text-justify {
+    text-align: left !important;
+  }
+}
+
+.home_spv {
   font-family: $font-family-serif;
-  font-size: 20px;
+  font-size: 16px;
 }
 
  
