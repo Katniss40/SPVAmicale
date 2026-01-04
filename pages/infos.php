@@ -112,7 +112,7 @@
                 <div class="container p-4">
                         <h2 class="text-center text-secondary">Le Marché de Noël</h2>
                                 <div class="row row-cols-1 row-cols-lg-2 align-items-center">
-                                        <div class="col">
+                                        <div class="col text-center">
                                                 <img class="rounded" style="max-width: 250px; height: auto;" src="/Images/marche noel 2025 st michel.png"/>   
                                         </div>
                                         <div class="col">
