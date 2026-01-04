@@ -111,18 +111,23 @@
         <article class="bg-black text-white">
                 <div class="container p-4">
                         <h2 class="text-center text-secondary">Le Marché de Noël</h2>
-                        <div class="col">
-                                <p class="text-justify">
-                                Nous participons au Marché de Noël qui se déroulera le <span id="date_marche_noel">7 décembre 2025</span> de 9h30 à 18h30, à la salle des fêtes de Saint Michel Escalus. <br>
-                                Venez nous rejoindre nombreux pour un parcours découverte pompiers pour les enfants</p>
-                                Nous sommes heureux de renouveller cette expérience chaque année. <br>
-                                Nous remercions la commune de Saint Michel Escalus pour son accueil chaleureux. <br>
-                                <!--Nous vous tiendrons informés des prochaines dates et événements à venir ! --><br><br><br>
-                                Vous trouverez plus d'informations sur le site de la commune : <br>
+                                <div class="row row-cols-1 row-cols-lg-2 align-items-center">
+                                        <div class="col">
+                                                <img class="w-50 rounded" style="max-height: 250px; object-fit: cover;" src="/Images/marche noel 2025 st michel.png"/>   
+                                        </div>
+                                        <div class="col">
+                                                <p class="text-justify">
+                                                Nous participons au Marché de Noël qui se déroulera le <span id="date_marche_noel">7 décembre 2025</span> de 9h30 à 18h30, à la salle des fêtes de Saint Michel Escalus. <br>
+                                                Venez nous rejoindre nombreux pour un parcours découverte pompiers pour les enfants</p>
+                                                Nous sommes heureux de renouveller cette expérience chaque année. <br>
+                                                Nous remercions la commune de Saint Michel Escalus pour son accueil chaleureux. <br>
+                                                <!--Nous vous tiendrons informés des prochaines dates et événements à venir ! --><br><br><br>
+                                                Vous trouverez plus d'informations sur le site de la commune : <br>
 
-                        <a class="text-secondary" href="https://www.saint-michel-escalus.fr/agenda-et-actualites/retour-en-images-2023/231216-marche-de-noel-a-saint-michel-escalus">Article sur le site de la Commune de saint michel saint-michel-escalus</a>
-                        </div>   
-                </div>                                  
+
+                                        <a class="text-secondary" href="https://www.saint-michel-escalus.fr/agenda-et-actualites/retour-en-images-2023/231216-marche-de-noel-a-saint-michel-escalus">Article sur le site de la Commune de saint michel saint-michel-escalus</a>
+                                        </div>   
+                                </div>                                  
                 </div>
         </article>
 </section>      
