@@ -264,6 +264,11 @@ img {
   .text-justify {
     text-align: left !important;
   }
+  
+  /* Redimensionner les images inline (affiches en portrait) */
+  img[style*="max-width: 250px"] {
+    max-width: 180px !important;
+  }
 }
 
 .home_spv {
