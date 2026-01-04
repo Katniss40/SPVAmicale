@@ -350,6 +350,62 @@ footer.footer {
 }
 
 
+/* =============== SOCIAL BUTTONS RESPONSIVE =============== */
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-buttons button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.social-buttons button.facebook {
+  background-color: #1877F2;
+}
+
+.social-buttons button.facebook:hover {
+  background-color: #0a66c2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(24, 119, 242, 0.3);
+}
+
+.social-buttons button.instagram {
+  background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+}
+
+.social-buttons button.instagram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(253, 29, 29, 0.3);
+}
+
+/* Mobile responsif (≤768px) */
+@media (max-width: 768px) {
+  .social-buttons button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* =============== MAIN CONTENT SPACING =============== */
+main {
+  margin-top: 30px;
+}
+
 /* =============== RESPONSIVE =============== */
 @media (max-width: 992px) {
   header .navbar {
