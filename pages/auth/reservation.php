@@ -280,5 +280,36 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<script>
+  // Smooth scroll to top
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Afficher / cacher le bouton selon la position de la page
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('backToTop');
+
+    // Ne pas continuer si bouton introuvable
+    if (!btn) return;
+
+    // Au chargement, cacher le bouton
+    btn.classList.remove('visible');
+
+    window.addEventListener('scroll', function () {
+      // Affiche le bouton quand on a défilé de 300px (à adapter)
+      if (window.scrollY > 300) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    });
+
+    // Optionnel : fermer le menu mobile si nécessaire quand on clique (exemple)
+    btn.addEventListener('click', scrollToTop);
+  });
+</script>
+
 </body>
 </html>
