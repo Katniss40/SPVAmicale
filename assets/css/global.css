@@ -47,12 +47,25 @@ html, body {
   background-color: #F5E6CC;
   line-height: 1.6;
   min-height: 100vh;
+  font-size: 16px; /* Taille de base Bootstrap */
+  font-weight: 400; /* Poids normal Bootstrap */
 }
 
 /* Application de la police Bootstrap personnalisée */
 body, .navbar, .nav-link, .navbar-brand, button, input, select, textarea, 
 h1, h2, h3, h4, h5, h6, p, a, li, td, th, label {
   font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Tailles de police navbar pour correspondre à Bootstrap */
+.navbar-brand {
+  font-size: 1.25rem !important;
+  font-weight: 400 !important;
+}
+
+.nav-link {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
 }
 
 /* Police serif pour les éléments spécifiques si besoin */
