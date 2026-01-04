@@ -120,11 +120,26 @@
         <div class="card-list-employe mt-3">
             <h2 class="titre-section">Vos Coordonnées</h2>
                 <br><br>
+            <?php
+            // Afficher message de succès si modification réussie
+            if (isset($_GET['success']) && $_GET['success'] == '1') {
+                echo '<div class="alert alert-success" role="alert">✓ Modification enregistrée avec succès!</div>';
+            }
+            
+            // Récupérer CAgent depuis URL si présent
+            $CAgentFromURL = isset($_GET['CAgent']) ? htmlspecialchars($_GET['CAgent']) : '';
+            
+            // Si CAgent est dans l'URL, simuler POST pour afficher les données
+            if ($CAgentFromURL && !isset($_POST['CAgent'])) {
+                $_POST['CAgent'] = $CAgentFromURL;
+                $_SERVER['REQUEST_METHOD'] = 'POST';
+            }
+            ?>
             <div>
                 <form method="post" class="form-contact">
                     <div class="form-row">
                         <label for="CAgent">Code Agent :</label>
-                        <input type="text" id="CAgent" name="CAgent" required>
+                        <input type="text" id="CAgent" name="CAgent" value="<?php echo $CAgentFromURL; ?>" required>
                     </div>
                                         
                     <button type="submit" class="btn btn-danger">Afficher</button>

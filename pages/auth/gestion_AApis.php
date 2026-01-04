@@ -28,7 +28,7 @@ $stmt->execute();
 
 
 if ($stmt->execute()) {
-    header('Location: /forum/account.php');
+    header('Location: /forum/account.php?CAgent=' . urlencode($Code_Agent) . '&success=1');
     exit();
 } else {
     echo "Erreur : " . $stmt->error;
