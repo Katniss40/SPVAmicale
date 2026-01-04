@@ -22,6 +22,18 @@
   border-color: #256428 !important;
 }
 
+/* Thème dark personnalisé - couleurs douces comme _custom.scss */
+[data-bs-theme="dark"] .navbar-brand,
+[data-bs-theme="dark"] .nav-link {
+  color: #F5E6CC !important; /* Beige doux au lieu de blanc pur */
+}
+
+[data-bs-theme="dark"] .nav-link:hover,
+[data-bs-theme="dark"] .nav-link:focus {
+  color: #F5E6CC !important;
+  opacity: 0.85;
+}
+
 /* =============== BASE =============== */
 * {
   box-sizing: border-box;
