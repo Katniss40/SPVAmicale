@@ -114,10 +114,16 @@ $message = "";
   <div class="footer-container">
     <div class="footer-col">
       <h3>Nous contacter</h3>
-      <p>Adresse M@il : <a class="mail" href="mailto:aspleon40@gmail.com">aspleon40@gmail.com</a></p>
+      <p>Adresse M@il : 
+        <a class="mail" href="mailto:aspleon40@gmail.com">aspleon40@gmail.com</a>
+      </p>
       <div class="social-buttons">
-        <button class="facebook" onclick="window.location.href='https://www.facebook.com/csleon.sapeurspompiers';">Facebook</button>
-        <button class="instagram" onclick="window.location.href='https://www.instagram.com/sapeurs_pompiers_de_leon';">Instagram</button>
+        <button class="facebook" onclick="window.location.href='https://www.facebook.com/csleon.sapeurspompiers';">
+          <i class="bi bi-facebook"></i> Facebook
+        </button>
+        <button class="instagram" onclick="window.location.href='https://www.instagram.com/sapeurs_pompiers_de_leon';">
+          <i class="bi bi-instagram"></i> Instagram
+        </button>
       </div>
     </div>
 
