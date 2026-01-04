@@ -22,7 +22,7 @@
 <body>
 
 <header>
-<nav class="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
   <div class="container-fluid">
     <a class="navbar-brand policeNav" href="/">
       <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
