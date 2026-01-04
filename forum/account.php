@@ -124,9 +124,6 @@
 </nav>
 
 
-
-</header>
-
 <main>
 <!-- Liste des Mots de passe enregistrés-->
 <section class="container">    
