@@ -1,6 +1,7 @@
 let currentPhotoIndex = 0;
 let photos = [];
 
+// Attacher les fonctions à window pour qu'elles soient accessibles depuis onclick
 window.openLightbox = function(element) {
     initGallery();
     const img = element.querySelector('img');
@@ -54,11 +55,11 @@ document.addEventListener('keydown', function(e) {
 });
 
 // Fermer en cliquant en dehors
-const lightbox = document.getElementById('photoLightbox');
-if (lightbox) {
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === this) closeLightbox();
-    });
-}
-
-console.log('✅ Script galerie.js chargé - lightbox prêt');
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('photoLightbox');
+    if (lightbox) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+    }
+});

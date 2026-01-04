@@ -11,7 +11,7 @@
                     <!-- Liste des photos -->
             <h2 class="text-center text-primary admin">La galerie Photos</h2> 
 
-                <div class="galerieSPV" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;">
+                <div class="galerie-public">
                     <?php
 
                     //include("connexion.php");
@@ -31,13 +31,10 @@
 
                 while ($photo = $result->fetch_assoc()) {
                     $src = !empty($photo['url']) ? $photo['url'] : $photo['name'];
-                    echo '<div style="text-align: center;">';
-                    echo '<img src="' . htmlspecialchars($src) . '" alt="photo" style="width:auto; height:300px; border:1px solid #ccc; box-shadow:8px 8px 10px rgba(0,0,0,0.5); border-radius:5px;" class="galerie-photo">';
-                    echo '<p style="margin-top: 8px; font-size: 20px; color: #333;">' . htmlspecialchars($photo['commentaire']) . '</p>';
-                    //echo '<form method="post" action="/pages/galerie/delete.php" onsubmit="return confirm(\'Supprimer cette photo ?\');">';
+                    echo '<div class="photo-card" onclick="openLightbox(this)">';
+                    echo '<img src="' . htmlspecialchars($src) . '" alt="photo" class="galerie-photo" data-full-src="' . htmlspecialchars($src) . '" data-comment="' . htmlspecialchars($photo['commentaire']) . '">';
+                    echo '<p>' . htmlspecialchars($photo['commentaire']) . '</p>';
                     echo '<input type="hidden" name="photo_id" value="' . intval($photo['id']) . '">';
-                    //echo '<button type="submit" class="delete-button"><i class="bi bi-trash"></i></button>';
-                    echo '</form>';
                     echo '</div>';
                 }
                 ?>
@@ -45,4 +42,15 @@
         </div>
     </article>
 
-</section>  
+</section>
+
+<!-- Lightbox Carrousel -->
+<div id="photoLightbox" class="photo-lightbox" style="display: none;">
+    <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-prev" onclick="prevPhoto()">❮</button>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="Photo" />
+        <button class="lightbox-next" onclick="nextPhoto()">❯</button>
+        <p class="lightbox-comment" id="lightboxComment"></p>
+    </div>
+</div>  
