@@ -2,6 +2,26 @@
    Version unifiée et modernisée pour toutes les pages hors routage
 ------------------------------------------------------------- */
 
+/* =============== COULEURS BOOTSTRAP PERSONNALISÉES =============== */
+/* Équivalent du _custom.scss pour les pages non-routées */
+.bg-primary {
+  background-color: #2E7D32 !important; /* Vert pompiers */
+}
+
+.text-primary {
+  color: #2E7D32 !important;
+}
+
+.btn-primary {
+  background-color: #2E7D32 !important;
+  border-color: #2E7D32 !important;
+}
+
+.btn-primary:hover {
+  background-color: #256428 !important;
+  border-color: #256428 !important;
+}
+
 /* =============== BASE =============== */
 * {
   box-sizing: border-box;
