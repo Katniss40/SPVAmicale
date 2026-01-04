@@ -12221,6 +12221,10 @@ img {
     width: 100% !important;
     max-width: 100% !important;
   }
+  /* Images inline avec width spécifique */
+  img[style*="width: 40%"] {
+    width: 100% !important;
+  }
 }
 /* Retirer text-justify sur mobile pour meilleure lisibilité */
 @media (max-width: 768px) {
