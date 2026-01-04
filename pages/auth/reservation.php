@@ -77,42 +77,42 @@ $message = "";
     </div>        
 </section>
 
-<nav class="navbar navbar-expand-lg" style="background-color: #2E7D32;">
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/" style="color: white; font-weight: bold;">
-      <img src="/Images/Logo_SPleon3.png" alt="Logo" width="50" height="40" class="d-inline-block align-text-top">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarAdmin">
-      <ul class="navbar-nav ms-auto">
+
+    <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item" data-show="admin">
-          <a class="nav-link" href="/admin" style="color: white;">Tableau de bord Administrateur</a>
-        </li>
-        <li class="nav-item" data-show="actif">
-          <a class="nav-link" href="/Blog" style="color: white;">Tableau de bord</a>
+          <a class="nav-link" href="/spv">Liste des membres</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/liens" style="color: white;">Liens Utiles</a>
+          <a class="nav-link" href="/liens">Liens Utiles</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/calendrier" style="color: white;">Calendrier des Gardes</a>
+          <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/VideGrenier" style="color: white;">Vide grenier</a>
+          <a class="nav-link" href="/VideGrenier">Vide grenier</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/GalerieSPV" style="color: white;">Gestion des Photos</a>
+          <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/Blog" style="color: white;">Discussions</a>
+          <a class="nav-link" href="/Blog">Discussions</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/auth/reservation.php" style="color: white;">Réservation fendeuse</a>
+          <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/forum/account.php" style="color: white;">Mon Compte</a>
+          <a class="nav-link" href="/forum/account.php">Mon Compte</a>
         </li>
       </ul>
     </div>
