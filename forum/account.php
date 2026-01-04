@@ -126,13 +126,12 @@
                 echo '<div class="alert alert-success" role="alert">✓ Modification enregistrée avec succès!</div>';
             }
             
-            // Récupérer CAgent depuis URL si présent
-            $CAgentFromURL = isset($_GET['CAgent']) ? htmlspecialchars($_GET['CAgent']) : '';
-            
-            // Si CAgent est dans l'URL, simuler POST pour afficher les données
-            if ($CAgentFromURL && !isset($_POST['CAgent'])) {
-                $_POST['CAgent'] = $CAgentFromURL;
-                $_SERVER['REQUEST_METHOD'] = 'POST';
+            // Récupérer CAgent depuis URL (GET) ou formulaire (POST)
+            $CAgentFromURL = '';
+            if (isset($_GET['CAgent'])) {
+                $CAgentFromURL = htmlspecialchars($_GET['CAgent']);
+            } elseif (isset($_POST['CAgent'])) {
+                $CAgentFromURL = htmlspecialchars($_POST['CAgent']);
             }
             ?>
             <div>
@@ -164,31 +163,39 @@
                 ini_set('display_errors', 1);
                 error_reporting(E_ALL);
 
-                if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                    $CAgent = htmlspecialchars(trim($_POST["CAgent"]));
-
-                    $stmt = $conn->prepare("SELECT CAgent, NomInput, PrenomInput FROM Users WHERE CAgent = ?");
-                    $stmt->bind_param("s", $CAgent);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-
-                    echo "<p class='form-contact '>Code Agent recherché : <strong>" . htmlspecialchars($CAgent) . "</strong></p>";
-
-                    if ($result && $result->num_rows > 0) {
-                        echo "<tbody>";
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($row['CAgent']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['NomInput']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['PrenomInput']) . "</td>";
-                            echo "</tr>";
-                        }
-                        echo "</tbody>";
-                    } else {
-                        echo "<tbody><tr><td colspan='3'>Aucun résultat trouvé pour ce code agent.</td></tr></tbody>";
+                // Accepter POST ou GET
+                if ($_SERVER["REQUEST_METHOD"] === "POST" || isset($_GET['CAgent'])) {
+                    $CAgent = '';
+                    if (isset($_POST["CAgent"])) {
+                        $CAgent = htmlspecialchars(trim($_POST["CAgent"]));
+                    } elseif (isset($_GET['CAgent'])) {
+                        $CAgent = htmlspecialchars(trim($_GET['CAgent']));
                     }
 
-                    $stmt->close();
+                    if ($CAgent) {
+                        $stmt = $conn->prepare("SELECT CAgent, NomInput, PrenomInput FROM Users WHERE CAgent = ?");
+                        $stmt->bind_param("s", $CAgent);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        echo "<p class='form-contact '>Code Agent recherché : <strong>" . htmlspecialchars($CAgent) . "</strong></p>";
+
+                        if ($result && $result->num_rows > 0) {
+                            echo "<tbody>";
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['CAgent']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['NomInput']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['PrenomInput']) . "</td>";
+                                echo "</tr>";
+                            }
+                            echo "</tbody>";
+                        } else {
+                            echo "<tbody><tr><td colspan='3'>Aucun résultat trouvé pour ce code agent.</td></tr></tbody>";
+                        }
+
+                        $stmt->close();
+                    }
                 }
                 $conn->close();
                 ?>
@@ -220,31 +227,38 @@ $conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $CAgent = htmlspecialchars(trim($_POST["CAgent"]));
-
-    $stmt = $conn->prepare("SELECT Adresse, Telephone, EmailInput FROM Users WHERE CAgent = ?");
-    $stmt->bind_param("s", $CAgent);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    //echo "<p class='mt-3'>Code Agent recherché : <strong>" . htmlspecialchars($CAgent) . "</strong></p>";
-
-    if ($result && $result->num_rows > 0) {
-        echo "<tbody>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row['Adresse']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['Telephone']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['EmailInput']) . "</td>";
-            echo "</tr>";
-        }
-        echo "</tbody>";
-    } else {
-        echo "<tbody><tr><td colspan='3'>Aucun résultat trouvé pour ce code agent.</td></tr></tbody>";
+if ($_SERVER["REQUEST_METHOD"] === "POST" || isset($_GET['CAgent'])) {
+    $CAgent = '';
+    if (isset($_POST["CAgent"])) {
+        $CAgent = htmlspecialchars(trim($_POST["CAgent"]));
+    } elseif (isset($_GET['CAgent'])) {
+        $CAgent = htmlspecialchars(trim($_GET['CAgent']));
     }
 
-    $stmt->close();
+    if ($CAgent) {
+        $stmt = $conn->prepare("SELECT Adresse, Telephone, EmailInput FROM Users WHERE CAgent = ?");
+        $stmt->bind_param("s", $CAgent);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        //echo "<p class='mt-3'>Code Agent recherché : <strong>" . htmlspecialchars($CAgent) . "</strong></p>";
+
+        if ($result && $result->num_rows > 0) {
+            echo "<tbody>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['Adresse']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['Telephone']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['EmailInput']) . "</td>";
+                echo "</tr>";
+            }
+            echo "</tbody>";
+        } else {
+            echo "<tbody><tr><td colspan='3'>Aucun résultat trouvé pour ce code agent.</td></tr></tbody>";
+        }
+
+        $stmt->close();
+    }
 }
 $conn->close();
 ?>
@@ -277,32 +291,39 @@ $conn->close();
                         ini_set('display_errors', 1);
                         error_reporting(E_ALL);
 
-                        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                            $CAgent = htmlspecialchars(trim($_POST["CAgent"]));
-
-                            $stmt = $conn->prepare("SELECT PasswordInput, Apis, Outlook, Firewall FROM Users WHERE CAgent = ?");
-                            $stmt->bind_param("s", $CAgent);
-                            $stmt->execute();
-                            $result = $stmt->get_result();
-
-                            //echo "<p class='mt-3'>Code Agent recherché : <strong>" . htmlspecialchars($CAgent) . "</strong></p>";
-
-                            if ($result && $result->num_rows > 0) {
-                                echo "<tbody>";
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . htmlspecialchars($row['PasswordInput'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['Apis'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['Outlook'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['Firewall'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";
-                            } else {
-                                echo "<tbody><tr><td colspan='3'>Aucun résultat trouvé pour ce code agent.</td></tr></tbody>";
+                        if ($_SERVER["REQUEST_METHOD"] === "POST" || isset($_GET['CAgent'])) {
+                            $CAgent = '';
+                            if (isset($_POST["CAgent"])) {
+                                $CAgent = htmlspecialchars(trim($_POST["CAgent"]));
+                            } elseif (isset($_GET['CAgent'])) {
+                                $CAgent = htmlspecialchars(trim($_GET['CAgent']));
                             }
 
-                            $stmt->close();
+                            if ($CAgent) {
+                                $stmt = $conn->prepare("SELECT PasswordInput, Apis, Outlook, Firewall FROM Users WHERE CAgent = ?");
+                                $stmt->bind_param("s", $CAgent);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+
+                                //echo "<p class='mt-3'>Code Agent recherché : <strong>" . htmlspecialchars($CAgent) . "</strong></p>";
+
+                                if ($result && $result->num_rows > 0) {
+                                    echo "<tbody>";
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . htmlspecialchars($row['PasswordInput'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
+                                        echo "<td>" . htmlspecialchars($row['Apis'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
+                                        echo "<td>" . htmlspecialchars($row['Outlook'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
+                                        echo "<td>" . htmlspecialchars($row['Firewall'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</tbody>";
+                                } else {
+                                    echo "<tbody><tr><td colspan='3'>Aucun résultat trouvé pour ce code agent.</td></tr></tbody>";
+                                }
+
+                                $stmt->close();
+                            }
                         }
                         $conn->close();
                     ?>
