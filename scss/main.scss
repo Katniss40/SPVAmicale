@@ -259,6 +259,20 @@ img {
   width: 100% !important;
 }
 
+/* Classes custom pour images réduites */
+.w-40 {
+  width: 40%;
+  height: auto;
+}
+
+/* Adapter images au mobile */
+@media (max-width: 768px) {
+  .w-40, .w-50, .w-75 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 /* Retirer text-justify sur mobile pour meilleure lisibilité */
 @media (max-width: 768px) {
   .text-justify {
