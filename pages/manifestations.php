@@ -50,7 +50,7 @@ $isAdmin = (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin');
   <h2 class="text-center"><span id="date_vide_grenier">15 Août 2025</span> : Vide-grenier Annuel</h2>
         <div class="row row-cols-1 row-cols-lg-2 align-items-center">
           <div class="col">
-            <img class="vide-grenier-img rounded" style="display: block; margin: 0 auto; width: 25%; height: auto; max-height: 350px;" src="/Images/vide_grenier.jpg"/>
+            <img class="vide-grenier-img rounded" style="display: block; margin: 0 auto; width: 40%; height: auto; max-height: 400px;" src="/Images/vide_grenier.jpg"/>
           </div>
           <div class="col">
             <p class="text-justify">
