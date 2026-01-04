@@ -22,58 +22,47 @@
 <body>
 
 <header>
-
-<section>
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
-     <div class="navbar">
-      <a class="navbar-brand policeDrop" href="/">
-        <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>       
-       
-         
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link policeNav" href="/">Accueil</a>
-            </li>
-              <li class="nav-item">
-            <a class="nav-link policeNav" href="/galerie">Galerie</a>
-              </li>
-              <li class="nav-item">
-            <a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a>
-              </li>
-              <li class="nav-item">
-            <a class="nav-link policeNav" href="/recrutement">Recrutement</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link policeNav" href="/infos">Manifestations</a>
-                  </li>
-
-                 <li class="nav-item dropdown" data-show="connected">
-                    <!--<a class="nav-link policeNav dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Interne
-                    </a>
-                  <ul class="dropdown-menu">-->
-                    <li><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
-                    <li><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
-                  <!--</ul>-->
-                  </li>
-
-                  
-               <li class="nav-item" data-show="disconnected">
-           <a class="nav-link policeNav" href="/signin">Connexion</a>
-              </li>
-              <li class="nav-item" data-show="connected">
-                <button class="nav-link policeNav" id="btnSignout">Déconnexion</button>
-                   </li>
-        </ul>
-          
-      </div>
+<nav class="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand policeNav" href="/">
+      <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/galerie">Galerie</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/recrutement">Recrutement</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/infos">Manifestations</a>
+        </li>
+        
+        <li class="nav-item dropdown" data-show="connected">
+          <li><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
+          <li><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
+        </li>
+        
+        <li class="nav-item" data-show="disconnected">
+          <a class="nav-link policeNav" href="/signin">Connexion</a>
+        </li>
+        <li class="nav-item" data-show="connected">
+          <button class="nav-link policeNav" id="btnSignout">Déconnexion</button>
+        </li>
+      </ul>
     </div>
-  </nav>
-</section>
+  </div>
+</nav>
 
     <section class="hero-scene text-center text-white">
             <div class="hero-scene-content"><br><br><br><br>
