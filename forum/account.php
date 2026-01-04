@@ -312,7 +312,7 @@ $conn->close();
             <form action="/pages/auth/modif_account.php" method="POST" class="form-contact">
             <div class="form-row">
                 <label for="CAgent">Code Agent :</label>
-                <input type="text" id="CAgent" name="CAgent" required>
+                <input type="text" id="CAgent" name="CAgent">
             </div>
 
             <div class="form-row">
@@ -347,7 +347,7 @@ $conn->close();
 
                 <div class="form-row">
                     <label for="CAgent">Code Agent :</label>
-                    <input type="text" id="CAgent" name="CAgent" required>
+                    <input type="text" id="CAgent" name="CAgent">
                 </div>
 
                 <div class="form-row">
@@ -371,7 +371,7 @@ $conn->close();
 
                 <div class="form-row">
                     <label for="CAgent">Code Agent :</label>
-                    <input type="text" id="CAgent" name="CAgent" required>
+                    <input type="text" id="CAgent" name="CAgent">
                 </div>
 
                 <div class="form-row">
@@ -397,7 +397,7 @@ $conn->close();
 
                 <div class="form-row">
                     <label for="CAgent">Code Agent :</label>
-                    <input type="text" id="CAgent" name="CAgent" required>
+                    <input type="text" id="CAgent" name="CAgent">
                 </div>
 
                 <div class="form-row">
@@ -424,7 +424,7 @@ $conn->close();
 
                         <div class="form-row">
                             <label for="CAgent">Code Agent :</label>
-                            <input type="text" id="CAgent" name="CAgent" required>
+                            <input type="text" id="CAgent" name="CAgent">
                         </div>
 
                         <div class="form-row">
