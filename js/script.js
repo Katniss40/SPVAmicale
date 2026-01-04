@@ -108,9 +108,10 @@ function showAndHideElementsForRoles(){
     })
 }
 
-const form = document.querySelector('form');
-if (form) {
-  form.addEventListener('submit', function (event) {
+// Validation spécifique au formulaire de contact uniquement
+const contactForm = document.querySelector('form#contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', function (event) {
     const name = document.getElementById('name')?.value || '';
     const email = document.getElementById('email')?.value || '';
     const subject = document.getElementById('subject')?.value || '';
