@@ -1,9 +1,9 @@
 # 📱 Projet Responsive Design - Notes de Continuation
 
-**Date de mise en pause:** 4 janvier 2026  
+**Date de mise en pause:** 5 janvier 2026  
 **Branche active:** `save-local-changes`  
-**Commits déployés:** 36 commits  
-**Dernier commit:** `faf7ce9` - Fix HTML structure recrutements.html
+**Commits déployés:** 40+ commits  
+**Dernier commit:** `581e8a4` - Fix chemin Bootstrap CDN dans 3 pages forum
 
 ---
 
@@ -47,7 +47,29 @@
 
 ## ❌ À Faire (Prioritaire)
 
-### 1️⃣ Footer Responsive
+### 9️⃣ Navbar Dysfonctionnelle - Pages Forum ✅ COMPLÉTÉ
+**Statut:** ✅ DONE  
+**Pages affectées:** 
+- `/pages/Forum/lire_sujet.php` ✅
+- `/forum/lire_sujet.php` ✅
+- `/pages/auth/account.php` ✅
+- `/forum/account.php` ✅
+- `/pages/Forum/insert_sujet.php` ✅
+- `/forum/insert_reponse.php` ✅
+- + 6 autres pages avec même bug ✅
+
+**Corrections appliquées:**
+- ✅ Supprimé doublon bouton hamburger sur 12 pages
+- ✅ Remplacé chemin relatif `node_modules/bootstrap` par CDN Bootstrap
+- ✅ Menu hamburger fonctionne correctement sur toutes les pages
+
+**Commits:**
+- `0377b23` - Fix doublon navbar 3 pages forum
+- `ef85e56` - Fix doublon navbar 8 autres pages
+- `4072166` - Fix doublon navbar liens.html
+- `581e8a4` - Fix chemin Bootstrap CDN 3 pages forum
+
+---
 **Statut:** Partiellement done, à finaliser  
 **Pages affectées:** Toutes  
 **Problème:** À vérifier sur mobile si responsive fonctionne correctement  
@@ -319,13 +341,14 @@ e:/pompiers/ASPLFront/
 
 ## 🎯 Priorités de Continuation
 
-1. **CRITICAL:** Navbar dysfonctionnelle (item 9)
-2. **HIGH:** Tableaux forum/admin lisibilité (items 5, 8)
-3. **HIGH:** Cadre commentaires galerie (item 7)
-4. **MEDIUM:** Contenu admin désactivé mobile (item 6)
-5. **MEDIUM:** 2ème navbar double burger (item 4)
-6. **MEDIUM:** Hero scene et navbar responsiveness (items 2, 3)
-7. **LOW:** Footer final polish (item 1)
+1. **HIGH**: Item 5 - Liste membres admin lisibilité mobile
+2. **HIGH**: Item 6 - Contenu admin désactiver sur mobile
+3. **MEDIUM**: Item 8 - Tableau forum sort écran
+4. **MEDIUM**: Item 7 - Cadre commentaires galerie sort écran
+5. **MEDIUM**: Item 2 - Navbar responsive complète
+6. **LOW**: Item 1 - Footer final polish
+7. **LOW**: Item 3 - Hero scene final polish
+8. **LOW**: Item 4 - 2ème navbar layouts variés
 
 ---
 
