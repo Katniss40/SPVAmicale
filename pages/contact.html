@@ -1,63 +1,91 @@
 <div class="hero-scene text-center text-white">
-        <div class="hero-scene-content">
-                <h1 class="hero-scene-text">Contactez nous!</h1>
-        </div>
-</div>
-<br>
-<br>
-<br> 
-<br>
-<br>
-<br>       
-    <div class="container">
-        <h2>Contactez-nous</h2>
-        <p>Pour toutes questions ou demandes d'information, n'hésitez pas à nous contacter via le formulaire ci-dessous.</p>
-            <form id="contact-form" action="/php/contact.php" method="post">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nom, prénom : *</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required> 
-                </div>
-
-               <!-- <div class="mb-3">
-                    <label for="surname" class="form-label">Prénom : *</label>
-                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Votre prénom" required> 
-                </div>
-                               
-                <div class="mb-3">
-                    <label for="telephone" class="form-label">Téléphone</label>
-                    <input type="number" class="form-control" id="telephone" name="telephone" placeholder="01.02.03.04.05"> 
-                </div>-->
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email : *</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="email" required>  
-                </div>
-
-                <div class="mb-3">
-                    <label for="subject" class="form-label">Sujet : *</label>
-                    <input type="text" class="form-control" id="subject" name="subject" placeholder="subject" value="Sujet" required> 
-                </div>
-
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message : *</label>
-                    <textarea id="message" class="form-control" name="message" required></textarea>                    
-                </div>
-        <br>
-                <h5 class="contact">Les champs suivis d'un * sont obligatoires</h5>
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                </div>
-            </form>
-        
+    <div class="hero-scene-content">
+        <h1 class="hero-scene-text">Contactez nous!</h1>
     </div>
+</div>
 
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Intro Section -->
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3" style="color: #2E7D32;">Nous sommes à votre écoute</h2>
+                <p class="lead" style="color: #666;">Pour toutes questions ou demandes d'information, n'hésitez pas à nous contacter via le formulaire ci-dessous. Nous vous répondrons dans les meilleurs délais.</p>
+            </div>
 
-   
-       
-        
+            <!-- Contact Form Card -->
+            <div class="card shadow-lg border-0 rounded-4" style="border-top: 5px solid #c41d1d;">
+                <div class="card-body p-5" style="background: #fafafa;">
+                    <form id="contact-form" action="/php/contact.php" method="post">
+                        
+                        <!-- Nom -->
+                        <div class="mb-4">
+                            <label for="name" class="form-label fw-semibold" style="color: #2E7D32;">Nom, prénom <span style="color: #c41d1d;">*</span></label>
+                            <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Jean Dupont" required style="border: 2px solid #E0E0E0; border-radius: 8px;"> 
+                        </div>
 
-        
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-semibold" style="color: #2E7D32;">Email <span style="color: #c41d1d;">*</span></label>
+                            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="votre.email@exemple.fr" required style="border: 2px solid #E0E0E0; border-radius: 8px;">  
+                        </div>
 
+                        <!-- Sujet -->
+                        <div class="mb-4">
+                            <label for="subject" class="form-label fw-semibold" style="color: #2E7D32;">Sujet <span style="color: #c41d1d;">*</span></label>
+                            <input type="text" class="form-control form-control-lg" id="subject" name="subject" placeholder="Ex: Demande d'information" value="" required style="border: 2px solid #E0E0E0; border-radius: 8px;"> 
+                        </div>
 
-        
+                        <!-- Message -->
+                        <div class="mb-4">
+                            <label for="message" class="form-label fw-semibold" style="color: #2E7D32;">Message <span style="color: #c41d1d;">*</span></label>
+                            <textarea id="message" class="form-control form-control-lg" name="message" rows="6" placeholder="Décrivez votre demande..." required style="border: 2px solid #E0E0E0; border-radius: 8px;"></textarea>                    
+                        </div>
+
+                        <!-- Info champs obligatoires -->
+                        <div class="d-flex align-items-center mb-4 p-3 rounded-3" style="background-color: #F5E6CC; border-left: 5px solid #2E7D32;">
+                            <svg class="me-3 flex-shrink-0" width="24" height="24" fill="#2E7D32" viewBox="0 0 16 16">
+                                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393Z"/>
+                            </svg>
+                            <div style="color: #333;">
+                                Les champs marqués d'une <span style="color: #c41d1d; font-weight: bold;">*</span> sont obligatoires
+                            </div>
+                        </div>
+
+                        <!-- Bouton d'envoi -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-lg px-5 rounded-pill fw-semibold" style="background-color: #2E7D32; border: none; color: white;">
+                                <svg class="me-2" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="margin-bottom: 2px;">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.5-4.5a.5.5 0 0 0-1 0v5.793L5.354 2.854a.5.5 0 1 0-.708.708l6.5 6.5a.5.5 0 0 0 .708 0l6.5-6.5a.5.5 0 0 0-.708-.708L12.5 8.293V3.5z"/>
+                                </svg>
+                                Envoyer mon message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Alternate Contact Methods -->
+            <div class="row g-3 mt-4">
+                <div class="col-sm-6">
+                    <div class="card border-0 text-center h-100 shadow-sm" style="background: #F5E6CC; border-top: 4px solid #2E7D32;">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-2" style="color: #2E7D32;">📞 Téléphone</h5>
+                            <p class="card-text" style="color: #666;">Besoin de parler directement ?</p>
+                            <a href="tel:" class="text-decoration-none fw-semibold" style="color: #c41d1d;">Nous contacter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card border-0 text-center h-100 shadow-sm" style="background: #F5E6CC; border-top: 4px solid #2E7D32;">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-2" style="color: #2E7D32;">✉️ Email direct</h5>
+                            <p class="card-text" style="color: #666;">Préférez l'email ?</p>
+                            <a href="mailto:contact@amicalepompiersleon.fr" class="text-decoration-none fw-semibold" style="color: #c41d1d;">contact@amicale...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
