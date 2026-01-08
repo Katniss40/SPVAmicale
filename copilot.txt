@@ -1,0 +1,590 @@
+✅ ON FIXE DÉFINITIVEMENT LA STRUCTURE DE LA TABLE
+
+Tu veux :
+
+✔ réserver un ou plusieurs jours
+✔ pouvoir modifier les dates (si la fendeuse revient plus tôt)
+✔ pouvoir annuler
+✔ garder le nom du réservant
+✔ calculer le prix total
+✔ utilisateurs déjà gérés dans ton site → OK
+✔ rester simple, pas de champs inutiles
+
+👉 Alors voici LA TABLE DÉFINITIVE (la meilleure version pour ton projet) :
+
+
+🎯 STRUCTURE FINALE DE LA TABLE reservations
+
+DROP TABLE IF EXISTS `reservations`;
+
+CREATE TABLE `reservations` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) DEFAULT NULL,          -- ID utilisateur si connecté
+  `nom_reservant` VARCHAR(150) NOT NULL,   -- Nom affiché dans le calendrier
+  `date_debut` DATE NOT NULL,
+  `date_fin` DATE NOT NULL,
+  `prix_total` DECIMAL(6,2) NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+❗ IMPORTANT : C’EST LA VERSION FINALE
+
+Je NE la modifierai plus jamais, sauf si TU demandes une modification.
+
+🎉 Maintenant, étape suivante
+
+Dis-moi :
+
+👉 Veux-tu que je te génère tous les fichiers autour de cette table ?
+
+/php/add_reservation.php
+
+/php/get_reservations.php
+
+/php/delete_reservation.php
+
+/php/update_reservation.php (si tu veux modifier une réservation)
+
+Le bon reservation.js (clean, compatible FullCalendar, sans bug de dates)
+
+Le HTML final reservation.php
+
+Je fais tout propre, adapté à cette structure fixe, sans rien changer.
+
+💬 Tu veux qu’on attaque par quoi ?
+
+
+Parfait, on va commencer par ces deux fichiers pour gérer l’ajout et l’affichage des réservations avec la nouvelle table reservations.
+
+Je te propose des fichiers simples, sécurisés, et compatibles avec FullCalendar et la logique multi-jours.
+
+1️⃣ /php/add_reservation.php
+
+<?php
+require_once "connexion.php"; // ta connexion à la BDD
+
+// Lire les données JSON envoyées
+$data = json_decode(file_get_contents("php://input"), true);
+
+$response = ['success' => false, 'message' => 'Erreur inconnue.'];
+
+if ($data) {
+    $nom = trim($data['nom_reservant'] ?? '');
+    $debut = $data['date_debut'] ?? '';
+    $fin = $data['date_fin'] ?? '';
+
+    if (!$nom || !$debut || !$fin) {
+        $response['message'] = 'Veuillez remplir tous les champs.';
+    } else {
+        // Calcul du nombre de jours inclusifs
+        $startDate = new DateTime($debut);
+        $endDate = new DateTime($fin);
+        if ($endDate < $startDate) {
+            $response['message'] = 'La date de fin doit être après la date de début.';
+        } else {
+            $diff = $startDate->diff($endDate)->days + 1;
+            $prix_total = $diff * 15; // 15 €/jour
+
+            // Insertion
+            $stmt = $conn->prepare("INSERT INTO reservations (user_id, nom_reservant, date_debut, date_fin, prix_total) VALUES (?, ?, ?, ?, ?)");
+            $user_id = null; // si tu veux récupérer l'id connecté, à adapter
+            $stmt->bind_param("isssd", $user_id, $nom, $debut, $fin, $prix_total);
+
+            if ($stmt->execute()) {
+                $response['success'] = true;
+                $response['message'] = "Réservation ajoutée avec succès !";
+            } else {
+                $response['message'] = "Erreur lors de l'ajout : " . $stmt->error;
+            }
+        }
+    }
+}
+
+header('Content-Type: application/json');
+echo json_encode($response);
+
+
+2️⃣ /php/get_reservations.php
+Ce fichier va récupérer toutes les réservations pour FullCalendar, au format JSON attendu.
+
+
+<?php
+require_once "connexion.php";
+
+header('Content-Type: application/json');
+
+// Récupération des réservations valides (tu peux ajouter un filtre si tu veux uniquement certaines)
+$sql = "SELECT id, nom_reservant, date_debut, date_fin FROM reservations ORDER BY date_debut ASC";
+$result = $conn->query($sql);
+
+$events = [];
+
+while ($row = $result->fetch_assoc()) {
+    $events[] = [
+        'id' => $row['id'],
+        'title' => $row['nom_reservant'],
+        'start' => $row['date_debut'],
+        'end' => (new DateTime($row['date_fin']))->modify('+1 day')->format('Y-m-d') // end exclusif FullCalendar
+    ];
+}
+
+echo json_encode($events);
+
+
+✅ Ces deux fichiers sont compatibles avec FullCalendar et le format date_debut / date_fin.
+
+add_reservation.php → ajoute une réservation, calcule le prix automatiquement
+
+get_reservations.php → renvoie les réservations pour le calendrier
+
+
+Si tu veux, on peut directement enchaîner avec :
+
+/php/delete_reservation.php → annulation
+
+/php/update_reservation.php → modification des dates
+
+Ça permettra d’avoir le cycle complet de la réservation, compatible multi-jours et gestion de retour anticipé.
+
+Veux-tu que je fasse ça maintenant ?
+
+1️⃣ /php/delete_reservation.php
+
+Voici un exemple simple pour supprimer une réservation par date ou id.
+
+
+<?php
+require_once "connexion.php";
+
+$data = json_decode(file_get_contents("php://input"), true);
+$response = ['success' => false, 'message' => 'Erreur inconnue.'];
+
+if ($data) {
+    // soit on reçoit l'id de la réservation
+    if (isset($data['id'])) {
+        $stmt = $conn->prepare("DELETE FROM reservations WHERE id = ?");
+        $stmt->bind_param("i", $data['id']);
+    }
+    // ou date de début (utile si suppression via formulaire)
+    elseif (isset($data['date'])) {
+        $date = $data['date'];
+        $stmt = $conn->prepare("DELETE FROM reservations WHERE date_debut = ?");
+        $stmt->bind_param("s", $date);
+    } else {
+        $stmt = null;
+        $response['message'] = "Aucune information pour supprimer.";
+    }
+
+    if ($stmt && $stmt->execute()) {
+        $response['success'] = true;
+        $response['message'] = "Réservation supprimée avec succès.";
+    } elseif ($stmt) {
+        $response['message'] = "Erreur : " . $stmt->error;
+    }
+}
+
+header('Content-Type: application/json');
+echo json_encode($response);
+
+
+
+2️⃣ /php/update_reservation.php
+
+Permet de modifier les dates d’une réservation existante. Utile si quelqu’un ramène la fendeuse plus tôt ou prolonge la réservation.
+
+
+<?php
+require_once "connexion.php";
+
+$data = json_decode(file_get_contents("php://input"), true);
+$response = ['success' => false, 'message' => 'Erreur inconnue.'];
+
+if ($data) {
+    $id = $data['id'] ?? null;
+    $debut = $data['date_debut'] ?? null;
+    $fin = $data['date_fin'] ?? null;
+
+    if (!$id || !$debut || !$fin) {
+        $response['message'] = "Veuillez fournir l'id et les nouvelles dates.";
+    } else {
+        $startDate = new DateTime($debut);
+        $endDate = new DateTime($fin);
+        if ($endDate < $startDate) {
+            $response['message'] = "La date de fin doit être après la date de début.";
+        } else {
+            $diff = $startDate->diff($endDate)->days + 1;
+            $prix_total = $diff * 15;
+
+            $stmt = $conn->prepare("UPDATE reservations SET date_debut = ?, date_fin = ?, prix_total = ? WHERE id = ?");
+            $stmt->bind_param("ssdi", $debut, $fin, $prix_total, $id);
+
+            if ($stmt->execute()) {
+                $response['success'] = true;
+                $response['message'] = "Réservation mise à jour avec succès !";
+            } else {
+                $response['message'] = "Erreur : " . $stmt->error;
+            }
+        }
+    }
+}
+
+header('Content-Type: application/json');
+echo json_encode($response);
+
+3️⃣ reservation.php (formulaire + calendrier)
+
+Oui, il est tout à fait possible de cliquer sur les dates dans FullCalendar et que ça remplisse automatiquement le formulaire.
+Le principe :
+
+select: function(info) {
+    const endInclusive = new Date(info.end);
+    endInclusive.setDate(endInclusive.getDate() - 1);
+
+    // on remplit le formulaire
+    document.getElementById('date_debut').value = info.startStr; 
+    document.getElementById('date_fin').value = endInclusive.toISOString().split('T')[0];
+
+    // update du montant
+    updateMontant();
+
+    info.startStr → date de début
+
+info.end → date de fin exclusive, donc on retire 1 jour pour avoir la date réelle
+
+On met ça dans le formulaire input type=date et le montant se met à jour automatiquement.
+
+
+
+Si tu veux, je peux te préparer directement le fichier reservation.php complet :
+
+Formulaire avec nom et dates
+
+Montant calculé automatiquement
+
+FullCalendar interactif
+
+Clic sur dates → formulaire
+
+Gestion des annulations et modifications via /php/delete_reservation.php et /php/update_reservation.php
+
+Veux‑tu que je fasse ça ?
+
+
+
+Parfait ! Je vais te réécrire ton reservation.php en intégrant ton style et ta mise en page tout en ajoutant :
+
+Formulaire + calendrier interactif (FullCalendar)
+
+Sélection de dates dans le calendrier → remplit automatiquement le formulaire
+
+Calcul automatique du montant
+
+Annulation via bouton ou clic sur un événement (si c’est l’utilisateur)
+
+Gestion multi-jours
+
+Voici le fichier complet réécrit :
+
+
+
+
+<?php
+session_start();
+
+// --- Connexion ---
+$conn = new mysqli("mysql-pompiers-leon.alwaysdata.net","408942","@Admin-2025@","pompiers-leon_admin");
+if ($conn->connect_error) die("Échec de la connexion : " . $conn->connect_error);
+
+$user_id = $_SESSION['user_id'] ?? 1;
+$user_nom = $_SESSION['NomInput'] ?? 'Utilisateur';
+$user_email = $_SESSION['EmailInput'] ?? '';
+$message = "";
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Réservation Fendeuse</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/global.css">
+<link rel="stylesheet" href="/assets/css/reservation.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Emilys+Candy&family=Happy+Monkey&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header>
+<section>
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
+     <div class="navbar">
+      <a class="navbar-brand policeDrop" href="/">
+        <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>       
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link policeNav" href="/">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link policeNav" href="/galerie">Galerie</a></li>
+          <li class="nav-item"><a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a></li>
+          <li class="nav-item"><a class="nav-link policeNav" href="/recrutement">Recrutement</a></li>
+          <li class="nav-item"><a class="nav-link policeNav" href="/infos">Manifestations</a></li>
+          <li class="nav-item dropdown" data-show="connected">
+            <li><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
+            <li><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
+          </li>
+          <li class="nav-item" data-show="disconnected">
+            <a class="nav-link policeNav" href="/signin">Connexion</a>
+          </li>
+          <li class="nav-item" data-show="connected">
+            <button class="nav-link policeNav" id="btnSignout">Déconnexion</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+</section>
+
+<section class="hero-scene text-center text-white">
+    <div class="hero-scene-content"><br><br><br><br>
+        <h1 style="color: white;" class="hero-scene-text">Réservation de la fendeuse</h1>
+    </div>        
+</section>
+
+<nav class="navbar navbar-expand-lg">        
+    <div class="navbar" style="background-color: #2E7D32;"> 
+        <img src="/Images/Logo_SPleon3.png" alt="Logo" width="50" height="40" class="d-inline-block align-text-top">
+        <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+        <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord </a>
+        <a class="nav-link" href="/liens">Liens Utiles</a>
+        <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
+        <a class="nav-link" href="/VideGrenier">Vide grenier</a>
+        <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
+        <a class="nav-link" href="/Blog">Discussions</a>
+        <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+        <a class="nav-link" href="/forum/account.php">Mon Compte</a>                
+    </div>
+</nav>
+</header>
+
+<main class="resa-container">
+  <h2 class="mb-4">📅 Choisissez vos dates</h2>
+  <?= $message ?>
+  <div id="calendar"></div>
+
+  <form id="formResa">
+    <div class="mb-3">
+      <label for="nom_reservant" class="form-label">Votre nom :</label>
+      <input type="text" id="nom_reservant" name="nom_reservant" class="form-control" value="<?= htmlspecialchars($user_nom) ?>" required>
+    </div>
+    <div class="mb-3">
+      <label for="date_debut" class="form-label">Du :</label>
+      <input type="date" id="date_debut" name="date_debut" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="date_fin" class="form-label">Au :</label>
+      <input type="date" id="date_fin" name="date_fin" class="form-control" required>
+    </div>
+    <p id="montant-total" style="font-weight:bold; color:#2E7D32;">Montant total : 0 €</p>
+    <button type="submit" class="btn btn-success w-100">Réserver (15 €/jour)</button>
+    <button type="button" id="btnAnnuler" class="btn btn-danger w-100 mt-2">🗑️ Annuler ma réservation</button>
+  </form>
+</main>
+
+<!-- Footer et back to top -->
+<button id="backToTop" aria-label="Retour en haut" title="Retour en haut">↑ Haut</button>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Nous contacter</h3>
+      <p>Adresse M@il : <a class="mail" href="mailto:aspleon40@gmail.com">aspleon40@gmail.com</a></p>
+      <div class="social-buttons">
+        <button class="facebook" onclick="window.location.href='https://www.facebook.com/csleon.sapeurspompiers';">Facebook</button>
+        <button class="instagram" onclick="window.location.href='https://www.instagram.com/sapeurs_pompiers_de_leon';">Instagram</button>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <p>
+        Centre de secours et d'incendie <br>
+        Route de Laguens <br>
+        40550 Léon <br>
+        Tel Chef de centre : 06.89.76.78.67 <br>
+        Tel Président Amicale : 06.14.81.77.03
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <p>Mentions légales</p>
+      <a href="/fichiers/mentions_legales_spv.docx" class="btn-mentions">Télécharger ICI</a>
+      <p class="copyright">© 2025 Amicale des Sapeurs-Pompiers de Léon<br>Tous droits réservés</p>
+    </div>
+  </div>
+
+  <div class="signature">
+    <p>Site conçu par Bourdeloux Corinne - Web-Crea 2.0 - contactez-moi 
+      <a class="mail" href="mailto:w3b.cre4@gmail.com">ICI</a>
+    </p>
+  </div>
+</footer>  
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script type="module" src="/js/auth/reservation.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const prixParJour = 15;
+  const montantEl = document.getElementById('montant-total');
+  const inputDebut = document.getElementById('date_debut');
+  const inputFin = document.getElementById('date_fin');
+
+  function parseToDate(value) {
+    if (!value) return null;
+    if (value.includes('/')) {
+      const [d,m,y] = value.split('/');
+      return new Date(y, m-1, d);
+    }
+    return new Date(value);
+  }
+
+  function calcNbJours(startDate, endDate) {
+    if (!startDate) return 0;
+    if (!endDate) endDate = startDate;
+    const diff = (endDate - startDate) / (1000*60*60*24);
+    return diff >= 0 ? diff+1 : 0;
+  }
+
+  function updateMontant() {
+    const start = parseToDate(inputDebut.value);
+    const end = parseToDate(inputFin.value);
+    const nb = calcNbJours(start,end);
+    montantEl.textContent = `Montant total : ${nb*prixParJour} €`;
+  }
+
+  inputDebut.addEventListener('change', updateMontant);
+  inputFin.addEventListener('change', updateMontant);
+
+  // --- FullCalendar ---
+  const calendarEl = document.getElementById('calendar');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    locale: 'fr',
+    selectable: true,
+    selectMirror: true,
+    initialView: 'dayGridMonth',
+    headerToolbar: { left:'prev,next today', center:'title', right:'' },
+    events: '/php/get_reservations.php',
+
+    select: function(info){
+      const endInclusive = new Date(info.end);
+      endInclusive.setDate(endInclusive.getDate()-1);
+      inputDebut.value = info.startStr;
+      inputFin.value = endInclusive.toISOString().split('T')[0];
+      updateMontant();
+    },
+
+    eventClick: function(info){
+      const title = info.event.title;
+      if(title.includes("<?= htmlspecialchars($user_nom) ?>")){
+        if(confirm("Souhaitez-vous annuler cette réservation ?")){
+          fetch("/php/delete_reservation.php",{
+            method:'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ date: info.event.startStr })
+          })
+          .then(r=>r.json())
+          .then(d=>{
+            alert(d.message);
+            if(d.success) calendar.refetchEvents();
+          });
+        }
+      } else {
+        alert("Vous ne pouvez annuler que vos propres réservations.");
+      }
+    }
+  });
+  calendar.render();
+
+  // --- Formulaire ---
+  const form = document.getElementById('formResa');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const nom = inputDebut.value;
+    const debut = inputDebut.value;
+    const fin = inputFin.value;
+    const nomResa = document.getElementById('nom_reservant').value.trim();
+    if(!debut || !fin || !nomResa){ alert("Veuillez remplir tous les champs."); return; }
+
+    try{
+      const resp = await fetch('/php/add_reservation.php',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          nom_reservant: nomResa,
+          date_debut: debut,
+          date_fin: fin
+        })
+      });
+      const data = await resp.json();
+      alert(data.message);
+      if(data.success) calendar.refetchEvents();
+    }catch(err){
+      console.error(err);
+      alert('Erreur réseau.');
+    }
+  });
+
+  // --- Annulation via bouton ---
+  document.getElementById('btnAnnuler').addEventListener('click', function(){
+    const date = inputDebut.value;
+    if(!date){ alert("Veuillez sélectionner une date à annuler."); return; }
+    if(confirm(`Voulez-vous vraiment annuler la réservation du ${date} ?`)){
+      fetch("/php/delete_reservation.php",{
+        method:'POST',
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ date })
+      })
+      .then(r=>r.json())
+      .then(d=>{
+        alert(d.message);
+        if(d.success) location.reload();
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+✅ Fonctionnalités incluses :
+
+Multi-jours
+
+Montant calculé automatiquement
+
+Calendrier interactif (FullCalendar)
+
+Clic sur dates → remplit formulaire
+
+Annulation via clic ou bouton
+
+Respect complet de ta mise en page HTML + CSS existants
+
+Si tu veux, la prochaine étape est que je te fasse /php/add_reservation.php et /php/get_reservations.php pour que tout soit fonctionnel avec cette page.
+
+Veux‑tu que je fasse ça maintenant ?
+
+
+erreur d'enregistrement des dates :
+

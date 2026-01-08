@@ -6,17 +6,20 @@
                 <h1 class="hero-scene-text">Inserer un Sujet de Discussion!</h1>
         </div>
 </div>
-<br><br><br><br><br>
 
-<section >
+
+<section data-show="admin">
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/Blog" >Tableau de bord </a>
+            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item" data-show="admin">
+                            <a class="nav-link" href="/spv">Liste des membres</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/liens">Liens Utiles</a>
                         </li>
@@ -30,10 +33,13 @@
                             <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/blog">Discutions</a>
+                            <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/account">Mon Compte</a>
+                            <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
                         </li>
                     </ul>
                 </div>
@@ -108,7 +114,7 @@ if (isset ($_POST['go']) && $_POST['go']=='Poster') {
 
 
 <!-- on fait pointer le formulaire vers la page traitant les données -->
-<form action="/Forum/insert_sujet.php" method="post"> <!-- Ca fonctionne -->
+<form action="/pages/Forum/insert_sujet.php" method="post"> <!-- Ca fonctionne -->
 <table class="blog_table">
 <tr><td>
 <b>Auteur :  </b>
@@ -122,7 +128,7 @@ if (isset ($_POST['go']) && $_POST['go']=='Poster') {
 <b>Message :</b>
 </td><td>
 <textarea name="message" cols="125" rows="11"><?php if (isset($_POST['message'])) echo htmlentities(trim($_POST['message'])); ?></textarea>
-</td></tr><tr><td><td align="right">
+</td></tr><tr><td><td>
 <input type="submit" name="go" value="Poster">
 </td></tr></table>
 </form>
@@ -134,5 +140,9 @@ if (isset ($_POST['go']) && $_POST['go']=='Poster') {
 if (isset($erreur)) echo '<br /><br />',$erreur;
 ?>
 
+<br><br>
+
+<!-- on insère un lien qui nous permettra de retourner à l'accueil du forum -->
+<a href="/Blog" style="border-radius: 5px; background-color: #2E7D32; color: #F5E6CC; padding: 10px 15px; text-decoration: none; width: 1300px; margin: auto  175px;">Retour à l'accueil</a>
 
 

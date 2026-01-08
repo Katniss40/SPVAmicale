@@ -1,0 +1,20 @@
+
+
+.forum_reponse {
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.reponse {
+    border-radius: 10px; 
+    color: #2E7D32; 
+    text-align: center; 
+    border-width: 2px; 
+    border-style: solid; 
+    border-color: rgb(196, 29, 29); 
+    background-color: rgb(227, 227, 227);
+    width: 1300px;
+    margin: 20px 175px; 
+    border-collapse: collapse;
+}

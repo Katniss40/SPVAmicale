@@ -1,0 +1,47 @@
+/* 👤 Page Mon Compte - Styles spécifiques
+------------------------------------------------------------- */
+
+
+/* =========================
+   ACCOUNT.CSS
+   Styles spécifiques à la page Mon Compte
+   ========================= */
+
+main {
+  background-color: #fff;
+}
+
+.card-body {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 40px 0;
+}
+
+.btn-primary {
+  background-color: #2E7D32;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #256628;
+}
+/* Ajustements responsive */
+@media (max-width: 768px) {
+  .account-page form {
+    padding: 1.5rem;
+  }
+  .account-page h2 {
+    font-size: 1.5rem;
+  }
+}

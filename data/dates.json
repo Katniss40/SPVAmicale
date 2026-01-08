@@ -1,0 +1,28 @@
+{
+    "manifestations": {
+        "date_bal_pompiers": "1er août 2025",
+        "title_bal_pompiers": "Bal des Pompiers 2025",
+        "date_vide_grenier": "15 Août 2025",
+        "date_marche_noel": "7 décembre 2025"
+    },
+    "infos": {
+        "date_calendrier_period": "Novembre à Janvier",
+        "date_portes_ouvertes": "25 Octobre 2025",
+        "horaires_portes_ouvertes": "9h à 14h",
+        "date_salon_assos": "13 Septembre 2025",
+        "date_marche_noel": "7 décembre 2025"
+    },
+    "home": {
+        "date_forum_associations": "13 septembre 2025",
+        "date_portes_ouvertes_home": "25 Octobre 2025",
+        "date_marche_noel_home": "7 décembre 2025",
+        "date_octobre_rose": "Octobre 2025",
+        "date_telethon": "6 Décembre 2025"
+    }
+    ,
+    "calendrier": {
+        "equipe_verte": "Equipe verte<br>- JM Renaut<br>- T Chabassière<br>- V Laforie<br>- R Espana<br>- M Renaut<br>- Y Renaut<br>- F Laforie",
+        "equipe_bleu": "Equipe bleu<br>- P Dubos<br>- W Lartigue<br>- M Bourguignon<br>- B Biord<br>- A Lebrere<br>- F Fradon<br>- H Lalous<br>- M Prevot",
+        "equipe_jaune": "Equipe Jaune<br>- JP Savy<br>- A Doulet<br>- J Bourdeloux<br>- S Bourdeloux<br>- J Mouyssac<br>- JJ Chanut<br>- L Decoopman<br>- S Cordier"
+    }
+}

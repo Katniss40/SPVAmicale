@@ -3,46 +3,50 @@
                 <h1 class="hero-scene-text">Galerie</h1>
         </div>
 </div>
-<br><br><br><br><br>
 
-    <article>
-        <div class="container p-4">
-            <!-- Liste des photos -->
-            <h2 class="text-center text-primary admin">La galerie Photos de vos pompiers préférés</h2>
-<div class="gallery"></div>
-<br>
+<article>
+        <div class="container" style="padding: 20px;">
+                    <!-- Liste des photos -->
+            <h2 class="text-center" style="color: #2E7D32; margin-bottom: 25px; font-size: 2rem; font-weight: bold;">La galerie Photos</h2> 
 
-                <?php
+                <div class="galerie-public">
+                    <?php
 
-// Chemin du dossier contenant les images
-$dossier = '../../uploads/';
+                    //include("connexion.php");
 
-// Vérifie si le dossier existe
-if (is_dir($dossier)) {
-    // Ouvre le dossier
-    if ($handle = opendir($dossier)) {
-        echo '<div style="display: flex; flex-wrap: wrap; gap: 10px;justify-content: space-between;">';
-        
-        // Parcourt les fichiers du dossier
-        while (($file = readdir($handle)) !== false) {
-            // Vérifie si le fichier est une image
-            if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-                echo '<img src="' . $dossier . $file . '" alt="' . $file . '" style="width: 200px; height: 200px; border: 2px solid #ccc; box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5)" class="rounded w-25">';
-            }
-        }
-        
-        echo '</div>';
-        closedir($handle);
-    }
-} else {
-    echo 'Le dossier n\'existe pas.';
-}
-?>
+                   // $result = $conn->query("SELECT * FROM photos ORDER BY id DESC");
+                   // while ($photo = $result->fetch_assoc()) {
+                   //     echo '<div style="text-align: center;">';
+                   //     echo '<img src="' . $photo['name'] . '" alt="photo" style="width: auto; height: 300px; border: 1px solid #ccc; box-shadow: 8px 8px 10px rgba(0,0,0,0.5); border-radius: 5px;" class="galerie-photo">';
+                   //     echo '<p style="margin-top: 8px; font-size: 20px; color: #333;">' . htmlspecialchars($photo['commentaire']) . '</p>';
+                        
+                   //     echo '</div>';
+                  //  }
 
 
+                include("connexion.php");
+                $result = $conn->query("SELECT * FROM photos ORDER BY id DESC");
 
-
+                while ($photo = $result->fetch_assoc()) {
+                    $src = !empty($photo['url']) ? $photo['url'] : $photo['name'];
+                    echo '<div class="photo-card" onclick="openLightbox(this)">';
+                    echo '<img src="' . htmlspecialchars($src) . '" alt="photo" class="galerie-photo" data-full-src="' . htmlspecialchars($src) . '" data-comment="' . htmlspecialchars($photo['commentaire']) . '">';
+                    echo '<p>' . htmlspecialchars($photo['commentaire']) . '</p>';
+                    echo '<input type="hidden" name="photo_id" value="' . intval($photo['id']) . '">';
+                    echo '</div>';
+                }
+                ?>
+            </div>
         </div>
-
     </article>
-</section>  
+
+<!-- Lightbox Carrousel -->
+<div id="photoLightbox" class="photo-lightbox" style="display: none;">
+    <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-prev" onclick="prevPhoto()">❮</button>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="Photo" />
+        <button class="lightbox-next" onclick="nextPhoto()">❯</button>
+        <p class="lightbox-comment" id="lightboxComment"></p>
+    </div>
+</div>  

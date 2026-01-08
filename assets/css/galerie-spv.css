@@ -1,0 +1,111 @@
+/* ====== Galerie SPV - Gestion des photos (ajout/suppression) ====== */
+
+.galerieSPV {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.galerieSPV > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.galerieSPV img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.galerieSPV p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Style du bouton de suppression */
+.delete-button {
+    background-color: #c41d1d;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #8a0000;
+}
+
+/* ====== Responsive Design ====== */
+
+@media (max-width: 1200px) {
+    .galerieSPV {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .galerieSPV {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .galerieSPV img {
+        height: 240px;
+    }
+    
+    .galerieSPV p {
+        font-size: 14px;
+    }
+    
+    .delete-button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .galerieSPV {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+    
+    .galerieSPV > div {
+        padding: 15px;
+    }
+    
+    .galerieSPV img {
+        height: 200px;
+    }
+    
+    .galerieSPV p {
+        font-size: 13px;
+    }
+    
+    .delete-button {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}

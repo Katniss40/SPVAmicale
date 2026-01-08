@@ -1,5 +1,10 @@
 <?php
 
+// =====================================
+// 🔹 Ca fonctionne, ne plus toucher
+// =====================================
+
+
 // Connexion a la base de données
 $servername = 'mysql-pompiers-leon.alwaysdata.net';
 $username = '408942';

@@ -1,0 +1,525 @@
+/* ====== OPTIONS DE COULEUR POUR LE LIGHTBOX ====== */
+/* 
+   ACTUEL (Option 3) - Vert pompiers subtil :
+   background: linear-gradient(135deg, rgba(30, 80, 50, 0.95), rgba(40, 100, 60, 0.95));
+   
+   Option 1 - Dégradé noir-bleu (moderne & professionnel) :
+   background: linear-gradient(135deg, rgba(20, 20, 40, 0.95), rgba(40, 60, 100, 0.95));
+   
+   Option 2 - Dégradé gris doux (neutre & élégant) :
+   background: linear-gradient(135deg, rgba(50, 50, 60, 0.95), rgba(80, 80, 90, 0.95));
+   
+   Option 4 - Bleu nuit élégant (très pro) :
+   background: linear-gradient(135deg, rgba(25, 45, 85, 0.95), rgba(45, 75, 120, 0.95));
+*/
+
+/* ====== Galerie Publique - Affichage des photos avec commentaires ====== */
+
+.galerie-public {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+.photo-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.photo-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* ====== Galerie SPV (Admin) ====== */
+.galerieSPV {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.photo-card-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.galerie-photo {
+    width: auto;
+    max-width: 280px;
+    height: auto;
+    max-height: 280px;
+    border: 1px solid #ccc;
+    box-shadow: 8px 8px 10px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.galerie-photo:hover {
+    transform: none !important;
+    box-shadow: 8px 8px 10px rgba(0,0,0,0.5);
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.photo-card:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.photo-card p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* ====== Lightbox Carrousel ====== */
+.photo-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(30, 80, 50, 0.95), rgba(40, 100, 60, 0.95));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.lightbox-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+}
+
+.lightbox-image {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    font-size: 40px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 10000;
+    transition: background-color 0.3s;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 40px;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 10000;
+    transition: background-color 0.3s;
+}
+
+.lightbox-prev:hover, .lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-comment {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 18px;
+    max-width: 80%;
+    text-align: center;
+    margin: 0;
+    z-index: 10000;
+}
+
+/* Carrousel Modal */
+
+#carouselModal .modal-content {
+    background-color: #1a1a1a;
+    border: none;
+}
+
+#carouselModal .carousel-inner {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.carousel-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    bottom: 20px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 80%;
+}
+
+.carousel-comment {
+    color: white;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: auto;
+    background: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+    width: 3rem;
+    height: 3rem;
+}
+
+#carouselModal .btn-close-white {
+    opacity: 0.7;
+}
+
+#carouselModal .btn-close-white:hover {
+    opacity: 1;
+}
+
+/* ====== Lightbox Personnalisé ====== */
+
+.photo-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(30, 80, 50, 0.95), rgba(40, 100, 60, 0.95));
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.lightbox-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+}
+
+.lightbox-image {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 10000;
+    transition: color 0.3s ease;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-close:hover {
+    color: #ccc;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 15px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 10000;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-comment {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 18px;
+    max-width: 80%;
+    text-align: center;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ====== Responsive Lightbox ====== */
+
+@media (max-width: 768px) {
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 28px;
+        padding: 10px 15px;
+    }
+    
+    .lightbox-comment {
+        font-size: 14px;
+        padding: 10px 20px;
+        bottom: 10px;
+    }
+
+    .lightbox-close {
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-lightbox {
+        padding: 10px;
+    }
+
+    .lightbox-image {
+        max-height: 70vh;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 20px;
+        padding: 8px 12px;
+        left: 5px;
+        right: 5px;
+    }
+
+    .lightbox-prev {
+        left: 5px;
+    }
+
+    .lightbox-next {
+        right: 5px;
+    }
+
+    .lightbox-comment {
+        font-size: 12px;
+        padding: 8px 15px;
+        max-width: 90%;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .galerie-public {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .photo-card img {
+        height: 220px;
+    }
+    
+    .photo-card p {
+        font-size: 14px;
+    }
+
+    #carouselModal .carousel-inner {
+        height: 60vh;
+    }
+
+    .carousel-caption {
+        font-size: 14px;
+        bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .galerie-public {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 10px;
+    }
+    
+    .photo-card {
+        padding: 10px;
+    }
+    
+    .photo-card img {
+        height: 200px;
+    }
+    
+    .photo-card p {
+        font-size: 13px;
+    }
+
+    #carouselModal .carousel-inner {
+        height: 50vh;
+    }
+
+    .carousel-caption {
+        font-size: 12px;
+        bottom: 10px;
+        padding: 10px;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+}

@@ -1,0 +1,520 @@
+/* 🌐 Global - Site Pompiers Léon 40
+   Version unifiée et modernisée pour toutes les pages hors routage
+------------------------------------------------------------- */
+
+/* =============== COULEURS BOOTSTRAP PERSONNALISÉES =============== */
+/* Équivalent du _custom.scss pour les pages non-routées */
+.bg-primary {
+  background-color: #2E7D32 !important; /* Vert pompiers */
+}
+
+.text-primary {
+  color: #2E7D32 !important;
+}
+
+.btn-primary {
+  background-color: #2E7D32 !important;
+  border-color: #2E7D32 !important;
+}
+
+.btn-primary:hover {
+  background-color: #256428 !important;
+  border-color: #256428 !important;
+}
+
+/* Thème dark personnalisé - couleurs douces comme _custom.scss */
+[data-bs-theme="dark"] .navbar-brand,
+[data-bs-theme="dark"] .nav-link {
+  color: #F5E6CC !important; /* Beige doux au lieu de blanc pur */
+}
+
+[data-bs-theme="dark"] .nav-link:hover,
+[data-bs-theme="dark"] .nav-link:focus {
+  color: #F5E6CC !important;
+  opacity: 0.85;
+}
+
+/* =============== BASE =============== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  color: #222;
+  background-color: #F5E6CC;
+  line-height: 1.6;
+  min-height: 100vh;
+  font-size: 16px; /* Taille de base Bootstrap */
+  font-weight: 400; /* Poids normal Bootstrap */
+}
+
+/* ====== Global layout offsets (navbar fixe + hero) ====== */
+/* Repositionne hero-scene avec offset pour coller au bas de la navbar */
+body {
+  /* padding removed - hero-scene now handles offset */
+}
+
+.hero-scene {
+  top: 10px; /* descend l'image pour voir plus du bas (têtes complètes) */
+  height: 380px; /* hauteur précise */
+  margin-bottom: 8px; /* réduit l'espace avant la 2e navbar */
+}
+
+/* Application de la police Bootstrap personnalisée */
+body, .navbar, .nav-link, .navbar-brand, button, input, select, textarea, 
+h1, h2, h3, h4, h5, h6, p, a, li, td, th, label {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Tailles de police navbar pour correspondre à Bootstrap */
+.navbar-brand {
+  font-size: 1.25rem !important;
+  font-weight: 400 !important;
+}
+
+.nav-link {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+}
+
+/* Police serif pour les éléments spécifiques si besoin */
+.serif, blockquote {
+  font-family: 'Hind Madurai', serif !important;
+}
+
+a {
+  text-decoration: none;
+  color: #F5E6CC;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #F5E6CC;
+}
+
+/* =============== HEADER =============== */
+header {
+ /* background-color: #2E7D32;
+  color: white;
+  padding: 0.8rem 0;*/
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  /*position: sticky;
+  position: static;
+  top: 0;
+  z-index: 1000;*/
+}
+
+
+ .navbar {
+ /* max-width: 1530px;*/
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 1rem;
+  width: 100%;
+}
+
+.navbar a {
+  color: white ;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.policeNav {
+    color: rgb(196, 29, 29) !important;
+    font-weight: bold !important;
+}
+
+.policeNav a:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.policeDrop {
+    color: rgb(196, 29, 29) !important;
+    font-weight: bold !important;
+}
+
+.policeDrop a:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+/* =============== HERO SECTION =============== */
+.hero-scene {
+  position: relative;
+  background: url('/Images/groupe.jpg') center 25%/cover no-repeat;
+  height: 380px;
+  top: 10px; /* aligne avec l'offset commun pour voir toute la photo */
+  margin-bottom: 8px; /* réduit l'espace avant la 2e navbar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5E6CC !important;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+  overflow: hidden;
+}
+
+.hero-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: brightness(0.6);
+  z-index: 0;
+}
+
+.hero-scene > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-scene h1 {
+  color: #F5E6CC !important;
+  text-decoration: underline;
+  font-size: 2.5rem;
+  text-shadow: 40px 20px 1px rgba(1, 10, 10, 0.5);
+}
+
+/* =============== MAIN CONTENT =============== */
+main {
+  max-width: 1400px;
+  margin: 1rem auto 0.5rem auto;
+  padding: 0 2rem;
+}
+
+.titre-section {
+  color: #b30000;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #b30000;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+/* =============== FORMULAIRES =============== */
+form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #b30000;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(179,0,0,0.1);
+}
+
+/* =============== BOUTONS =============== */
+.btn {
+  display: inline-block;
+  background-color: #b30000;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background-color: #8a0000;
+  transform: translateY(-2px);
+}
+
+/* =============== TABLEAUX =============== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.table th {
+  background-color: #b30000;
+  color: white;
+  font-weight: 600;
+}
+
+/* =============== FOOTER =============== */
+/* Footer*/
+
+footer.footer {
+  flex-shrink: 0;
+  background: #f9f9f9; /* fond clair */
+  color: #2E7D32; /* vert pompier */
+  padding: 20px 0 10px 0;
+  width: 100%;
+  border-top: 3px solid #c41d1d; /* rouge pompier */
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.08);
+  position: relative;
+  font-size: 14px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.footer-col {
+  flex: 1 1 250px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer h3 {
+  color: #2E7D32;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: #c41d1d;
+  text-underline-offset: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  font-size: 13px;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.footer a.mail {
+  color: #c41d1d;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.footer a.mail:hover {
+  text-decoration: underline;
+}
+
+/* Boutons réseaux sociaux */
+.social-buttons button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.social-buttons button:hover {
+  transform: translateY(-3px);
+}
+
+.social-buttons .facebook {
+  background-color: #1877F2;
+}
+
+.social-buttons .instagram {
+  background: linear-gradient(45deg, #f09433, #bc1888);
+}
+
+/* Bouton mentions légales */
+.btn-mentions {
+  background-color: #2E7D32;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.btn-mentions:hover {
+  background-color: #45a049;
+}
+
+.copyright {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #c41d1d;
+}
+
+.signature {
+  background: #f5e6cc;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.85em;
+}
+
+.signature a {
+  color: #c41d1d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signature a:hover {
+  text-decoration: underline;
+}
+
+/* ====== back to top button ====== */
+/* commentaires CSS corrects : /* ... *\/  */
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: inline-block;   /* visible/invisible via classe .visible */
+  background-color: #F5E6CC;
+  color: rgb(196, 29, 29);
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(196,29,29,0.15);
+  width: 120px;
+  height: 44px;
+  opacity: 0;              /* caché par défaut */
+  transform: translateY(10px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  z-index: 9999;           /* devant tout */
+  pointer-events: none;    /* désactive les clics quand caché */
+}
+
+/* état visible */
+#backToTop.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* hover / focus — complet et valide */
+#backToTop:hover,
+#backToTop:focus {
+  text-decoration: underline;
+  text-decoration-color: #2E7D32;
+  text-decoration-thickness: 2px;
+  text-decoration-style: wavy;
+  outline: none;
+  box-shadow: 0 6px 14px rgba(46,125,50,0.12);
+}
+
+/* petite adaptation mobile (facultatif) */
+@media (max-width: 480px) {
+  #backToTop {
+    right: 12px;
+    bottom: 12px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+  }
+}
+
+
+/* =============== SOCIAL BUTTONS RESPONSIVE =============== */
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-buttons button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.social-buttons button.facebook {
+  background-color: #1877F2;
+}
+
+.social-buttons button.facebook:hover {
+  background-color: #0a66c2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(24, 119, 242, 0.3);
+}
+
+.social-buttons button.instagram {
+  background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+}
+
+.social-buttons button.instagram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(253, 29, 29, 0.3);
+}
+
+/* Mobile responsif (≤768px) */
+@media (max-width: 768px) {
+  .social-buttons button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* =============== MAIN CONTENT SPACING =============== */
+main {
+  margin-top: 30px;
+}
+
+/* =============== RESPONSIVE =============== */
+@media (max-width: 992px) {
+  header .navbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .hero-scene {
+    height: 35vh;
+  }
+  .hero-scene h1 {
+    font-size: 1.8rem;
+  }
+}
