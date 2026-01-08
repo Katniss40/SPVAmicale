@@ -31,11 +31,13 @@ $isAdmin = (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin');
           <div id="video" class="col">
             <h4 class="text-center text-primary">En attendant notre retour, nous l'espérons l'an prochain, revivez les moments phares de 2024</h4>
               <p class="text-center">Et un grand merci à @animlandes qui a su mettre le feu à cette soirée !! 🍾🍾🔥</p>
-                <video controls width="640" height="360">
-                <source src="/Images/Enregistrement 2025-07-12 110032.mp4" type="video/mp4">
+              <div class="ratio ratio-16x9" style="max-width: 560px; margin: 0 auto;">
+                <video controls class="rounded">
+                  <source src="/Images/Enregistrement 2025-07-12 110032.mp4" type="video/mp4">
                   <source src="mon-film.ogg" type="video/ogg">
                   Votre navigateur ne supporte pas la balise vidéo.
                 </video>
+              </div>
                 <!--<img class="w-50 rounded" src="/Images/bal_pompiers_2024.jpg"/>-->
           </div>
         </div>
