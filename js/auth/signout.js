@@ -15,8 +15,7 @@ async function signOutUser() {
 
   // Supprimer la donnée locale
   localStorage.removeItem("userRole");
-
-  alert("✅ Vous avez été déconnecté avec succès.");
+  localStorage.removeItem("userName");
 
   // Actualiser la navbar (masquer les boutons protégés)
   showAndHideElementsForRoles();
