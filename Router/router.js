@@ -54,7 +54,8 @@ const LoadContentPage = async () => {
   if (actualRoute.pathJS) {
     const scriptTag = document.createElement("script");
     scriptTag.type = "module"; // ✅ Autorise les imports
-    scriptTag.src = actualRoute.pathJS;
+    // Cache-busting pour éviter le JS en cache après déploiement
+    scriptTag.src = `${actualRoute.pathJS}?v=${Date.now()}`;
     scriptTag.onload = () => {
       showAndHideElementsForRoles(); // ✅ Réapplique la logique d’affichage des rôles
       // Si le script expose une initialisation spécifique (ex: adminDatesInit), l'appeler
