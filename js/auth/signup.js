@@ -42,11 +42,8 @@ async function checkCredentials(e) {
             // échec
             mailInput.classList.add("is-invalid");
             passwordInput.classList.add("is-invalid");
-            // affiche message si tu veux (alert / element)
-            console.warn('Connexion échouée:', json.message || resp.statusText);
         }
     } catch(err) {
-        console.error(err);
         alert('Erreur réseau. Réessaye plus tard.');
     }
 }

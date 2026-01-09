@@ -60,5 +60,3 @@ if (lightbox) {
         if (e.target === this) closeLightbox();
     });
 }
-
-console.log('✅ Script galerie.js chargé - lightbox prêt');

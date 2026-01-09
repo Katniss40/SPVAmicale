@@ -25,7 +25,6 @@
       });
       return dates;
     } catch (e) {
-      console.warn('Impossible de charger les dates', e);
       return {};
     }
   }

@@ -11971,10 +11971,6 @@ html {
   min-height: 100%;
 }
 
-body {
-  /* padding removed - hero-scene now handles offset */
-}
-
 .hero-scene {
   top: 10px;
   height: 380px;
@@ -12262,7 +12258,7 @@ img {
 
 .hero-scene {
   position: relative;
-  background: url("/Images/groupe.jpg") 40% 25%/cover no-repeat;
+  background: url("/Images/Camions.png") 40% 25%/cover no-repeat;
   height: 400px;
   top: 30px;
   margin-bottom: 8px;

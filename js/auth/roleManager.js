@@ -46,11 +46,25 @@ export function showAndHideElementsForRoles() {
     if (allowedRole === "disconnected" && userLevel === 0) el.classList.remove("d-none");
     if (allowedRole === "connected" && userLevel > 0) el.classList.remove("d-none");
     if (allowedRole === role) el.classList.remove("d-none");
-
-
   });
 
-  console.log(`🎭 Rôle actuel : ${role}`);
+  // Afficher le statut de connexion
+  updateUserStatusDisplay();
+}
+
+// Mettre à jour l'affichage du statut utilisateur
+function updateUserStatusDisplay() {
+  const role = getRole();
+  const userNameDisplay = document.getElementById("userNameDisplay");
+  const userName = localStorage.getItem("userName");
+  
+  if (userNameDisplay && role !== "disconnected") {
+    if (userName) {
+      userNameDisplay.textContent = `✓ ${userName}`;
+    } else {
+      userNameDisplay.textContent = "✓ Connecté";
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", showAndHideElementsForRoles);

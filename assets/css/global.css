@@ -53,9 +53,6 @@ html, body {
 
 /* ====== Global layout offsets (navbar fixe + hero) ====== */
 /* Repositionne hero-scene avec offset pour coller au bas de la navbar */
-body {
-  /* padding removed - hero-scene now handles offset */
-}
 
 .hero-scene {
   top: 10px; /* descend l'image pour voir plus du bas (têtes complètes) */
@@ -156,7 +153,7 @@ header {
 /* =============== HERO SECTION =============== */
 .hero-scene {
   position: relative;
-  background: url('/Images/groupe.jpg') center 25%/cover no-repeat;
+  background: url('/Images/Camions.png') center 25%/cover no-repeat;
   height: 380px;
   top: 10px; /* aligne avec l'offset commun pour voir toute la photo */
   margin-bottom: 8px; /* réduit l'espace avant la 2e navbar */

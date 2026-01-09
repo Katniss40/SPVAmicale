@@ -1,5 +1,3 @@
-console.log("✅ signin-script.js chargé !");
-
 import { showAndHideElementsForRoles } from "./roleManager.js"; // 🧠 chemin à ajuster selon ton arborescence
 
 document.addEventListener("click", async (e) => {
@@ -22,12 +20,10 @@ document.addEventListener("click", async (e) => {
       });
 
       const text = await response.text();
-      console.log("Réponse brute du serveur :", text);
 
       let data;
       try {
         data = JSON.parse(text);
-        console.log("Réponse JSON :", data);
       } catch {
         alert("Réponse invalide du serveur.");
         return;
@@ -38,6 +34,9 @@ document.addEventListener("click", async (e) => {
 
         // ✅ Sauvegarder le rôle utilisateur
         localStorage.setItem("userRole", data.role);
+        if (data.userName) {
+          localStorage.setItem("userName", data.userName);
+        }
         document.cookie = `role=${data.role}; path=/; samesite=Lax`;
         document.cookie = `accesstoken=1; path=/; samesite=Lax`;
 
@@ -58,7 +57,6 @@ document.addEventListener("click", async (e) => {
       }
 
     } catch (error) {
-      console.error(error);
       alert("Erreur de connexion au serveur.");
     }
   }
@@ -66,6 +64,5 @@ document.addEventListener("click", async (e) => {
 
 // 🧩 Forcer la mise à jour des rôles après redirection
 window.addEventListener("pageshow", () => {
-  console.log("♻️ Page affichée, vérification du rôle...");
   showAndHideElementsForRoles();
 });

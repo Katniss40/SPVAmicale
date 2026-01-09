@@ -74,13 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const togglePasswordIcon = document.getElementById("togglePasswordIcon");
 
   if (!btnSignin) {
-    console.error("❌ Bouton de connexion non trouvé !");
     return;
   }
 
   btnSignin.addEventListener("click", async (e) => {
     e.preventDefault();
-    console.log("🟢 Clic détecté sur Connexion");
 
     const email = emailInput.value.trim();
     const password = (passwordText && !passwordText.classList.contains("d-none") ? passwordText.value : passwordInput.value).trim();
@@ -98,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await response.json();
-      console.log("Réponse serveur :", data);
 
       if (response.ok && data.success) {
         alert("✅ Connexion réussie !");
@@ -107,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
         alert(data.message || "❌ Identifiants incorrects.");
       }
     } catch (error) {
-      console.error("Erreur réseau :", error);
       alert("Erreur de connexion au serveur.");
           }
   });
