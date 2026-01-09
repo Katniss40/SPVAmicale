@@ -30,7 +30,6 @@ document.addEventListener("click", async (e) => {
       }
 
       if (data.success) {
-        alert("✅ Connexion réussie !");
 
         // ✅ Sauvegarder le rôle utilisateur
         localStorage.setItem("userRole", data.role);

@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        alert("✅ Connexion réussie !");
         window.location.href = data.redirect || "/";
       } else {
         alert(data.message || "❌ Identifiants incorrects.");
