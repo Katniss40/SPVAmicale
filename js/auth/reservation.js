@@ -112,7 +112,6 @@ export default function initReservationPage() {
         alert(data.message);
         if (data.success) calendar.refetchEvents();
       } catch (err) {
-        console.error(err);
         alert('Erreur réseau.');
       }
     });

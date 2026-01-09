@@ -45,7 +45,6 @@ const LoadContentPage = async () => {
     const html = await fetch(actualRoute.pathHtml).then((res) => res.text());
     document.getElementById("main-page").innerHTML = html;
   } catch (err) {
-    console.error("Erreur lors du chargement de la page :", err);
     document.getElementById("main-page").innerHTML =
       "<h2>Erreur de chargement de la page</h2>";
     return;
@@ -57,7 +56,6 @@ const LoadContentPage = async () => {
     scriptTag.type = "module"; // ✅ Autorise les imports
     scriptTag.src = actualRoute.pathJS;
     scriptTag.onload = () => {
-      console.log(`✅ Script ${actualRoute.pathJS} chargé`);
       showAndHideElementsForRoles(); // ✅ Réapplique la logique d’affichage des rôles
       // Si le script expose une initialisation spécifique (ex: adminDatesInit), l'appeler
       try {
@@ -66,7 +64,7 @@ const LoadContentPage = async () => {
           window.adminDatesInit(pageKey);
         }
       } catch (e) {
-        console.error('Erreur lors de l\'initialisation du script de route :', e);
+        // Erreur silencieuse si pas d'initialisation
       }
     };
     document.body.appendChild(scriptTag);
@@ -93,7 +91,6 @@ window.route = routeEvent;
 
 // --- 🚀 Chargement initial ---
 window.addEventListener("DOMContentLoaded", () => {
-  console.log("🌍 Router initialisé");
   showAndHideElementsForRoles();
   LoadContentPage();
 });

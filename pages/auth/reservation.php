@@ -288,7 +288,6 @@ document.addEventListener('DOMContentLoaded', function() {
       alert(data.message);
       if(data.success) calendar.refetchEvents();
     }catch(err){
-      console.error(err);
       alert('Erreur réseau.');
     }
   });
