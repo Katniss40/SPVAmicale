@@ -116,6 +116,17 @@ $message = "";
 </nav>
 </header>
 
+<section class="admin-page">
+    <article class="bg-white">
+        <div class="container p-4">
+            <div class="page-title-container text-center">
+                <h1 class="page-title"><i class="bi bi-tools me-3"></i>Réservation de la Fendeuse</h1>
+                <div class="page-title-underline"></div>
+            </div>
+        </div>
+    </article>
+</section>
+
 <main class="resa-container">
   <h2 class="mb-4">📅 Choisissez vos dates</h2>
   <?= $message ?>
