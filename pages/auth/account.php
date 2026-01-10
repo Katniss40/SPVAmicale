@@ -4,6 +4,10 @@
     </div>
 </div>
 
+<!-- Styles globaux pour les titres harmonisés -->
+<link rel="stylesheet" href="/scss/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.0/font/bootstrap-icons.min.css">
+
 
 <section>
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
