@@ -8,17 +8,6 @@
 
 
 <section>
-    <article class="bg-white text-black">
-        <div class="container p-4">
-            <div class="page-title-container text-center">
-                <h1 class="page-title"><i class="bi bi-box2 me-3"></i>Gestion Vide Grenier</h1>
-                <div class="page-title-underline"></div>
-            </div>
-        </div>
-    </article>
-</section>
-
-<section>
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
@@ -58,6 +47,17 @@
         </div>
     </nav>
 
+</section>
+
+<section class="admin-page">
+    <article class="bg-white text-black">
+        <div class="container p-4">
+            <div class="page-title-container text-center">
+                <h1 class="page-title"><i class="bi bi-box2 me-3"></i>Gestion Vide Grenier</h1>
+                <div class="page-title-underline"></div>
+            </div>
+        </div>
+    </article>
 </section>
 
 <br><br>
