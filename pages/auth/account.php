@@ -65,209 +65,173 @@
 </section>
 <br>
 
-<!-- Liste des Mots de passe enregistrés-->
-<section class="container">    
-    <div class="row bg-arc-mint-green-light-staff py-3">
-        <div class="card-list-employe mt-3">
-            <h2 class="text-center text-primary admin">Vos Coordonnées</h2>
+<!-- Espace admin : cartes harmonisées -->
+<section class="container py-4">
 
-<br>
-<form method="post">
-    <label for="CAgent">Entrez votre Code Agent :</label>
-    <input type="text" name="CAgent" id="CAgent" required>
-    <button type="submit">Afficher les données</button>
-</form>
+    <!-- Coordonnées -->
+    <div class="card shadow-lg border-0 rounded-4 mb-4">
+        <div class="card-header bg-white border-0 pt-4">
+            <h2 class="page-title text-center mb-0"><i class="bi bi-person-vcard me-3"></i>Vos Coordonnées</h2>
+            <div class="page-title-underline"></div>
+        </div>
+        <div class="card-body">
+            <form method="post" class="row g-3 align-items-end mb-3">
+                <div class="col-md-6 col-lg-4">
+                    <label for="CAgent" class="form-label fw-semibold">Code Agent</label>
+                    <input type="text" name="CAgent" id="CAgent" class="form-control" placeholder="Ex : 12345" required>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <button type="submit" class="btn btn-success w-100"><i class="bi bi-search me-2"></i>Afficher</button>
+                </div>
+            </form>
 
-            <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Code Agent</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                              <!--  <th>Code Agent</th> -->                                                   
-                            </tr>
-                        </thead>
-
-                        
-                       
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Code Agent</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
-
 include("connexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $CAgent = trim($_POST["CAgent"]);
 
-    $stmt = $conn->prepare("SELECT NomInput, PrenomInput FROM Users WHERE CAgent = ?");
+    $stmt = $conn->prepare("SELECT CAgent, NomInput, PrenomInput FROM Users WHERE CAgent = ?");
     $stmt->bind_param("s", $CAgent);
     $stmt->execute();
     $result = $stmt->get_result();
 
-
-
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<p>CAgent reçu : $CAgent</p>";
             echo "<tr>";
             echo "<td>" . htmlspecialchars($row['CAgent']) . "</td>";
             echo "<td>" . htmlspecialchars($row['NomInput']) . "</td>";
             echo "<td>" . htmlspecialchars($row['PrenomInput']) . "</td>";
-            //echo "<td>" . htmlspecialchars($row['CAgent']) . "</td>";
             echo "</tr>";
         }
     } else {
-        echo "<tr><td colspan='4'>Aucun résultat trouvé pour ce code agent.</td></tr>";
+        echo "<tr><td colspan='3' class='text-center text-muted'>Aucun résultat trouvé pour ce code agent.</td></tr>";
     }
 
     $stmt->close();
 }
-$conn->close();
 ?>
-
-                    </table>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</section>
 
-
-
-<!-- Modification Adresse/Telephone  Ca fonctionne-->
-    <div class="container"> <!-- Ca fonctionne-->
-        <br>
-        <h2 class="text-center text-primary admin"> Modification uniquement adresse et/ou numéro de téléphone</h2> <!-- Ca fonctionne-->
-        <br>
-        <form action="/pages/auth/modif_account.php" method="POST">
-            <!--<div class="mb-3">
-                <label for="ID">ID</label>
-                <input type="text" class="form-control" id="ID" name="ID" placeholder="" required> 
-            </div>-->
-            <div class="mb-3">
-                <label for="CAgent">Code Agent</label>
-                <input type="text" class="form-control" id="CAgent" name="CAgent" placeholder="" required> 
-            </div>
-            <div class="mb-3">
-              <label for="Adresse" class="form-label">Adresse</label>
-              <input type="text" class="form-control" id="Adresse" placeholder="Adresse"  value="" name="Adresse">  
-            </div>
-            <div class="mb-3">
-                <label for="Telephone" class="form-label">Téléphone</label>
-                <input type="number" class="form-control" id="Telephone" placeholder="01.02.03.04.05"  value="" name="Telephone"> 
-              </div>
-              <!--<a> * non modifiable.</a>-->
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Valider vos informations</button>
-            </div>
-        </form>
-        <!--<div class="text-center pt-3">
-            <a href="/editPassword">Cliquez ici pour modifier votre mot de passe</a>
-         </div>
-         <div class="text-center pt-3">
-            <a href="/infosPerso">Cliquez ici pour retrouver vos informations personnelles</a>
-         </div>-->
+    <!-- Modification adresse / téléphone -->
+    <div class="card shadow-lg border-0 rounded-4 mb-4">
+        <div class="card-header bg-white border-0 pt-4">
+            <h2 class="page-title text-center mb-0"><i class="bi bi-geo-alt me-3"></i>Modifier adresse / téléphone</h2>
+            <div class="page-title-underline"></div>
+        </div>
+        <div class="card-body">
+            <form action="/pages/auth/modif_account.php" method="POST" class="row g-3">
+                <div class="col-md-4">
+                    <label for="CAgent" class="form-label fw-semibold">Code Agent</label>
+                    <input type="text" class="form-control" id="CAgent" name="CAgent" placeholder="Ex : 12345" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="Adresse" class="form-label fw-semibold">Adresse</label>
+                    <input type="text" class="form-control" id="Adresse" name="Adresse" placeholder="Adresse">
+                </div>
+                <div class="col-md-4">
+                    <label for="Telephone" class="form-label fw-semibold">Téléphone</label>
+                    <input type="text" class="form-control" id="Telephone" name="Telephone" placeholder="01.02.03.04.05">
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-check2-circle me-2"></i>Valider</button>
+                </div>
+            </form>
+        </div>
     </div>
-</section>
 
-
-<!-- Ajout d'un nouveau Mot de Passe Ca Fonctionne-->
-<section class="container">  <!-- Ca fonctionne -->               
-            <div class="container mt-5 bg-arc-mint-green-light">
-                <div class="card-header bg-arc-mint-green text-light">
-                    <h2 class="text-center text-primary admin">Ajouter / modifier Vos Mots de passe</h2>  
-                </div>                    
-                    <form action="/pages/auth/gestion_AOutlook.php" method="POST">
-                        <div class="row">
-                           <!-- <div class="form-group">
-                                    <label for="ID">ID</label>
-                                    <input type="text" class="form-control" id="ID" name="ID" placeholder="" required>
-                                </div>-->
-                            <div class="col-md-4"> 
-                                <div class="form-group">
-                                    <label for="CAgent">Code Agent</label>
-                                    <input type="text" class="form-control" id="CAgent" name="CAgent" placeholder="" value="" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Outlook" class="form-label">Outlook</label>
-                                    <input type="text" class="form-control" id="Outlook" name="Outlook" value="" >                              
-                                </div>                                                                                                                                                   
+    <!-- Mots de passe (Outlook / Firewall / Apis) -->
+    <div class="card shadow-lg border-0 rounded-4 mb-4">
+        <div class="card-header bg-white border-0 pt-4">
+            <h2 class="page-title text-center mb-0"><i class="bi bi-shield-lock me-3"></i>Ajouter / modifier vos mots de passe</h2>
+            <div class="page-title-underline"></div>
+        </div>
+        <div class="card-body">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="p-3 border rounded-3">
+                        <h5 class="fw-semibold mb-3"><i class="bi bi-envelope-at me-2"></i>Outlook</h5>
+                        <form action="/pages/auth/gestion_AOutlook.php" method="POST" class="vstack gap-3">
+                            <div>
+                                <label for="CAgentOutlook" class="form-label">Code Agent</label>
+                                <input type="text" class="form-control" id="CAgentOutlook" name="CAgent" required>
                             </div>
-                        </div> 
-                        <br>
-                    
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
-                    <br><br>                               
-                    </form>
-
-                    
-
-                    <form action="/pages/auth/gestion_AFirewall.php" method="POST">
-                        <div class="row">
-                            <!--<div class="form-group">
-                                    <label for="ID">ID</label>
-                                    <input type="text" class="form-control" id="ID" name="ID" placeholder="" required>
-                                </div>-->
-                            <div class="col-md-4"> 
-                                <div class="form-group">
-                                    <label for="CAgent">Code Agent</label>
-                                    <input type="text" class="form-control" id="CAgent" name="CAgent" value="" >
-                                </div>                               
-                                <div class="form-group">
-                                    <label for="Firewall" class="form-label">Firewall</label>
-                                    <input type="text" class="form-control" id="Firewall" name="Firewall" value="" >
-                                </div>                                                                                                                                                  
+                            <div>
+                                <label for="Outlook" class="form-label">Mot de passe Outlook</label>
+                                <input type="text" class="form-control" id="Outlook" name="Outlook">
                             </div>
-                        </div>  
-                        <br>
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
-                    <br><br>                                
-                    </form>
-
-                    
-
-                    <form action="/pages/auth/gestion_AApis.php" method="POST">
-                        <div class="row">
-                           <!-- <div class="form-group">
-                                    <label for="ID">ID</label>
-                                    <input type="text" class="form-control" id="ID" name="ID" placeholder="" required>
-                                </div>-->
-                            <div class="col-md-4"> 
-                                <div class="form-group">
-                                    <label for="CAgent">Code Agent</label>
-                                    <input type="text" class="form-control" id="CAgent" name="CAgent" value="" >
-                                </div>
-                                 <div class="form-group">
-                                    <label for="Apis" class="form-label">Apis</label>
-                                    <input type="text" class="form-control" id="Apis" name="Apis" value="" >
-                                </div>                                                                                                                                                     
+                            <button type="submit" class="btn btn-secondary">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 border rounded-3">
+                        <h5 class="fw-semibold mb-3"><i class="bi bi-shield-check me-2"></i>Firewall</h5>
+                        <form action="/pages/auth/gestion_AFirewall.php" method="POST" class="vstack gap-3">
+                            <div>
+                                <label for="CAgentFirewall" class="form-label">Code Agent</label>
+                                <input type="text" class="form-control" id="CAgentFirewall" name="CAgent">
                             </div>
-                        </div> 
-                        <br>
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
-                        <br><br>                               
-                    </form>                  
-                                
-                        
+                            <div>
+                                <label for="Firewall" class="form-label">Mot de passe Firewall</label>
+                                <input type="text" class="form-control" id="Firewall" name="Firewall">
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 border rounded-3">
+                        <h5 class="fw-semibold mb-3"><i class="bi bi-diagram-3 me-2"></i>Apis</h5>
+                        <form action="/pages/auth/gestion_AApis.php" method="POST" class="vstack gap-3">
+                            <div>
+                                <label for="CAgentApis" class="form-label">Code Agent</label>
+                                <input type="text" class="form-control" id="CAgentApis" name="CAgent">
+                            </div>
+                            <div>
+                                <label for="Apis" class="form-label">Mot de passe Apis</label>
+                                <input type="text" class="form-control" id="Apis" name="Apis">
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            
-                                  
-                          
-            
-            
-</section>
+        </div>
+    </div>
 
-
-
-<section>
-    <div class="container">
-    <h2 class="text-center text-primary admin">Informations Personnelles</h2>
-    <table>
-        <tr>
-            <th>Adresse</th>
-            <th>Téléphone</th>
-            <th>Adresse mail</th>
-        </tr>
+    <!-- Informations personnelles -->
+    <div class="card shadow-lg border-0 rounded-4 mb-4">
+        <div class="card-header bg-white border-0 pt-4">
+            <h2 class="page-title text-center mb-0"><i class="bi bi-house-heart me-3"></i>Informations Personnelles</h2>
+            <div class="page-title-underline"></div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Adresse</th>
+                            <th>Téléphone</th>
+                            <th>Adresse mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
         <?php
-        // Exemple de données personnelles
         include("connexion.php");
 
                 $sql = "SELECT * FROM Users";
@@ -286,16 +250,30 @@ $conn->close();
         }
     }
         ?>
-    </table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    <table>
-        <tr>
-            <th>Mot de passe Site web</th>
-            <th>Mot de passe APIS</th>
-            <th>Mot de passe FIREWALL</th>
-            <th>Mot de passe OUTLOOK</th>
-        </tr>
-
+    <!-- Mots de passe -->
+    <div class="card shadow-lg border-0 rounded-4 mb-4">
+        <div class="card-header bg-white border-0 pt-4">
+            <h2 class="page-title text-center mb-0"><i class="bi bi-key me-3"></i>Vos mots de passe</h2>
+            <div class="page-title-underline"></div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Site web</th>
+                            <th>APIS</th>
+                            <th>FIREWALL</th>
+                            <th>OUTLOOK</th>
+                        </tr>
+                    </thead>
+                    <tbody>
         <?php
 
         include("connexion.php");
@@ -318,12 +296,13 @@ $conn->close();
                 }
                 $conn->close();
         ?>
-</section>
-    <br>
-    <br>
-    
-        <h2 class="text-center text-primary admin">Vos mots de passes</h2>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+</section>
 
 
 
