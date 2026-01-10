@@ -10,6 +10,9 @@ $isAdmin = (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin');
     </div>
 </div>
 
+<!-- Anchor for admin panel insertion -->
+<div id="admin-panel-anchor"></div>
+
 <section>     
   <article class="bg-white text-black">
     <div class="container p-4">
