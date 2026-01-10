@@ -117,7 +117,7 @@ $message = "";
 </header>
 
 <section class="admin-page">
-    <article class="bg-white">
+    <article class="bg-white text-black">
         <div class="container p-4">
             <div class="page-title-container text-center">
                 <h1 class="page-title"><i class="bi bi-tools me-3"></i>Réservation de la Fendeuse</h1>
