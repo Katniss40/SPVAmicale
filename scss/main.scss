@@ -319,8 +319,7 @@ img {
 // hero-scene (routed pages) aligné sur global
 .hero-scene {
   position: relative;
-  background: url('/Images/Camions.png') 40% 25%/cover no-repeat; // décale légèrement à gauche pour mieux voir la personne de gauche
-  //background: url('/Images/groupe.jpg') 40% 25%/cover no-repeat; // décale légèrement à gauche pour mieux voir la personne de gauche
+  background: url('/Images/Camions.png') 40% 25%/cover no-repeat;
   height: 400px;
   top: 30px; // aligne avec l'offset commun pour voir toute la photo
   margin-bottom: 8px; // réduit l'espace avant la 2e navbar
