@@ -22,7 +22,7 @@ export const allRoutes = [
     new Route("/Isujet", "sujet", "/pages/Forum/insert_sujet.php", ["actif", "admin"]),
     new Route("/Blog", "Forum de discussion", "/pages/Forum/index.php", ["actif", "admin"]),    
 
-    new Route("/GalerieSPV", "Photos", "/pages/galerie/galerieSPV.php", ["actif", "admin"]),
+    new Route("/GalerieSPV", "Photos", "/pages/galerie/galerieSPV.php", ["actif", "admin"], "/JS/galerieSPV-upload.js"),
     new Route("/VideGrenier", "Vide Grenier 2025", "/pages/admin/VideGrenier.php", ["actif", "admin"]),  
     new Route("/calendrier", "Calendrier", "/pages/admin/calendrier.php", ["actif", "admin"], "/JS/admin-dates.js"),
     new Route("/agents", "Listes des Agents", "/pages/admin/LAgents.php", ["actif", "admin"]),
