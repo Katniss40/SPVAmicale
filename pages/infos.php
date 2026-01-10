@@ -82,7 +82,10 @@
 
         <article class="bg-white text-black">
                 <div class="container p-4">
-                        <h2 class="text-center text-primary"> 🚨 Journée Portes Ouvertes à la Caserne des Pompiers de Léon ! 🚒</h2>
+                        <div class="page-title-container text-center">
+                                <h2 class="page-title"><i class="bi bi-door-open me-3"></i>Journée Portes Ouvertes à la Caserne</h2>
+                                <div class="page-title-underline"></div>
+                        </div>
                                 <div class="row row-cols-1 row-cols-lg-2 align-items-center">
                                        
                                         <div class="col">
