@@ -69,7 +69,7 @@
                             <form method="post" action="/pages/galerie/ajouter_photo.php" enctype="multipart/form-data" id="formAjouterPhoto">
                                 
                                 <!-- Input file - HIDDEN -->
-                                <input type="file" id="fileInput" name="photo" accept="image/*" required style="display: none; pointer-events: none;">
+                                <input type="file" id="fileInput" name="photo" accept="image/*" style="display: none; pointer-events: none;">
                                 
                                 <!-- Zone clickable LABEL -->
                                 <label for="fileInput" id="dropZone" style="display: flex; border: 3px dashed #2E7D32; padding: 40px 20px; text-align: center; background: #f0f7f0; border-radius: 12px; margin-bottom: 20px; min-height: 250px; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; user-select: none;">

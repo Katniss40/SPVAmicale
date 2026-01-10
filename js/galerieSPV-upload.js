@@ -1,7 +1,4 @@
-console.log('===== galerieSPV-upload.js loaded =====');
-
 function initGalleryUpload() {
-    console.log('initGalleryUpload called');
     
     const fileInput = document.getElementById('fileInput');
     const dropZone = document.getElementById('dropZone');
@@ -17,7 +14,6 @@ function initGalleryUpload() {
     const progressText = document.getElementById('progressText');
 
     if (!fileInput || !form) {
-        console.error('Elements not found!');
         return;
     }
 
@@ -25,7 +21,6 @@ function initGalleryUpload() {
     const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
     function handleFileSelect(file) {
-        console.log('handleFileSelect:', file.name);
         
         if (!ALLOWED_TYPES.includes(file.type)) {
             alert('❌ Format non accepté. PNG, JPG ou WEBP seulement.');
@@ -36,9 +31,17 @@ function initGalleryUpload() {
             return;
         }
 
+        // Assigner le fichier à l'input file avec DataTransfer
+        try {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            fileInput.files = dt.files;
+        } catch(e) {
+            // Erreur silencieuse
+        }
+
         const reader = new FileReader();
         reader.onload = function(e) {
-            console.log('Preview ready');
             previewImage.src = e.target.result;
             fileName.textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' Mo)';
             previewContainer.style.display = 'block';
@@ -49,24 +52,42 @@ function initGalleryUpload() {
 
     // FILE INPUT CHANGE
     fileInput.addEventListener('change', function(e) {
-        console.log('File input changed');
         if (this.files && this.files[0]) {
             handleFileSelect(this.files[0]);
         }
     });
 
     // DRAG & DROP
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener(eventName, function(e) {
+    // Empêcher le comportement par défaut du navigateur
+    ['dragenter', 'dragover', 'drop'].forEach(eventName => {
+        document.addEventListener(eventName, function(e) {
             e.preventDefault();
             e.stopPropagation();
         });
     });
 
-    dropZone.addEventListener('drop', function(e) {
-        console.log('Drop event');
+    // Ajouter visuellement au survol
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.style.borderColor = '#45a049';
+            dropZone.style.background = '#e8f5e9';
+        });
+    });
+
+    dropZone.addEventListener('dragleave', function(e) {
         e.preventDefault();
         e.stopPropagation();
+        dropZone.style.borderColor = '#2E7D32';
+        dropZone.style.background = '#f0f7f0';
+    });
+
+    dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZone.style.borderColor = '#2E7D32';
+        dropZone.style.background = '#f0f7f0';
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             handleFileSelect(e.dataTransfer.files[0]);
         }
@@ -91,7 +112,6 @@ function initGalleryUpload() {
     // FORM SUBMIT
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        console.log('Form submit');
 
         if (!fileInput.files || !fileInput.files[0]) {
             alert('⚠️ Sélectionnez une image.');
