@@ -53,7 +53,10 @@
 
         <article class="bg-black text-white">
                 <div class="container p-4">
-                        <h2 class="text-center text-secondary">Rentrée de septembre</h2>
+                        <div class="page-title-container text-center">
+                                <h2 class="page-title text-secondary"><i class="bi bi-calendar-event me-3"></i>Rentrée de septembre</h2>
+                                <div class="page-title-underline"></div>
+                        </div>
                                 <div class="row row-cols-1 row-cols-lg-2 align-items-center">
                                         <div class="col">
                                                 <img class="w-75 rounded" src="/Images/salon_assos.jpg"/>   
@@ -114,7 +117,10 @@
         
         <article class="bg-black text-white">
                 <div class="container p-4">
-                        <h2 class="text-center text-secondary">Le Marché de Noël</h2>
+                        <div class="page-title-container text-center">
+                                <h2 class="page-title text-secondary"><i class="bi bi-snow me-3"></i>Le Marché de Noël</h2>
+                                <div class="page-title-underline"></div>
+                        </div>
                                 <div class="row row-cols-1 row-cols-lg-2 align-items-center">
                                         <div class="col text-center">
                                                 <img class="rounded" style="max-width: 250px; height: auto; margin: 0 auto; display: block;" src="/Images/marche noel 2025 st michel.png"/>   
