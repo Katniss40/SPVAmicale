@@ -64,10 +64,8 @@
 <br>
 <br>
 
-
 <section>
     <div class="container">
-        <h1 class="text-center text-primary admin">Bienvenue sur sur tableau de bord du forum de discussion</h1>
             <!-- on place un lien permettant d'accéder à la page contenant le formulaire d'insertion d'un nouveau sujet -->  
              <br>
             
