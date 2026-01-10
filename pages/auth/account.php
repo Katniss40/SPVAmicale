@@ -49,7 +49,17 @@
     </nav>
 
 </section>
-<br><br>
+<section class="admin-page">
+    <article class="bg-white text-black">
+        <div class="container p-4">
+            <div class="page-title-container text-center">
+                <h1 class="page-title"><i class="bi bi-person-badge me-3"></i>Mon Compte</h1>
+                <div class="page-title-underline"></div>
+            </div>
+        </div>
+    </article>
+</section>
+<br>
 
 <!-- Liste des Mots de passe enregistrés-->
 <section class="container">    
