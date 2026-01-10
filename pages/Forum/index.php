@@ -51,7 +51,7 @@
 </section>
 
 <section class="admin-page">
-    <article class="bg-white text-black">
+    <article>
         <div class="container p-4">
             <div class="page-title-container text-center">
                 <h1 class="page-title"><i class="bi bi-chat-dots me-3"></i>Discussions et Débats</h1>
