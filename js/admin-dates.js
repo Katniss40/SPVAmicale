@@ -108,17 +108,31 @@
     if (existingPanel) existingPanel.remove();
     const dates = await loadDates(pageKey);
 
-    // build panel
+    // build panel with professional styling
     const panel = document.createElement('div');
     panel.id = 'admin-dates-panel';
-    panel.style.border = '1px solid #ccc';
-    panel.style.padding = '12px';
-    panel.style.margin = '12px';
-    panel.style.background = '#f8f9fa';
-    panel.style.maxWidth = '720px';
-    panel.innerHTML = '<h4>Admin — modifier les dates</h4>';
+    panel.style.border = 'none';
+    panel.style.padding = '0';
+    panel.style.margin = '20px auto';
+    panel.style.marginTop = '40px';
+    panel.style.background = '#ffffff';
+    panel.style.maxWidth = '800px';
+    panel.style.borderRadius = '12px';
+    panel.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+    panel.style.overflow = 'hidden';
+
+    // Create header with green background
+    const header = document.createElement('div');
+    header.style.background = 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)';
+    header.style.padding = '20px 24px';
+    header.style.color = '#ffffff';
+    header.innerHTML = '<h4 style="margin: 0; font-size: 1.5rem; font-weight: 600;"><i class="bi bi-gear-fill me-2"></i>Admin — Modifier les dates</h4>';
+    panel.appendChild(header);
 
     const list = document.createElement('div');
+    list.style.padding = '24px';
+    list.style.background = '#ffffff';
+
     // helper : generate friendly label
     const friendlyLabel = (k) => {
       if (k.startsWith('equipe_')) return k.replace('equipe_', 'Équipe ').replace(/_/g, ' ');
@@ -132,13 +146,19 @@
       const row = document.createElement('div');
       row.style.display = 'flex';
       row.style.flexDirection = 'row';
-      row.style.gap = '8px';
+      row.style.gap = '12px';
       row.style.alignItems = 'center';
-      row.style.marginBottom = '8px';
+      row.style.marginBottom = '16px';
+      row.style.padding = '12px';
+      row.style.background = '#f8f9fa';
+      row.style.borderRadius = '8px';
+      row.style.border = '1px solid #e9ecef';
 
       const label = document.createElement('label');
       label.textContent = friendlyLabel(key);
-      label.style.minWidth = '180px';
+      label.style.minWidth = '200px';
+      label.style.fontWeight = '600';
+      label.style.color = '#2E7D32';
       label.htmlFor = 'admin_input_' + key;
 
       // Use textarea for multiline/team lists or when value contains <br>
@@ -157,15 +177,30 @@
       }
       input.id = 'admin_input_' + key;
       input.style.flex = '1';
+      input.style.padding = '8px 12px';
+      input.style.border = '1px solid #ced4da';
+      input.style.borderRadius = '6px';
+      input.style.fontSize = '0.95rem';
 
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.textContent = 'Enregistrer';
-      btn.style.marginLeft = '6px';
+      btn.style.padding = '8px 16px';
+      btn.style.background = '#2E7D32';
+      btn.style.color = '#ffffff';
+      btn.style.border = 'none';
+      btn.style.borderRadius = '6px';
+      btn.style.cursor = 'pointer';
+      btn.style.fontWeight = '600';
+      btn.style.transition = 'all 0.3s ease';
+      btn.onmouseover = () => { btn.style.background = '#1B5E20'; };
+      btn.onmouseout = () => { btn.style.background = '#2E7D32'; };
 
       const status = document.createElement('span');
       status.style.marginLeft = '8px';
+      status.style.minWidth = '100px';
       status.style.color = '#28a745';
+      status.style.fontWeight = '600';
 
       btn.addEventListener('click', () => {
         // prepare value: convert newlines to <br> for multiline fields
