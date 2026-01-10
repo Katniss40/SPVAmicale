@@ -10,15 +10,14 @@ $isAdmin = (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin');
     </div>
 </div>
 
-<br>
-<!-- Anchor for admin panel insertion -->
-<div id="admin-panel-anchor"></div>
-
 <section>     
   <article class="bg-white text-black">
-    <div class="container p-4"><br><br>
-  <h2 class="text-center text-primary"><span id="title_bal_pompiers">Bal des Pompiers 2025</span></h2>
-  <h2 class="text-center text-primary">Annulation du bal des pompiers pour cette année</h2><br><br><br>
+    <div class="container p-4">
+      <div class="page-title-container text-center">
+        <h1 class="page-title"><i class="bi bi-calendar-event me-3"></i>Manifestations et Événements</h1>
+        <div class="page-title-underline"></div>
+      </div>
+      <br>
         <div class="row row-cols-1 row-cols-lg-2 align-items-center">
           <div class="col">
             <p class="text-justify">

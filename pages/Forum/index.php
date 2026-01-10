@@ -3,12 +3,21 @@
 
 <div class="hero-scene text-center text-white">
         <div class="hero-scene-content">
-                <h1 class="hero-scene-text">Notre forum de discussion</h1>
-                
-                
+                <h1 class="hero-scene-text">Forum de Discussion</h1>
         </div>
 </div>
 
+
+<section>
+    <article class="bg-white text-black">
+        <div class="container p-4">
+            <div class="page-title-container text-center">
+                <h1 class="page-title"><i class="bi bi-chat-dots me-3"></i>Discussions et Débats</h1>
+                <div class="page-title-underline"></div>
+            </div>
+        </div>
+    </article>
+</section>
 
 <section>
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">

@@ -1,10 +1,21 @@
 <div class="hero-scene text-center text-white">
         <div class="hero-scene-content">
-                <h1 class="hero-scene-text">Gestion des membres</h1>
+                <h1 class="hero-scene-text">Gestion des Membres</h1>
                 <div><a href="/admin" class="btn btn-primary" data-show="admin">Retour au Tableau de bord</a></div>
         </div>
 </div>
 
+
+<section>
+    <article class="bg-white text-black">
+        <div class="container p-4">
+            <div class="page-title-container text-center">
+                <h1 class="page-title"><i class="bi bi-people me-3"></i>Liste des Pompiers</h1>
+                <div class="page-title-underline"></div>
+            </div>
+        </div>
+    </article>
+</section>
 
 <section>
     <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">

@@ -5,11 +5,13 @@
 </div>
 
 <article>
-        <div class="container" style="padding: 20px;">
-                    <!-- Liste des photos -->
-            <h2 class="text-center" style="color: #2E7D32; margin-bottom: 25px; font-size: 2rem; font-weight: bold;">La galerie Photos</h2> 
+        <div class="container p-4">
+            <div class="page-title-container text-center">
+                <h1 class="page-title"><i class="bi bi-images me-3"></i>La Galerie Photos</h1>
+                <div class="page-title-underline"></div>
+            </div>
 
-                <div class="galerie-public">
+            <div class="galerie-public">
                     <?php
 
                     //include("connexion.php");

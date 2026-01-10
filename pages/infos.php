@@ -12,6 +12,10 @@
   
         <article class="bg-white text-black">
                 <div class="container p-4">
+                    <div class="page-title-container text-center">
+                        <h1 class="page-title"><i class="bi bi-info-circle me-3"></i>Informations Utiles</h1>
+                        <div class="page-title-underline"></div>
+                    </div>
                         <h2 class="text-center text-primary"><span id="date_calendrier_period">Novembre à Janvier</span> : Passage de vos pompiers pour vous présenter le calendrier annuel</h2>
                                 <div class="row row-cols-1 row-cols-lg-2 align-items-center">
                                         
