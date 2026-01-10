@@ -1,12 +1,5 @@
 /* Styles pour la page Blog/Forum - aligné avec admin */
 
-/* Conteneur principal */
-.container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-}
-
 /* Tableau des sujets */
 .blog_table {
   width: 100%;
