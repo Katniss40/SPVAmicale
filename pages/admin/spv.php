@@ -1,13 +1,25 @@
-<div class="hero-scene text-center text-white">
-        <div class="hero-scene-content">
-                <h1 class="hero-scene-text">Gestion des Membres</h1>
-                <div><a href="/admin" class="btn btn-primary" data-show="admin">Retour au Tableau de bord</a></div>
-        </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Membres</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/admin-custom.css">
+    <link rel="stylesheet" href="/assets/css/spv-custom.css">
+</head>
+<body>
+
+<div class="hero-scene admin-hero text-center text-white">
+    <div class="hero-scene-content">
+        <h1 class="hero-scene-text">Gestion des Membres</h1>
+        <div><a href="/admin" class="btn btn-primary">Retour Accueil</a></div>
+    </div>
 </div>
 
 
 <section>
-    <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-primary admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
 
@@ -60,70 +72,53 @@
 </section>
 
 <br>
-<section>
-<div class="container liens-utiles spv">
-    <div>
-        <br>
-        <div class="row bg-arc-mint-green-light-staff py-3">
-            <div class="card-list-employe mt-3">
-                <div class="card-header">
-                    <h2 class="text-center text-primary admin">Liste des Membres enregistrés</h2>
-                </div>
-
-                <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Rôle</th>
-                                    <th>Code Agent</th>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Adresse</th>
-                                    <th>Mot de Passe</th>
-                                    <th>Em@il</th>
-                                    <th>Téléphone</th>                                                           
-                                </tr>
-                            </thead>
-
-                            <?php
-                    include("connexion.php");
-                    
-                    //$conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@", "pompiers-leon_admin");
-
-                    //if ($conn->connect_error) {
-                        //die("Échec de la connexion : " . $conn->connect_error);
-                    //}
-
-                    $sql = "SELECT * FROM Users";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                      while($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($row['ID']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['Role']) . "</td>";
-                            echo "<td>" . $row['CAgent'] . "</td>";
-                            echo "<td>" . htmlspecialchars($row['NomInput']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['PrenomInput']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['Adresse']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['PasswordInput']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['EmailInput']) . "</td>"; 
-                            echo "<td>" . htmlspecialchars($row['Telephone']) . "</td>";                                                                                                                          
-                            //echo "<td><a href='/pages/admin/modif_spv.php'" . $row['id'] . "' class='btn btn-primary btn-sm'>Modif</a> ";
-                            //echo "<a href='/pages/admin/supp_spv.php'" . $row['id'] . "' class='btn btn-danger btn-sm'>Supp</a></td>";
-                            echo "</tr>";
+<section class="container admin-card">
+    <div class="card-list-employe mt-3 table-membres">
+        <h2 class="titre-section">Liste des Membres enregistrés</h2>
+        <div class="card-body table-responsive table-spv">
+            <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Rôle</th>
+                                <th>Code Agent</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Adresse</th>
+                                <th>Mot de Passe</th>
+                                <th>Em@il</th>
+                                <th>Téléphone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        include("connexion.php");
+                        $sql = "SELECT * FROM Users";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td data-label='ID'>" . htmlspecialchars($row['ID']) . "</td>";
+                                echo "<td data-label='Rôle'>" . htmlspecialchars($row['Role']) . "</td>";
+                                echo "<td data-label='Code Agent'>" . htmlspecialchars($row['CAgent']) . "</td>";
+                                echo "<td data-label='Nom'>" . htmlspecialchars($row['NomInput']) . "</td>";
+                                echo "<td data-label='Prénom'>" . htmlspecialchars($row['PrenomInput']) . "</td>";
+                                echo "<td data-label='Adresse'>" . htmlspecialchars($row['Adresse']) . "</td>";
+                                echo "<td data-label='Mot de Passe'>" . htmlspecialchars($row['PasswordInput']) . "</td>";
+                                echo "<td data-label='Email'>" . htmlspecialchars($row['EmailInput']) . "</td>";
+                                echo "<td data-label='Téléphone'>" . htmlspecialchars($row['Telephone']) . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='12'>Aucun employé trouvé.</td></tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='12'>Aucun employés trouvé.</td></tr>";
-                    }
-                    $conn->close();
-                    ?>
-
-                        </table>
+                        $conn->close();
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </div>    
-</section>
+    </section>
+</body>
+</html>
 

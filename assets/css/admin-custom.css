@@ -230,9 +230,7 @@ header .navbar .navbar-brand {
   }
 
   /* ========== MASQUER COLONNES NON-ESSENTIELLES SUR MOBILE ========== */
-  /* Tableau des Membres: garder ID (col 1), Nom (col 4), Prénom (col 5) */
-  /* Masquer: Rôle (col 2), Code Agent (col 3), Adresse (col 6), Email (col 7), Téléphone (col 8) */
-  
+  /* Tableau des Membres (admin) : garder ID, Nom, Prénom */
   .table-membres .table-responsive table thead th:nth-child(2),
   .table-membres .table-responsive table tbody td:nth-child(2),
   .table-membres .table-responsive table thead th:nth-child(3),
@@ -243,6 +241,22 @@ header .navbar .navbar-brand {
   .table-membres .table-responsive table tbody td:nth-child(7),
   .table-membres .table-responsive table thead th:nth-child(8),
   .table-membres .table-responsive table tbody td:nth-child(8) {
+    display: none !important;
+  }
+
+  /* Tableau des Membres (spv) : garder Nom (col 4), Prénom (col 5), Téléphone (col 9) */
+  .table-spv .table-responsive table thead th:nth-child(1), /* ID */
+  .table-spv .table-responsive table tbody td:nth-child(1),
+  .table-spv .table-responsive table thead th:nth-child(2), /* Rôle */
+  .table-spv .table-responsive table tbody td:nth-child(2),
+  .table-spv .table-responsive table thead th:nth-child(3), /* Code Agent */
+  .table-spv .table-responsive table tbody td:nth-child(3),
+  .table-spv .table-responsive table thead th:nth-child(6), /* Adresse */
+  .table-spv .table-responsive table tbody td:nth-child(6),
+  .table-spv .table-responsive table thead th:nth-child(7), /* Mot de Passe */
+  .table-spv .table-responsive table tbody td:nth-child(7),
+  .table-spv .table-responsive table thead th:nth-child(8), /* Email */
+  .table-spv .table-responsive table tbody td:nth-child(8) {
     display: none !important;
   }
 

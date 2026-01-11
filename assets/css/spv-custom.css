@@ -1,0 +1,17 @@
+/* Responsive tableau SPV : n'affiche que Nom, Prénom, Téléphone sur mobile */
+@media (max-width: 768px) {
+  .table-spv thead th:nth-child(1), /* ID */
+  .table-spv tbody td:nth-child(1),
+  .table-spv thead th:nth-child(2), /* Rôle */
+  .table-spv tbody td:nth-child(2),
+  .table-spv thead th:nth-child(3), /* Code Agent */
+  .table-spv tbody td:nth-child(3),
+  .table-spv thead th:nth-child(6), /* Adresse */
+  .table-spv tbody td:nth-child(6),
+  .table-spv thead th:nth-child(7), /* Mot de Passe */
+  .table-spv tbody td:nth-child(7),
+  .table-spv thead th:nth-child(8), /* Email */
+  .table-spv tbody td:nth-child(8) {
+    display: none !important;
+  }
+}
