@@ -255,15 +255,3 @@ header .navbar .navbar-brand {
     display: none !important;
   }
 }
-
-.badge-admin {
-  display: inline-block;
-  background: #2E7D32;
-  color: #fff;
-  font-weight: 700;
-  border-radius: 12px;
-  padding: 2px 12px;
-  font-size: 0.95em;
-  letter-spacing: 0.5px;
-  box-shadow: 0 1px 4px rgba(46,125,50,0.10);
-}

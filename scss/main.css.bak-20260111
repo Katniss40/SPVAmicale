@@ -12860,42 +12860,4 @@ h2.text-center, .text-center.h2 {
     padding: 8px 15px;
     bottom: 5px;
   }
-}
-
-/* ========== MOBILE TABLE OPTIMIZATIONS ========== */
-@media (max-width: 768px) {
-  /* Réduire padding global sur mobile */
-  .container,
-  .container-fluid {
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-  }
-
-  /* Réduire marges des sections */
-  section {
-    margin: 0 !important;
-    padding: 8px !important;
-  }
-
-  /* Optimiser les tableaux bootstrap */
-  .table {
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .table thead th,
-  .table tbody td {
-    padding: 0.4rem 0.3rem;
-  }
-
-  /* Réduire padding des cartes */
-  .card {
-    margin-bottom: 10px;
-  }
-
-  .card-body {
-    padding: 0.75rem;
-  }
-}
-
 }/*# sourceMappingURL=main.css.map */

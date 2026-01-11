@@ -227,7 +227,7 @@
 <section class="container admin-card">
     <!-- Liste des Membres enregistrés-->
     <div class="row bg-arc-mint-green-light-staff py-3">
-        <div class="card-list-employe mt-3">
+        <div class="card-list-employe mt-3 table-membres">
             <h2 class="titre-section">Liste des Membres enregistrés</h2>
 
             <div class="card-body table-responsive">
@@ -256,7 +256,11 @@
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td data-label='ID'>" . htmlspecialchars($row['ID']) . "</td>";
-                        echo "<td data-label='Rôle'>" . htmlspecialchars($row['Role']) . "</td>";
+                        if ($row['Role'] === 'admin') {
+                            echo "<td data-label='Rôle'><span class='badge-admin'>admin</span></td>";
+                        } else {
+                            echo "<td data-label='Rôle'>" . htmlspecialchars($row['Role']) . "</td>";
+                        }
                         echo "<td data-label='Code Agent'>" . htmlspecialchars($row['CAgent']) . "</td>";
                         echo "<td data-label='Nom'>" . htmlspecialchars($row['NomInput']) . "</td>";
                         echo "<td data-label='Prénom'>" . htmlspecialchars($row['PrenomInput']) . "</td>";
@@ -284,7 +288,7 @@
 <section class="container admin-card">
     <!-- Liste des sujets du forum-->
     <div class="row bg-arc-mint-green-light-staff py-3">
-        <div class="card-list-employe mt-3">
+        <div class="card-list-employe mt-3 table-forum">
             <h2 class="titre-section">Liste des Sujets du Forum</h2>
 
             <div class="card-body table-responsive">
