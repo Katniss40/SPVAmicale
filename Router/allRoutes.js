@@ -15,7 +15,7 @@ export const allRoutes = [
 
     //new Route("/account", "Mon compte", "/pages/auth/account.php", ["actif", "admin"]),
     new Route("/editPassword", "Modification", "/pages/auth/editPassword.php",["actif", "admin"]),
-    new Route("/infosPerso", "Mes infos", "/pages/auth/infosPerso.php",["actif", "admin"], "/js/auth/editAccount.js"),
+    new Route("/infosPerso", "Mes infos", "/pages/auth/infosPerso.php",["actif", "admin"]),
 
     new Route("/reponse", "reponse", "/pages/Forum/insert_reponse.php", ["actif", "admin"]),
     new Route("/Lsujet", "Article", "/pages/Forum/lire_sujet.php", ["actif", "admin"]),   

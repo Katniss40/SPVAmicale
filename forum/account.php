@@ -529,7 +529,7 @@ $conn->close();
       <script type="module" src="/JS/auth/signin-script.js"></script>
       <script type="module" src="/JS/auth/signout.js"></script>
       <script type="module" src="/Router/router.js"></script>
-      <script type="module" src="/js/auth/reservation.js"></script>
+      <script type="module" src="/JS/auth/reservation.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
 <script>
