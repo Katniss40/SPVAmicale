@@ -230,7 +230,7 @@
         <div class="card-list-employe mt-3">
             <h2 class="titre-section">Liste des Membres enregistrés</h2>
 
-            <div class="card-body table-responsive">
+            <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -255,15 +255,15 @@
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td data-label='ID'>" . htmlspecialchars($row['ID']) . "</td>";
-                        echo "<td data-label='Rôle'>" . htmlspecialchars($row['Role']) . "</td>";
-                        echo "<td data-label='Code Agent'>" . htmlspecialchars($row['CAgent']) . "</td>";
-                        echo "<td data-label='Nom'>" . htmlspecialchars($row['NomInput']) . "</td>";
-                        echo "<td data-label='Prénom'>" . htmlspecialchars($row['PrenomInput']) . "</td>";
-                        echo "<td data-label='Adresse'>" . htmlspecialchars($row['Adresse']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['ID']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['Role']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['CAgent']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['NomInput']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['PrenomInput']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['Adresse']) . "</td>";
                         //echo "<td>" . htmlspecialchars($row['PasswordInput']) . "</td>";
-                        echo "<td data-label='Email'>" . htmlspecialchars($row['EmailInput']) . "</td>"; 
-                        echo "<td data-label='Téléphone'>" . htmlspecialchars($row['Telephone']) . "</td>";                                                                                                                          
+                        echo "<td>" . htmlspecialchars($row['EmailInput']) . "</td>"; 
+                        echo "<td>" . htmlspecialchars($row['Telephone']) . "</td>";                                                                                                                          
                         //echo "<td><a href='/pages/admin/modif_spv.php'" . $row['id'] . "' class='btn btn-primary btn-sm'>Modif</a> ";
                         //echo "<a href='/pages/admin/supp_spv.php'" . $row['id'] . "' class='btn btn-danger btn-sm'>Supp</a></td>";
                         echo "</tr>";
@@ -287,7 +287,7 @@
         <div class="card-list-employe mt-3">
             <h2 class="titre-section">Liste des Sujets du Forum</h2>
 
-            <div class="card-body table-responsive">
+            <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -308,10 +308,10 @@
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td data-label='ID'>" . htmlspecialchars($row['id']) . "</td>";
-                        echo "<td data-label='Auteur'>" . htmlspecialchars($row['auteur']) . "</td>";
-                        echo "<td data-label='Titre'>" . htmlspecialchars($row['titre']) . "</td>";
-                        echo "<td data-label='Dernière activité'>" . htmlspecialchars($row['date_derniere_reponse']) . "</td>";                                                                                                                        
+                        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['auteur']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['titre']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['date_derniere_reponse']) . "</td>";                                                                                                                        
                        // echo "<td><a href='/pages/admin/supp_sujet.php'" . $row['id'] . "' class='btn btn-danger btn-sm'>Supp</a> ";
                         //echo "<a href='/pages/admin/supp_spv.php'" . $row['id'] . "' class='btn btn-danger btn-sm'>Supp</a></td>";
                         echo "</tr>";
