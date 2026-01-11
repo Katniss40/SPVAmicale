@@ -1,3 +1,112 @@
+/* Liste des réponses sous forme de cartes */
+.forum-reponses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+    margin-bottom: 1.5em;
+}
+
+.forum-reponse-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 1em 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border: 1px solid #e3e3e3;
+}
+.forum-reponse-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.2em;
+}
+.forum-reponse-auteur {
+    font-weight: bold;
+    color: #2E7D32;
+    font-size: 1.08em;
+}
+.forum-reponse-date {
+    color: #b30000;
+    font-size: 0.98em;
+    font-weight: 500;
+}
+.forum-reponse-message {
+    color: #222;
+    font-size: 1.05em;
+    white-space: pre-line;
+    word-break: break-word;
+}
+/* Admin Card Styles */
+.admin-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    padding: 24px 12px 24px 12px;
+    margin: 0 auto 2em auto;
+    max-width: 98vw;
+}
+/* Title Section Styles */
+.titre-section {
+    color: #b30000;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    border-bottom: 3px solid #b30000;
+    display: block;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: #fff;
+}
+
+.table-responsive-forum {
+    width: 100%;
+    overflow-x: auto;
+    margin: 0 auto 2em auto;
+}
+
+.forum-table-sujet {
+    width: 100%;
+    min-width: 320px;
+    border-collapse: collapse;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    margin: 0 auto;
+}
+.forum-table-sujet tr {
+    background-color: #fff;
+}
+.forum-table-sujet tr:nth-child(1) {
+    background-color: #fff;
+    color: #b30000;
+    font-weight: bold;
+    border-bottom: 2px solid #b30000;
+}
+.forum-table-sujet td {
+    border: 1px solid #c41d1d;
+    padding: 10px 8px;
+    text-align: left;
+    word-break: break-word;
+    font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+    .forum-table-sujet {
+        font-size: 0.92rem;
+        min-width: 320px;
+    }
+    .forum-table-sujet td {
+        font-size: 0.92rem;
+        padding: 8px 4px;
+    }
+    .table-responsive-forum {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
 
 
 
