@@ -249,7 +249,7 @@
                         <?php
                 include("connexion.php");
 
-                $sql = "SELECT * FROM Users";
+                $sql = "SELECT * FROM Users WHERE LOWER(NomInput) <> 'test'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
