@@ -1,3 +1,23 @@
+/* Message de bienvenue dans la navbar */
+.navbar-welcome {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 1rem;
+  color: #2E7D32 !important;
+  font-weight: bold;
+  vertical-align: middle;
+  background: none;
+  border: none;
+  padding: 0 8px;
+  letter-spacing: 0.5px;
+}
+@media (max-width: 991px) {
+  .navbar-welcome {
+    font-size: 0.95rem;
+    margin-left: 8px;
+    padding: 0 4px;
+  }
+}
 /* 🌐 Global - Site Pompiers Léon 40
    Version unifiée et modernisée pour toutes les pages hors routage
 ------------------------------------------------------------- */
@@ -8,37 +28,6 @@
   background-color: #2E7D32 !important; /* Vert pompiers */
 }
 
-.text-primary {
-  color: #2E7D32 !important;
-}
-
-.btn-primary {
-  background-color: #2E7D32 !important;
-  border-color: #2E7D32 !important;
-}
-
-.btn-primary:hover {
-  background-color: #256428 !important;
-  border-color: #256428 !important;
-}
-
-/* Thème dark personnalisé - couleurs douces comme _custom.scss */
-[data-bs-theme="dark"] .navbar-brand,
-[data-bs-theme="dark"] .nav-link {
-  color: #F5E6CC !important; /* Beige doux au lieu de blanc pur */
-}
-
-[data-bs-theme="dark"] .nav-link:hover,
-[data-bs-theme="dark"] .nav-link:focus {
-  color: #F5E6CC !important;
-  opacity: 0.85;
-}
-
-/* =============== BASE =============== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html, body {

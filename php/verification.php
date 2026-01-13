@@ -106,13 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $redirect = '/';
       }
 
-      echo json_encode([
-        'success' => true,
-        'redirect' => $redirect,
-        'role' => $user['Role'],
-        'debug' => 'Utilisateur trouvé et connecté'
-      ]);
-      exit;
+        echo json_encode([
+          'success' => true,
+          'redirect' => $redirect,
+          'role' => $user['Role'],
+          'PrenomInput' => $user['PrenomInput'],
+          'debug' => 'Utilisateur trouvé et connecté'
+        ]);
+        exit;
     } else {
       echo json_encode(['success' => false, 'message' => 'Mot de passe incorrect.']);
       exit;

@@ -25,12 +25,10 @@
      <div class="container-fluid">
       <a class="navbar-brand policeNav" href="/">
         <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span id="navbar-welcome" class="navbar-welcome" style="margin-left:90px; font-size:1.1rem; color:#2E7D32; font-weight:bold; display:none;"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
-       
-         
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -64,10 +62,7 @@
            <a class="nav-link policeNav" href="/signin">Connexion</a>
               </li>
               <li class="nav-item" data-show="connected">
-                <span class="nav-link policeNav" id="userStatusBadge" style="display: flex; align-items: center; gap: 8px; margin-right: 10px;">
-                  <span style="width: 8px; height: 8px; background-color: #45a049; border-radius: 50%; display: inline-block;"></span>
-                  <span id="userNameDisplay">Connecté</span>
-                </span>
+                <!-- Suppression du point vert et du badge de statut utilisateur -->
                 <button class="nav-link policeNav" id="btnSignout">Déconnexion</button>
               </li>
         </ul>
@@ -85,6 +80,9 @@
 
 <footer class="footer">
   <button id="backToTop" aria-label="Retour en haut" title="Retour en haut">↑ Haut</button>
+
+  <!-- Inclusion du script pour affichage du message de bienvenue -->
+  <script type="module" src="/JS/auth/roleManager.js"></script>
 
   <div class="footer-container">
     <div class="footer-col">
