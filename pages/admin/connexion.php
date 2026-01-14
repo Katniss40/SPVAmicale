@@ -1,8 +1,10 @@
 <?php
-$conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@", "pompiers-leon_admin");
+// Utiliser le helper centralisé — inclure à chaque fois pour recréer la connexion si nécessaire
+require __DIR__ . '/../controleurs/db_mysqli.php';
+$conn = $mysqli;
 
-                if ($conn->connect_error) {
-                    die("Échec de la connexion : " . $conn->connect_error);
-                }
+if (!$conn) {
+    die('Erreur de connexion à la base de données.');
+}
 
 ?>

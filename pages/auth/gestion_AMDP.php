@@ -1,45 +1,36 @@
 <?php
 
-// Connexion a la base de données
-$servername = 'mysql-pompiers-leon.alwaysdata.net';
-$username = '408942';
-$password =  '@Admin-2025@';
-$dbname = 'pompiers-leon_admin';
-
-// créer la connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if($conn->connect_error) {
-    die("erreur de connexion: " .$conn->connect_error);
-} 
-echo "Connexion réussi!";
+// Utiliser le helper mysqli centralisé
+require_once __DIR__ . '/../controleurs/db_mysqli.php';
+$conn = $mysqli;
 
 // Récuperer les données du formulaire
-$Code_Agent = $_POST['CAgent'];
-$PasswordInput = $_POST['PasswordInput'];
+$Code_Agent = $_POST['CAgent'] ?? '';
+$rawPassword = $_POST['PasswordInput'] ?? '';
 
-// insere les données dans la base de données
-//$sql = "UPDATE Users SET Adresse='$Adresse', Telephone='$Telephone' WHERE ID='$ID'";
+// Si le champ mot de passe est vide, conserver l'existant
+if (empty($rawPassword)) {
+    $stmtGet = $conn->prepare("SELECT PasswordInput FROM Users WHERE CAgent = ?");
+    $stmtGet->bind_param("s", $Code_Agent);
+    $stmtGet->execute();
+    $res = $stmtGet->get_result();
+    $row = $res->fetch_assoc();
+    $PasswordInput = $row['PasswordInput'] ?? '';
+    $stmtGet->close();
+} else {
+    $PasswordInput = $rawPassword; // stocker en clair (rétablissement temporaire)
+}
+
+// Mettre à jour le mot de passe (haché)
 $stmt = $conn->prepare("UPDATE Users SET PasswordInput = ? WHERE CAgent = ?");
-$stmt->bind_param("si", $PasswordInput, $Code_Agent);
-$stmt->execute();
-
+$stmt->bind_param("ss", $PasswordInput, $Code_Agent);
 
 if ($stmt->execute()) {
     header('Location: /forum/account.php?CAgent=' . urlencode($Code_Agent) . '&success=1');
     exit();
 } else {
-    echo "Erreur : " . $stmt->error;
+    echo "Erreur : " . htmlspecialchars($stmt->error);
 }
-
-//if($conn->query($sql) === TRUE) {
-    //echo "Entrée enregistrée avec succés"
-  // header('Location: /spv');
-  //exit();
-//} else {
-   //  echo "Erreur : " .$sql."<br>" .$conn->error;
-//}
 
 // fermer la connexion
 $conn->close();

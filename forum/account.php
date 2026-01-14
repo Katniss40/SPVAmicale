@@ -1,3 +1,9 @@
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+?>
 <!-- --- Interface HTML --- -->
 
 <!DOCTYPE html>
@@ -5,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Réservation Fendeuse</title>
-<<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/global.css">
 <link rel="stylesheet" href="/assets/css/reservation.css">
@@ -22,14 +28,16 @@
 
 <body>
 <header>
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32; width:100vw; margin-left:0; margin-right:0;">
   <div class="container-fluid">
     <a class="navbar-brand policeNav" href="/">
-      <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top"><span style="color:    color: rgb(196, 29, 29); font-weight:bold; font-size:1.5rem; margin-left:8px;">Amicale des Sapeurs-Pompiers de Léon</span></a>
+      <?php if(isset($_SESSION['PrenomInput'])): ?>
+        <span class="navbar-welcome" style="margin-left:24px; font-size:1.1rem; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($_SESSION['PrenomInput']); ?></span>
+      <?php endif; ?>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -70,8 +78,8 @@
             </div>        
     </section>
 
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <div class="container-fluid"  style="background-color: #2E7D32; border-bottom: 2px solid #2E7D32;">
     <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
     <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,6 +98,14 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/VideGrenier">Vide grenier</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="reservationsDropdownForum" role="button" data-bs-toggle="dropdown" aria-expanded="false">Réservations</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reservationsDropdownForum">
+            <li><a class="dropdown-item" href="/fendeuse">Fendeuse</a></li>
+            <li><a class="dropdown-item" href="/reservation-vl">VL</a></li>
+            <li><a class="dropdown-item" href="/admin/reservations-vl">Historique</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
@@ -153,8 +169,9 @@
                             </tr>
                         </thead>                    
                       <?php
-                //include("connexion.php");
-                $conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@", "pompiers-leon_admin");
+                // Utiliser le helper centralisé
+                require_once __DIR__ . '/../pages/controleurs/db_mysqli.php';
+                $conn = $mysqli;
 
                 ini_set('display_errors', 1);
                 error_reporting(E_ALL);
@@ -216,12 +233,11 @@
                             </tr>
                         </thead>                    
                       <?php
-//include("connexion.php");
-$conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@", "pompiers-leon_admin");
-             
-
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// Utiliser le helper centralisé
+$conn = $mysqli;
+            
+            ini_set('display_errors', 1);
+            error_reporting(E_ALL);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" || isset($_GET['CAgent'])) {
     $CAgent = '';
@@ -280,7 +296,9 @@ $conn->close();
                             </tr>
                         </thead>                    
                     <?php
-                        include("connexion.php");
+                      // Utiliser le helper mysqli centralisé
+                      require_once __DIR__ . '/../pages/controleurs/db_mysqli.php';
+                      $conn = $mysqli;
                         //$conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@", "pompiers-leon_admin");
                                     
 
@@ -307,7 +325,8 @@ $conn->close();
                                     echo "<tbody>";
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
-                                        echo "<td>" . htmlspecialchars($row['PasswordInput'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
+                                        // Ne jamais afficher les mots de passe en clair
+                                        echo "<td>••••••</td>";
                                         echo "<td>" . htmlspecialchars($row['Apis'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
                                         echo "<td>" . htmlspecialchars($row['Outlook'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
                                         echo "<td>" . htmlspecialchars($row['Firewall'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
@@ -460,8 +479,8 @@ $conn->close();
                         </div>
 
                         <div class="form-row">
-                            <label for="PasswordInput">Mot de passe du site :</label>
-                            <input type="text" id="PasswordInput" name="PasswordInput">
+                          <label for="PasswordInput">Mot de passe du site :</label>
+                          <input type="password" id="PasswordInput" name="PasswordInput" autocomplete="new-password">
                         </div>
 
                         <div class="form-actions">
@@ -475,7 +494,7 @@ $conn->close();
  </section>                   
 </main>
  
-<!-- Bouton retour haut --><
+<!-- Bouton retour haut -->
 
 <button id="backToTop" aria-label="Retour en haut" title="Retour en haut">↑ Haut</button>
 <footer class="footer">

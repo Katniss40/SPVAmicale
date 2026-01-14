@@ -33,8 +33,8 @@ document.addEventListener("click", async (e) => {
 
         // ✅ Sauvegarder le rôle utilisateur
         localStorage.setItem("userRole", data.role);
-        if (data.userName) {
-          localStorage.setItem("userName", data.userName);
+        if (data.PrenomInput) {
+          localStorage.setItem("userName", data.PrenomInput);
         }
         document.cookie = `role=${data.role}; path=/; samesite=Lax`;
         document.cookie = `accesstoken=1; path=/; samesite=Lax`;

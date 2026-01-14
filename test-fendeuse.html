@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Réservation Fendeuse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/reservation-fendeuse.css">
+  <link rel="stylesheet" href="/scss/main.css">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <style>
+    #calendar { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center;">Test Calendrier Fendeuse</h1>
+
+  <div id="calendar"></div>
+
+  <form id="formResa" style="max-width:500px;margin:40px auto 0;">
+    <div class="mb-3">
+      <label for="nom_reservant" class="form-label">Votre nom :</label>
+      <input type="text" id="nom_reservant" name="nom_reservant" class="form-control" placeholder="Votre nom" required>
+    </div>
+    <div class="mb-3">
+      <label for="date_debut" class="form-label">Du :</label>
+      <input type="date" id="date_debut" name="date_debut" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="date_fin" class="form-label">Au :</label>
+      <input type="date" id="date_fin" name="date_fin" class="form-control" required>
+    </div>
+    <p id="montant-total" style="font-weight:bold; color:#2E7D32;">Montant total : 0 €</p>
+    <button type="submit" class="btn btn-success w-100">Réserver (15 €/jour)</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+
+      // Stockage des jours réservés (format yyyy-mm-dd)
+      let reservedDays = new Set();
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        locale: 'fr',
+        initialView: 'dayGridMonth',
+        headerToolbar: { left: 'prev,next today', center: 'title', right: '' },
+        events: {
+          url: '/php/get_reservations.php',
+          success: function(events) {
+            reservedDays.clear();
+            events.forEach(ev => {
+              const dStart = new Date(ev.start);
+              // FullCalendar events: end est exclusif, donc on retire 1 jour si end existe
+              const dEnd = ev.end ? new Date(new Date(ev.end).setDate(new Date(ev.end).getDate() - 1)) : dStart;
+              let d = new Date(dStart);
+              while (d <= dEnd) {
+                const yyyy = d.getFullYear();
+                const mm = (d.getMonth() + 1).toString().padStart(2, '0');
+                const dd = d.getDate().toString().padStart(2, '0');
+                reservedDays.add(`${yyyy}-${mm}-${dd}`);
+                d.setDate(d.getDate() + 1);
+              }
+            });
+            // Debug : afficher les jours réservés
+            console.log('Jours réservés:', Array.from(reservedDays));
+          }
+        },
+        selectable: true,
+        selectMirror: true,
+        select: function(info) {
+          // Correction stricte : extraction locale des dates
+          let start = info.start;
+          let end = new Date(info.end);
+          end.setDate(end.getDate() - 1); // FullCalendar exclut le dernier jour
+          function formatLocalDate(d) {
+            const yyyy = d.getFullYear();
+            const mm = (d.getMonth() + 1).toString().padStart(2, '0');
+            const dd = d.getDate().toString().padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+          }
+          document.getElementById('date_debut').value = formatLocalDate(start);
+          document.getElementById('date_fin').value = formatLocalDate(end);
+          updateMontant();
+        },
+        selectAllow: function(selectInfo) {
+          const start = selectInfo.start;
+          const end = new Date(selectInfo.end);
+          end.setDate(end.getDate() - 1);
+          let d = new Date(start);
+          while (d <= end) {
+            const yyyy = d.getFullYear();
+            const mm = (d.getMonth() + 1).toString().padStart(2, '0');
+            const dd = d.getDate().toString().padStart(2, '0');
+            if (reservedDays.has(`${yyyy}-${mm}-${dd}`)) {
+              return false;
+            }
+            d.setDate(d.getDate() + 1);
+          }
+          return true;
+        },
+      });
+      calendar.render();
+
+      // --- Calcul du montant total ---
+      const inputDebut = document.getElementById('date_debut');
+      const inputFin = document.getElementById('date_fin');
+      const montantEl = document.getElementById('montant-total');
+      const prixParJour = 15;
+
+      function calcNbJours(start, end) {
+        const s = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+        const e = new Date(end.getFullYear(), end.getMonth(), end.getDate());
+        const diff = (e - s) / (1000 * 60 * 60 * 24);
+        return diff >= 0 ? diff + 1 : 0;
+      }
+
+      function updateMontant() {
+        if (!inputDebut.value) {
+          montantEl.textContent = `Montant total : 0 €`;
+          return;
+        }
+        const start = new Date(inputDebut.value);
+        let end = inputFin.value ? new Date(inputFin.value) : start;
+        if (end < start) end = start;
+        const nb = calcNbJours(start, end);
+        montantEl.textContent = `Montant total : ${nb * prixParJour} €`;
+      }
+
+      inputDebut.addEventListener('change', updateMontant);
+      inputFin.addEventListener('change', updateMontant);
+
+      // Calcul initial si valeurs déjà présentes
+      updateMontant();
+
+      // --- Soumission AJAX du formulaire ---
+      const form = document.getElementById('formResa');
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const nom = document.getElementById('nom_reservant').value.trim();
+        const dateDebut = document.getElementById('date_debut').value;
+        const dateFin = document.getElementById('date_fin').value;
+        if (!nom || !dateDebut || !dateFin) {
+          alert('Veuillez remplir tous les champs.');
+          return;
+        }
+        const body = { nom_reservant: nom, date_debut: dateDebut, date_fin: dateFin };
+        try {
+          const resp = await fetch('/php/add_reservation.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+          const raw = await resp.clone().text();
+          let d = {};
+          try { d = await resp.json(); } catch(e) { d = { message: 'Réponse non JSON', raw }; }
+          alert(d.message || 'Réservation enregistrée.');
+          // Rafraîchir le calendrier
+          calendar.refetchEvents();
+        } catch (err) {
+          alert('Erreur réseau ou serveur : ' + err.message);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -5,42 +5,31 @@
 // =====================================
 
 
-// Connexion a la base de données
-$servername = 'mysql-pompiers-leon.alwaysdata.net';
-$username = '408942';
-$password =  '@Admin-2025@';
-$dbname = 'pompiers-leon_admin';
-
-// créer la connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if($conn->connect_error) {
-    die("erreur de connexion: " .$conn->connect_error);
-} 
-echo "Connexion réussi!";
+// Utiliser le helper mysqli centralisé
+require_once __DIR__ . '/../controleurs/db_mysqli.php';
+$conn = $mysqli;
 
 // Récuperer les données du formulaire
-$ID = $_POST['ID'];
-$CAgent = $_POST['CAgent'];
-$Role = $_POST['Role'];
-$NomInput = $_POST['NomInput'];                        
-$PrenomInput = $_POST['PrenomInput'];
-$Adresse = $_POST['Adresse'];
-$Telephone = $_POST['Telephone'];
-$EmailInput = $_POST['EmailInput'];                       
-$PasswordInput = $_POST['PasswordInput'];
+$ID = (int)($_POST['ID'] ?? 0);
+$CAgent = $_POST['CAgent'] ?? '';
+$Role = $_POST['Role'] ?? '';
+$NomInput = $_POST['NomInput'] ?? '';
+$PrenomInput = $_POST['PrenomInput'] ?? '';
+$Adresse = $_POST['Adresse'] ?? '';
+$Telephone = $_POST['Telephone'] ?? '';
+$EmailInput = $_POST['EmailInput'] ?? '';
+$rawPassword = $_POST['PasswordInput'] ?? '';
+$PasswordInput = $rawPassword; // stocker en clair (rétablissement temporaire)
 
-// insere les données dans la base de données
-$sql = "UPDATE Users SET Role='$Role', CAgent='$CAgent', NomInput='$NomInput', PrenomInput='$PrenomInput', Adresse='$Adresse', Telephone='$Telephone', EmailInput='$EmailInput', PasswordInput='$PasswordInput' WHERE ID='$ID'";
+// Utiliser une requête préparée pour éviter les injections
+$stmt = $conn->prepare("UPDATE Users SET Role = ?, CAgent = ?, NomInput = ?, PrenomInput = ?, Adresse = ?, Telephone = ?, EmailInput = ?, PasswordInput = ? WHERE ID = ?");
+$stmt->bind_param("ssssssssi", $Role, $CAgent, $NomInput, $PrenomInput, $Adresse, $Telephone, $EmailInput, $PasswordInput, $ID);
 
-
-if($conn->query($sql) === TRUE) {
-    //echo "Entrée enregistrée avec succés"
-   header('Location: /admin');
-   exit();
+if ($stmt->execute()) {
+    header('Location: /admin');
+    exit();
 } else {
-     echo "Erreur : " .$sql."<br>" .$conn->error;
+    echo "Erreur : " . htmlspecialchars($stmt->error);
 }
 
 // fermer la connexion

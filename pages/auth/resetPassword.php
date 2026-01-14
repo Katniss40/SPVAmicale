@@ -3,11 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@", "pompiers-leon_admin");
-
-                if ($conn->connect_error) {
-                    die("Échec de la connexion : " . $conn->connect_error);
-                }
+// Utiliser le helper mysqli centralisé
+require_once __DIR__ . '/../controleurs/db_mysqli.php';
+$conn = $mysqli;
 
 
 //require_once __DIR__ . 'connexion.php'; // connexion à la BDD
@@ -51,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($newPassword !== $confirmPassword) {
         echo "<div style='color:red;'>Les mots de passe ne correspondent pas.</div>";
     } else {
-        // ⚠️ Mot de passe en clair (pas de hash)
+        // Stocker le mot de passe en clair (rétablissement temporaire)
         $stmt = $conn->prepare("UPDATE Users SET PasswordInput = ? WHERE ID = ?");
         $stmt->bind_param("si", $newPassword, $tokenData['user_id']);
         $stmt->execute();
@@ -105,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a class="nav-link" href="/VideGrenier">Vide grenier</a>
                     <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                     <a class="nav-link" href="/Blog">Discussions</a>
-                    <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                    <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
                     <a class="nav-link" href="/forum/account.php">Mon Compte</a>                
         </div>
     </nav>

@@ -3,10 +3,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Traitement du formulaire de récupération de mot de passe
     $email = htmlspecialchars($_POST['email']);
 
-    // Connexion a la base de donnée
-    $conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@", "pompiers-leon_admin");
-    if ($conn->connect_error) {
-        die("Échec de la connexion : " . $conn->connect_error);
+    // Connexion via helper centralisé
+    require_once __DIR__ . '/../controleurs/db_mysqli.php';
+    $conn = $mysqli;
+    if (!$conn) {
+        die('Échec de la connexion à la base de données.');
     }
 
     // Requete pour verifier l'email

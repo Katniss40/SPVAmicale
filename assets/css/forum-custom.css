@@ -43,18 +43,26 @@
 }
 
 /* Boutons */
-.btn,
-.btn-primary,
-input[type="submit"],
-button {
-  background-color: #b30000 !important;
-  color: #F5E6CC !important;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  border: none;
+
+/* Correction bouton Déconnexion dans la navbar */
+#btnSignout.nav-link.policeNav {
+  background: none !important;
+  color: rgb(196, 29, 29) !important;
+  font-weight: bold !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+#btnSignout.nav-link.policeNav:hover,
+#btnSignout.nav-link.policeNav:focus,
+#btnSignout.nav-link.policeNav:active {
+  background: none !important;
+  color: rgb(196, 29, 29) !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .btn:hover,

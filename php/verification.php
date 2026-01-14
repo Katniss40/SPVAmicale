@@ -67,7 +67,9 @@
 
 
 session_start();
-require('connexion.php');
+// Utiliser le helper centralisé (pages/controleurs/db_mysqli.php)
+require_once __DIR__ . '/../pages/controleurs/db_mysqli.php';
+$conn = $mysqli;
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -91,11 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ($result && mysqli_num_rows($result) === 1) {
     $user = mysqli_fetch_assoc($result);
 
-    // ⚠️ À sécuriser plus tard (password_hash / verify)
+    // Vérifier le mot de passe en clair (restauration temporaire)
     if ($user['PasswordInput'] === $passwordEscaped) {
 
       $_SESSION['EmailInput'] = $user['EmailInput'];
       $_SESSION['Role'] = $user['Role'];
+      $_SESSION['PrenomInput'] = $user['PrenomInput'];
 
       // ✅ Redirection selon le rôle
       if ($user['Role'] === 'admin') {

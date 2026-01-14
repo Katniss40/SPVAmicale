@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-// --- Connexion ---
-$conn = new mysqli("mysql-pompiers-leon.alwaysdata.net","408942","@Admin-2025@","pompiers-leon_admin");
-if ($conn->connect_error) die("Échec de la connexion : " . $conn->connect_error);
+// --- Connexion via helper centralisé ---
+require_once __DIR__ . '/../controleurs/db_mysqli.php';
+if (!$mysqli) die("Échec de la connexion : base de données inaccessible.");
+$conn = $mysqli;
 
 $user_id = $_SESSION['user_id'] ?? 1;
 $user_nom = $_SESSION['NomInput'] ?? 'Utilisateur';
@@ -30,14 +31,16 @@ $message = "";
 
 <body>
 <header>
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
   <div class="container-fluid">
     <a class="navbar-brand policeNav" href="/">
       <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <?php if(isset($_SESSION['PrenomInput'])): ?>
+        <span class="navbar-welcome" style="margin-left:90px; font-size:1.1rem; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($_SESSION['PrenomInput']); ?></span>
+      <?php endif; ?>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">

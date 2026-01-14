@@ -1,3 +1,22 @@
+/* Style spécifique pour le bouton Déconnexion dans la navbar */
+#btnSignout.nav-link.policeNav {
+  color: rgb(196, 29, 29) !important;
+  font-weight: bold !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+#btnSignout.nav-link.policeNav:hover,
+#btnSignout.nav-link.policeNav:focus,
+#btnSignout.nav-link.policeNav:active {
+  background: none !important;
+  color: rgb(196, 29, 29) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
 /* Message de bienvenue dans la navbar */
 .navbar-welcome {
   display: inline-block;
@@ -55,6 +74,10 @@ h1, h2, h3, h4, h5, h6, p, a, li, td, th, label {
   font-family: 'Montserrat', sans-serif !important;
 }
 
+body {
+  background-color: #F5E6CC;
+}
+
 /* Tailles de police navbar pour correspondre à Bootstrap */
 .navbar-brand {
   font-size: 1.25rem !important;
@@ -90,6 +113,7 @@ header {
   position: static;
   top: 0;
   z-index: 1000;*/
+  background-color: #F5E6CC;
 }
 
 
@@ -97,11 +121,32 @@ header {
  /* max-width: 1530px;*/
   margin: 0 auto;
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   padding: 0rem 1rem;
   width: 100%;
+  gap: 0.5rem;
 }
+
+/* Correction : force la couleur blanche sur les navbars qui ont le style inline background-color: rgb(255,255,255) */
+.navbar[style*="background-color: rgb(255,255,255)"] {
+  background-color: rgb(255,255,255) !important;
+  color: #222 !important;
+  border-bottom: 2px solid #2E7D32 !important;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Correction pour éviter le passage sur 2 lignes */
+.navbar .container-fluid {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+}
+
 
 .navbar a {
   color: white ;
@@ -180,6 +225,7 @@ main {
   max-width: 1400px;
   margin: 1rem auto 0.5rem auto;
   padding: 0 2rem;
+  background-color: #F5E6CC;
 }
 
 .titre-section {
@@ -503,4 +549,3 @@ main {
   .hero-scene h1 {
     font-size: 1.8rem;
   }
-}

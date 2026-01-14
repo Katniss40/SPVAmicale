@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,12 +17,15 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
         <div class="container-fluid">
             <a class="navbar-brand policeNav" href="/">
-                <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top"><span style="color: rgb(196, 29, 29); font-weight:bold; font-size:1.5rem; margin-left:8px;">Amicale des Sapeurs-Pompiers de Léon</span>
+                        </a>
+                        <?php if(isset($_SESSION['PrenomInput'])): ?>
+                              <span class="navbar-welcome" style="margin-left:24px; font-size:1.1rem; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($_SESSION['PrenomInput']); ?></span>
+                        <?php endif; ?>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -71,9 +79,9 @@
     if (!isset($_GET['id_sujet_a_lire'])) {
         echo '<div class="admin-card"><h2 class="titre-section">Sujet non défini.</h2></div>';
     } else {
-        // Connexion à la base pour récupérer le titre
-        $base = mysqli_connect('mysql-pompiers-leon.alwaysdata.net', '408942', '@Admin-2025@');
-        mysqli_select_db($base, 'pompiers-leon_admin');
+        // Connexion à la base pour récupérer le titre (helper centralisé)
+        require_once __DIR__ . '/../pages/controleurs/db_mysqli.php';
+        $base = $mysqli;
         $id_sujet = mysqli_real_escape_string($base, $_GET['id_sujet_a_lire']);
         $sql_titre = 'SELECT titre FROM forum_sujets WHERE id="' . $id_sujet . '"';
         $req_titre = mysqli_query($base, $sql_titre);
@@ -82,17 +90,20 @@
             $titre_sujet = htmlentities(trim($data_titre['titre']));
         }
         mysqli_free_result($req_titre);
-        mysqli_close($base);
 
         echo '<div class="admin-card">';
         echo '<h1 class="titre-section">Lecture du sujet : ' . $titre_sujet . '</h1>';
         echo '<br>';
         echo '<div class="forum-reponses-list">';
 
-        // Connexion à la base pour récupérer les réponses
-        $base = mysqli_connect('mysql-pompiers-leon.alwaysdata.net', '408942', '@Admin-2025@');
-        mysqli_select_db($base, 'pompiers-leon_admin');
-        $sql = 'SELECT auteur, message, date_reponse FROM forum_reponses WHERE correspondance_sujet="' . $id_sujet . '" ORDER BY date_reponse ASC';
+        // Connexion à la base pour récupérer les réponses (réutilise $mysqli)
+        // $base est déjà défini ci-dessus à partir de db_mysqli.php
+        // (si le helper n'a pas été inclus plus haut, inclure maintenant)
+        if (!isset($base)) {
+            require_once __DIR__ . '/../pages/controleurs/db_mysqli.php';
+            $base = $mysqli;
+        }
+        $sql = 'SELECT id, auteur, message, date_reponse FROM forum_reponses WHERE correspondance_sujet="' . $id_sujet . '" ORDER BY date_reponse ASC';
         $req = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
         $nb_reponses = 0;
         while ($data = mysqli_fetch_array($req)) {
@@ -104,6 +115,11 @@
             echo '<span class="forum-reponse-date">' . $jour . '-' . $mois . '-' . $annee . ' ' . $heure . ':' . $minute . '</span>';
             echo '</div>';
             echo '<div class="forum-reponse-message">' . nl2br(htmlentities(trim($data['message']))) . '</div>';
+            // Si l'utilisateur connecté est administrateur, afficher le lien de suppression
+            if (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin') {
+                $respId = (int)$data['id'];
+                echo '<div class="forum-reponse-actions"><a class="btn btn-sm btn-danger" href="supprimer_reponse.php?id=' . $respId . '&id_sujet_a_lire=' . urlencode($id_sujet) . '" onclick="return confirm(\'Supprimer cette réponse ?\')">Supprimer</a></div>';
+            }
             echo '</div>';
         }
         if ($nb_reponses === 0) {
@@ -115,6 +131,10 @@
         echo '</div>'; // .forum-reponses-list
         echo '<br />';
         echo '<a class="btn" href="./insert_reponse.php?numero_du_sujet=' . $id_sujet . '">Répondre</a>';
+        // Lien vers l'historique des suppressions pour les administrateurs
+        if (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin') {
+            echo ' <a class="btn btn-secondary ms-2" href="/forum/reponses_supprimees.php">Historique suppressions</a>';
+        }
         echo '</div>'; // .admin-card
     }
     ?>

@@ -1,11 +1,12 @@
 <?php
 //require_once "connexion.php"; // adapte ce chemin si ton fichier est ailleurs
 
-$conn = new mysqli("mysql-pompiers-leon.alwaysdata.net", "408942", "@Admin-2025@", "pompiers-leon_admin");
-
-                if ($conn->connect_error) {
-                    die("Échec de la connexion : " . $conn->connect_error);
-                }
+// Connexion via helper centralisé
+require_once __DIR__ . '/../controleurs/db_mysqli.php';
+$conn = $mysqli;
+if (!$conn) {
+  die('Échec de la connexion à la base de données.');
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST["email"]);
@@ -123,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <a class="nav-link" href="/VideGrenier">Vide grenier</a>
                     <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
                     <a class="nav-link" href="/Blog">Discussions</a>
-                    <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                    <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
                     <a class="nav-link" href="/forum/account.php">Mon Compte</a>                
         </div>
     </nav>

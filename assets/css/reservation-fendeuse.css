@@ -1,0 +1,369 @@
+/* Navigation mobile mois */
+.resa-mobile-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 0.5rem;
+}
+.resa-mobile-btn {
+  background: #2E7D32;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2em;
+  padding: 2px 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.resa-mobile-btn:hover {
+  background: #256628;
+}
+.resa-mobile-month {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: #2E7D32;
+  min-width: 110px;
+  text-align: center;
+}
+/* Listing mobile par semaine */
+.resa-listing-mobile-week {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0.5rem 0 1.2rem 0;
+}
+.resa-week-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2px;
+}
+.resa-day-cell {
+  width: 36px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff8ef;
+  border-radius: 8px;
+  font-size: 0.98em;
+  box-shadow: 0 1px 3px rgba(46,125,50,0.04);
+  margin: 0 1px;
+}
+.resa-day-cell.empty {
+  background: transparent;
+  box-shadow: none;
+}
+.resa-day-cell .dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+.resa-day-cell .dot-green {
+  background: #2E7D32;
+}
+.resa-day-cell .dot-red {
+  background: #d32f2f;
+}
+.resa-day-num {
+  font-size: 0.93em;
+  color: #333;
+  margin-top: 2px;
+}
+@media (max-width: 600px) {
+  .resa-listing-mobile-week {
+    font-size: 0.93rem;
+  }
+  .resa-day-cell {
+    width: 28px;
+    height: 38px;
+    font-size: 0.93em;
+    margin: 0 0.5px;
+  }
+  .resa-day-cell .dot {
+    width: 10px;
+    height: 10px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+  }
+  .resa-day-num {
+    font-size: 0.89em;
+  }
+}
+/* Listing mobile réservation fendeuse */
+.resa-listing-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0.5rem 0 1.2rem 0;
+  font-size: 0.98rem;
+}
+.resa-day {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.98em;
+  background: #fff8ef;
+  box-shadow: 0 1px 3px rgba(46,125,50,0.04);
+}
+.resa-day .dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.dot-green {
+  background: #2E7D32;
+}
+.dot-red {
+  background: #d32f2f;
+}
+.resa-day.free .resa-status {
+  color: #2E7D32;
+  font-weight: 600;
+}
+.resa-day.reserved .resa-status {
+  color: #d32f2f;
+  font-weight: 600;
+}
+.resa-date {
+  flex: 1;
+  font-size: 0.98em;
+}
+.resa-status {
+  font-size: 0.98em;
+}
+@media (max-width: 600px) {
+  .resa-listing-mobile {
+    font-size: 0.93rem;
+  }
+  .resa-day {
+    padding: 3px 4px;
+    font-size: 0.93em;
+  }
+  .resa-date, .resa-status {
+    font-size: 0.93em;
+  }
+  .resa-day .dot {
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+  }
+}
+/* =================== FULLCALENDAR RESPONSIVE MOBILE =================== */
+@media (max-width: 600px) {
+  #calendar {
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    padding: 0.5rem !important;
+    border-radius: 10px !important;
+    font-size: 0.92rem !important;
+    overflow-x: visible !important;
+    margin: 0 auto 1rem auto !important;
+  }
+  .fc {
+    font-size: 0.92rem !important;
+  }
+  .fc-toolbar-title {
+    font-size: 1.1rem !important;
+    padding: 0.2rem 0 !important;
+  }
+  .fc-button {
+    font-size: 0.95rem !important;
+    padding: 2px 8px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+  }
+  .fc-col-header-cell {
+    font-size: 0.95rem !important;
+    padding: 0.2rem 0 !important;
+  }
+  .fc-daygrid-day {
+    min-width: 32px !important;
+    padding: 0 !important;
+  }
+  .fc-daygrid-day-number {
+    font-size: 0.95rem !important;
+    padding: 2px 0 !important;
+  }
+  .fc-day-today {
+    border-width: 1px !important;
+  }
+  .fc-scrollgrid {
+    overflow-x: visible !important;
+  }
+}
+/* Forcer la sous-navbar verte à pleine largeur, alignée avec le hero-scene */
+.admin-subnav {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  left: 0 !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  border-radius: 0 !important;
+}
+/* Forcer le hero-scene à pleine largeur même si un container l'englobe */
+.hero-scene.admin-hero {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  min-width: 100vw !important;
+  left: 0 !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+/* Masquer tout hero-scene supplémentaire (sauf le premier) */
+section.hero-scene ~ section.hero-scene {
+  display: none !important;
+}
+/* reservation-fendeuse.css : styles dédiés à la page réservation fendeuse, harmonisés avec le site */
+
+.resa-container {
+  background: #f2f2f2;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  padding: 3rem 2rem;
+  max-width: 1000px;
+  margin: 5rem auto;
+  font-family: 'Montserrat', sans-serif;
+  color: #222;
+}
+
+.resa-container h2 {
+  color: #2E7D32;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.9rem;
+  margin-bottom: 2rem;
+}
+
+#calendar {
+  background: #fff8ef;
+  border-radius: 16px;
+  border: 2px solid #2e7d32;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#calendar:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.fc-toolbar-title {
+  color: #1b5e20 !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  text-shadow: 1px 1px 0 #dcead5;
+}
+
+.fc-button {
+  background-color: #2e7d32 !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  padding: 6px 12px !important;
+  transition: background 0.3s;
+}
+
+.fc-button:hover {
+  background-color: #1b5e20 !important;
+}
+
+.fc-today-button {
+  background-color: #c62828 !important;
+}
+.fc-today-button:hover {
+  background-color: #a31e1e !important;
+}
+
+.fc-col-header-cell {
+  background-color: #2e7d32 !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  border: 1px solid #1b5e20 !important;
+  text-transform: capitalize;
+  padding: 0.6rem 0 !important;
+}
+
+.fc-daygrid-day {
+  background: linear-gradient(to bottom, #ffffff, #fcfcfc);
+  border: 1px solid #e5e5e5 !important;
+  transition: background-color 0.3s, box-shadow 0.2s;
+}
+
+.fc-daygrid-day:hover {
+  background-color: #f5faf5 !important;
+  box-shadow: inset 0 0 0 1px #81c784;
+  cursor: pointer;
+}
+
+.fc-daygrid-day-number {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  color: #2e7d32 !important;
+  border-radius: 50%;
+  padding: 6px 10px !important;
+  transition: all 0.2s;
+}
+
+.fc-daygrid-day:hover .fc-daygrid-day-number {
+  background: #dcedc8;
+  color: #1b5e20;
+}
+
+.fc-day-today {
+  background-color: #f1f8e9 !important;
+  border: 2px solid #43a047 !important;
+}
+.fc-day-today .fc-daygrid-day-number {
+  background-color: #43a047 !important;
+  color: white !important;
+  box-shadow: 0 0 0 3px #c8e6c9;
+  font-weight: 700;
+}
+
+.fc-event {
+  background: #d32f2f !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.fc-scrollgrid {
+  border: none !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  #calendar {
+    padding: 1rem;
+  }
+  .fc-toolbar-title {
+    font-size: 1.4rem !important;
+  }
+  .fc-col-header-cell {
+    font-size: 0.9rem !important;
+  }
+  .fc-daygrid-day-number {
+    font-size: 1rem !important;
+  }
+}

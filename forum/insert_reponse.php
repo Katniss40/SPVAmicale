@@ -1,3 +1,31 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+// Traitement POST en début de fichier pour permettre la redirection sans sortie
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['numero_du_sujet'])) {
+    // inclure helper DB
+    require __DIR__ . '/../pages/controleurs/db_mysqli.php';
+    $base = $mysqli;
+
+    // validate required fields
+    $auteur = $_POST['auteur'] ?? '';
+    $message = $_POST['message'] ?? '';
+    $numero = $_GET['numero_du_sujet'];
+    if (trim($auteur) !== '' && trim($message) !== '' && trim($numero) !== '') {
+        $date = date("Y-m-d H:i:s");
+        $sql = 'INSERT INTO forum_reponses VALUES("", "'.mysqli_real_escape_string($base, $auteur).'", "'.mysqli_real_escape_string($base, $message).'", "'.$date.'", "'.mysqli_real_escape_string($base, $numero).'")';
+        mysqli_query($base, $sql) or die('Erreur SQL !'.$sql.'<br />'.mysqli_error($base));
+
+        $sql = 'UPDATE forum_sujets SET date_derniere_reponse="'.$date.'" WHERE id="'.mysqli_real_escape_string($base, $numero).'"';
+        mysqli_query($base, $sql) or die('Erreur SQL !'.$sql.'<br />'.mysqli_error($base));
+
+        mysqli_close($base);
+        header('Location: lire_sujet.php?id_sujet_a_lire=' . urlencode($numero));
+        exit;
+    }
+}
+?>
 <!-- --- Interface HTML --- -->
 
 <!-- --- Interface HTML --- -->
@@ -9,7 +37,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Amicale des Sapeurs-Pompiers - Réponse</title>
     
-  <<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.0/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/global.css">
@@ -23,46 +51,31 @@
 <body>
 
 <header>
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
-  <div class="container-fluid">
-    <a class="navbar-brand policeNav" href="/">
-      <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/">Accueil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/galerie">Galerie</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/recrutement">Recrutement</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/infos">Manifestations</a>
-        </li>
-        
-        <li class="nav-item dropdown" data-show="connected">
-          <li><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
-          <li><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
-        </li>
-        
-        <li class="nav-item" data-show="disconnected">
-          <a class="nav-link policeNav" href="/signin">Connexion</a>
-        </li>
-        <li class="nav-item" data-show="connected">
-          <button class="nav-link policeNav" id="btnSignout">Déconnexion</button>
-        </li>
-      </ul>
-    </div>
-  </div>
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
+        <div class="container-fluid">
+            <a class="navbar-brand policeNav" href="/">
+                <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top"><span style="color: rgb(196, 29, 29); font-weight:bold; font-size:1.5rem; margin-left:8px;">Amicale des Sapeurs-Pompiers de Léon</span>
+            </a>
+            <?php if(isset($_SESSION['PrenomInput'])): ?>
+                <span class="navbar-welcome" style="margin-left:24px; font-size:1.1rem; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($_SESSION['PrenomInput']); ?></span>
+            <?php endif; ?>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link policeNav" href="/">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link policeNav" href="/galerie">Galerie</a></li>
+                    <li class="nav-item"><a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a></li>
+                    <li class="nav-item"><a class="nav-link policeNav" href="/recrutement">Recrutement</a></li>
+                    <li class="nav-item"><a class="nav-link policeNav" href="/infos">Manifestations</a></li>
+                    <li class="nav-item"><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
+                    <li class="nav-item"><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
+                    <li class="nav-item" data-show="disconnected"><a class="nav-link policeNav" href="/signin">Connexion</a></li>
+                    <li class="nav-item" data-show="connected"><button class="nav-link policeNav" id="btnSignout">Déconnexion</button></li>
+                </ul>
+            </div>
+        </div>
 </nav>
 
     <section class="hero-scene text-center text-white">
@@ -120,8 +133,8 @@
 <?php
 // Récupérer le titre du sujet
 if (isset($_GET['numero_du_sujet'])) {
-	$base_titre = mysqli_connect ('mysql-pompiers-leon.alwaysdata.net', '408942', '@Admin-2025@');
-	mysqli_select_db ($base_titre, 'pompiers-leon_admin');
+  require __DIR__ . '/../pages/controleurs/db_mysqli.php';
+  $base_titre = $mysqli;
 	
 	$sql_titre = 'SELECT titre FROM forum_sujets WHERE id="'.$_GET['numero_du_sujet'].'"';
 	$req_titre = mysqli_query($base_titre, $sql_titre);
@@ -129,8 +142,7 @@ if (isset($_GET['numero_du_sujet'])) {
 	if ($req_titre && $data_titre = mysqli_fetch_array($req_titre)) {
 		$titre_sujet = htmlentities(trim($data_titre['titre']));
 	}
-	mysqli_free_result($req_titre);
-	mysqli_close($base_titre);
+  mysqli_free_result($req_titre);
 	
 	echo '<h1 class="titre-section">Répondre au sujet : ' . $titre_sujet . '</h1>';
 	echo '<br>';
@@ -148,9 +160,9 @@ if (isset ($_POST['go']) && $_POST['go']=='Poster') {
 	}
 	// si tout est bon, on peut commencer l'insertion dans la base
 	else {
-		// on se connecte à notre base de données
-		$base = mysqli_connect ('mysql-pompiers-leon.alwaysdata.net', '408942', '@Admin-2025@');
-		mysqli_select_db ($base, 'pompiers-leon_admin');
+    // on se connecte à notre base de données via le helper centralisé
+    require __DIR__ . '/../pages/controleurs/db_mysqli.php';
+    $base = $mysqli;
 
 		// on recupere la date de l'instant présent
 		$date = date("Y-m-d H:i:s");
@@ -229,7 +241,7 @@ if (isset($erreur)) echo '<div class="alert alert-danger">',$erreur,'</div>';
 <br>
 
 
-<!-- Bouton retour haut --><
+<!-- Bouton retour haut -->
 
 <button id="backToTop" aria-label="Retour en haut" title="Retour en haut">↑ Haut</button>
 <footer class="footer">

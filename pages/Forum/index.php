@@ -38,7 +38,7 @@
                             <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/forum/account.php">Mon Compte</a>
@@ -80,10 +80,9 @@
 
 
 
-// on se connecte à notre base de données
-$base = mysqli_connect ('mysql-pompiers-leon.alwaysdata.net', '408942', '@Admin-2025@');
-mysqli_select_db ($base, 'pompiers-leon_admin') ;
-//include("connexion.php");
+// on se connecte à notre base de données via le helper centralisé
+require_once __DIR__ . '/../controleurs/db_mysqli.php';
+$base = $mysqli;
 
 // préparation de la requete
 $sql = 'SELECT id, auteur, titre, date_derniere_reponse FROM forum_sujets ORDER BY date_derniere_reponse DESC';

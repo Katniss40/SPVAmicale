@@ -48,7 +48,7 @@
                             <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/forum/account.php">Mon Compte</a>
@@ -92,9 +92,10 @@
                         </thead>
                         <tbody>
                         <?php
-                        include("connexion.php");
+                        // Utiliser le helper mysqli centralisé
+                        require_once __DIR__ . '/../controleurs/db_mysqli.php';
                         $sql = "SELECT * FROM Users";
-                        $result = $conn->query($sql);
+                        $result = $mysqli->query($sql);
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
@@ -104,7 +105,8 @@
                                 echo "<td data-label='Nom'>" . htmlspecialchars($row['NomInput']) . "</td>";
                                 echo "<td data-label='Prénom'>" . htmlspecialchars($row['PrenomInput']) . "</td>";
                                 echo "<td data-label='Adresse'>" . htmlspecialchars($row['Adresse']) . "</td>";
-                                echo "<td data-label='Mot de Passe'>" . htmlspecialchars($row['PasswordInput']) . "</td>";
+                                // Ne jamais afficher les mots de passe en clair
+                                echo "<td data-label='Mot de Passe'>••••••</td>";
                                 echo "<td data-label='Email'>" . htmlspecialchars($row['EmailInput']) . "</td>";
                                 echo "<td data-label='Téléphone'>" . htmlspecialchars($row['Telephone']) . "</td>";
                                 echo "</tr>";

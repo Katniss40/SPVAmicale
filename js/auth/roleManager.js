@@ -48,23 +48,20 @@ export function showAndHideElementsForRoles() {
     if (allowedRole === role) el.classList.remove("d-none");
   });
 
-  // Afficher le statut de connexion
-  updateUserStatusDisplay();
-}
-
-// Mettre à jour l'affichage du statut utilisateur
-function updateUserStatusDisplay() {
-  const role = getRole();
-  const userNameDisplay = document.getElementById("userNameDisplay");
+  // Afficher le message de bienvenue dans la navbar SPA
+  const welcomeEl = document.getElementById("navbar-welcome");
   const userName = localStorage.getItem("userName");
-  
-  if (userNameDisplay && role !== "disconnected") {
-    if (userName) {
-      userNameDisplay.textContent = `✓ ${userName}`;
+  if (welcomeEl) {
+    if (isConnected() && userName) {
+      welcomeEl.textContent = `Bienvenue, ${userName}`;
+      welcomeEl.style.display = "inline-block";
     } else {
-      userNameDisplay.textContent = "✓ Connecté";
+      welcomeEl.textContent = "";
+      welcomeEl.style.display = "none";
     }
   }
 }
 
+
+  // Fonction supprimée : l'affichage du statut utilisateur se fait désormais via le message de bienvenue dans la navbar.
 document.addEventListener("DOMContentLoaded", showAndHideElementsForRoles);

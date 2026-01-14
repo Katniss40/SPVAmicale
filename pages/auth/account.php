@@ -42,7 +42,15 @@
                             <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="reservationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Réservations</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reservationsDropdown">
+                                <li><a class="dropdown-item" href="/fendeuse">Fendeuse</a></li>
+                                <li><a class="dropdown-item" href="/reservation-vl">VL</a></li>
+                                <li><a class="dropdown-item" href="/admin/reservations-vl">Historique</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/forum/account.php">Mon Compte</a>
@@ -276,10 +284,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <tbody>
         <?php
 
-        include("connexion.php");
-
-                $sql = "SELECT * FROM securite_acces";
-                $result = $conn->query($sql);
+        // Utiliser le helper mysqli centralisé
+        require_once __DIR__ . '/../controleurs/db_mysqli.php';
+            $sql = "SELECT * FROM securite_acces";
+            $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
@@ -287,7 +295,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Affichage des données dans le tableau
         
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($row['PasswordInput']) . "</td>";
+            echo "<td>••••••</td>";
             echo "<td>" . htmlspecialchars($row['Apis']) . "</td>";
             echo "<td>" . htmlspecialchars($row['Firewall']) . "</td>";
             echo "<td>" . htmlspecialchars($row['Outlook']) . "</td>";

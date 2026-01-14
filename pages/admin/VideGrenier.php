@@ -37,7 +37,7 @@
                             <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
+                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/forum/account.php">Mon Compte</a>

@@ -5,22 +5,11 @@
 // =====================================
 
 
-// Connexion a la base de données
-$servername = 'mysql-pompiers-leon.alwaysdata.net';
-$username = '408942';
-$password =  '@Admin-2025@';
-$dbname = 'pompiers-leon_admin';
-
-// créer la connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if($conn->connect_error) {
-    die("erreur de connexion: " .$conn->connect_error);
-}
+// Utiliser le helper mysqli centralisé
+require_once __DIR__ . '/../controleurs/db_mysqli.php';
+$conn = $mysqli;
 
 // Récuperer les données du formulaire
-
 $Role = $_POST['Role'];
 $CAgent = $_POST['CAgent'];
 $NomInput = $_POST['NomInput'];                        
@@ -28,7 +17,8 @@ $PrenomInput = $_POST['PrenomInput'];
 $Adresse = $_POST['Adresse'];
 $Telephone = $_POST['Telephone'];
 $EmailInput = $_POST['EmailInput'];                       
-$PasswordInput = $_POST['PasswordInput'];
+$rawPassword = $_POST['PasswordInput'] ?? '';
+$PasswordInput = $rawPassword; // stocker en clair (rétablissement temporaire)
 
 
 // Vérification si l'email existe déjà

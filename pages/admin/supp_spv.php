@@ -5,20 +5,13 @@
 // =====================================
 
 
-// Connexion a la base de données
-$servername = 'mysql-pompiers-leon.alwaysdata.net';
-$username = '408942';
-$password =  '@Admin-2025@';
-$dbname = 'pompiers-leon_admin';
+// Utiliser le helper mysqli centralisé
+require_once __DIR__ . '/../controleurs/db_mysqli.php';
+$conn = $mysqli;
 
-// créer la connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if($conn->connect_error) {
-    die("erreur de connexion: " .$conn->connect_error);
-} 
-echo "Connexion réussi!";
+if (!$conn) {
+    die('Erreur de connexion à la base de données.');
+}
 
 // Récuperer les données du formulaire
 
