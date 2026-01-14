@@ -28,7 +28,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item" data-show="admin">
                             <a class="nav-link" href="/spv">Liste des membres</a>
                         </li>
@@ -114,7 +114,9 @@
                         } else {
                             echo "<tr><td colspan='12'>Aucun employé trouvé.</td></tr>";
                         }
-                        $conn->close();
+                        if (isset($mysqli) && $mysqli instanceof mysqli) {
+                            $mysqli->close();
+                        }
                         ?>
                         </tbody>
                     </table>
