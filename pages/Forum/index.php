@@ -9,7 +9,7 @@
 
 
 <section>
-    <nav class="navbar navbar-expand-lg bg-primary " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-public " data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
 

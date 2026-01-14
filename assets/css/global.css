@@ -49,6 +49,26 @@
 
 }
 
+/* Utilitaire pour barres de navigation publiques (beige demandé) */
+.bg-public {
+  background-color: #F5E6CC !important; /* beige public */
+}
+
+header .navbar.bg-public .navbar-brand,
+header .navbar.bg-public .nav-link {
+  color: #2E7D32 !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+
+header .navbar.bg-public .navbar-brand:hover,
+header .navbar.bg-public .nav-link:hover,
+header .navbar.bg-public .navbar-brand:focus,
+header .navbar.bg-public .nav-link:focus {
+  color: #F5E6CC !important;
+  background: #2E7D32 !important;
+}
+
 html, body {
   font-family: 'Montserrat', sans-serif;
   color: #222;
