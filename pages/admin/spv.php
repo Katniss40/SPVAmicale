@@ -97,7 +97,7 @@ $dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Adresse</th>
-                                <th>Mot de Passe</th>
+                                <!-- Mot de Passe masqué/retiré pour confidentialité -->
                                 <th>Em@il</th>
                                 <th>Téléphone</th>
                             </tr>
@@ -117,14 +117,13 @@ $dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
                                 echo "<td data-label='Nom'>" . htmlspecialchars($row['NomInput']) . "</td>";
                                 echo "<td data-label='Prénom'>" . htmlspecialchars($row['PrenomInput']) . "</td>";
                                 echo "<td data-label='Adresse'>" . htmlspecialchars($row['Adresse']) . "</td>";
-                                // Ne jamais afficher les mots de passe en clair
-                                echo "<td data-label='Mot de Passe'>••••••</td>";
+                                // Mot de passe retiré de l'affichage pour confidentialité
                                 echo "<td data-label='Email'>" . htmlspecialchars($row['EmailInput']) . "</td>";
                                 echo "<td data-label='Téléphone'>" . htmlspecialchars($row['Telephone']) . "</td>";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='12'>Aucun employé trouvé.</td></tr>";
+                            echo "<tr><td colspan='8'>Aucun employé trouvé.</td></tr>";
                         }
                         if (isset($mysqli) && $mysqli instanceof mysqli) {
                             $mysqli->close();
@@ -139,3 +138,4 @@ $dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
 <br>
 <br>
 
+</html>
