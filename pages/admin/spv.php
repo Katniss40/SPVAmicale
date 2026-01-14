@@ -1,3 +1,10 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$user_role = $_SESSION['Role'] ?? '';
+$dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,7 +28,7 @@
 <section>
     <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+            <a class="navbar-brand" href="<?php echo htmlspecialchars($dashboard_href); ?>" data-show="admin">Tableau de bord Administrateur</a>
 
             <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
