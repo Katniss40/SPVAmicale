@@ -19,7 +19,7 @@
 
 
 <section>
-    <nav class="navbar navbar-expand-lg bg-primary admin-subnav" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
 

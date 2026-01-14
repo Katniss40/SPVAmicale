@@ -9,11 +9,9 @@
     </div>
 </div>
 <section>
-    <nav class="navbar navbar-expand-lg bg-primary admin-subnav" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
-
-            <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
+            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,9 +49,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/forum/account.php">Mon Compte</a>
                         </li>
-                        <li class="nav-item" data-show="admin">
-                            <a class="nav-link" href="/forum/reponses_supprimees.php">Réponses supprimées</a>
-                        </li>
+                        <!-- 'Réponses supprimées' moved to admin page actions (button near forum subjects) -->
                     </ul>
                 </div>
         </div>
@@ -290,9 +286,9 @@
                 ?>
 
                     </table>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 
 
@@ -341,6 +337,9 @@
             </div>
         </div>
     </div>
+                        <div class="mt-3">
+                            <a class="btn btn-secondary" href="/forum/reponses_supprimees.php">Historique des réponses supprimées</a>
+                        </div>
 
     <!-- Suppression d'un sujet-->  <!-- Ca fonctionne ne plus toucher-->
      <div class="admin-card">

@@ -5,8 +5,7 @@
 //$primary: #902727;
 //$primary: #156384;
 $primary: #2E7D32;
-$secondary: #F5E6CC;
-//$dark: rgb(196, 29, 29);
+$primary: #2E7D32; // Utiliser la couleur "pompier" comme primaire (plus de bleu)
 $dark: rgb(255, 255, 255);
 //$dark: #156384;
 //$dark: rgb(255, 0, 25);
@@ -23,3 +22,24 @@ $font-family-serif: "Hind Madurai", serif !default;
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // Then add additional custom code here
+
+// Couleurs spécifiques projet
+$admin-color: #2E7D32; // couleur "pompier" réservée aux pages privées/admin
+$public-bg: #F5E6CC;  // couleur de fond/navbar pour la zone publique
+
+// Utilitaires dédiés (préférer ces classes plutôt que d'écraser .bg-primary)
+.bg-pompier {
+	background-color: $admin-color !important;
+}
+.navbar.bg-pompier .nav-link,
+.navbar.bg-pompier .navbar-brand {
+	color: #fff !important;
+}
+
+.bg-public {
+	background-color: $public-bg !important;
+}
+.navbar.bg-public .nav-link,
+.navbar.bg-public .navbar-brand {
+	color: $admin-color !important;
+}

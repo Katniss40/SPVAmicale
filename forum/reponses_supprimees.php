@@ -25,7 +25,10 @@ $res = mysqli_query($base, $sql) or die('Erreur SQL : '.mysqli_error($base));
 </head>
 <body class="p-4">
   <div class="container">
-    <h1>Historique des réponses supprimées</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1>Historique des réponses supprimées</h1>
+      <a class="btn btn-primary" href="/admin">Retour admin</a>
+    </div>
     <p>Actions disponibles : restaurer la réponse ou la supprimer définitivement.</p>
 
     <table class="table table-striped table-bordered">
