@@ -21,7 +21,7 @@ if (isset($_GET['debug_session']) && $_GET['debug_session'] === '1') {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Réservation Fendeuse</title>
+<title>Mon compte</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/global.css">
@@ -39,7 +39,7 @@ if (isset($_GET['debug_session']) && $_GET['debug_session'] === '1') {
 
 <body>
 <header>
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32; width:100vw; margin-left:0; margin-right:0;">
+<nav class="navbar navbar-expand-lg fixed-top bg-pompier admin-subnav" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand policeNav" href="/">
       <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top"><span style="color:    color: rgb(196, 29, 29); font-weight:bold; font-size:1.5rem; margin-left:8px;">Amicale des Sapeurs-Pompiers de Léon</span></a>
@@ -86,6 +86,7 @@ if (isset($_GET['debug_session']) && $_GET['debug_session'] === '1') {
 <section class="hero-scene text-center text-white">
             <div class="hero-scene-content"><br><br><br><br>
                 <h1 style="color: white;" class="hero-scene-text">Modification / Récupération de vos mots de passe</h1>
+                <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
             </div>        
     </section>
 
@@ -126,9 +127,6 @@ if (isset($_GET['debug_session']) && $_GET['debug_session'] === '1') {
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/Blog">Discussions</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/auth/reservation.php">Réservation fendeuse</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/forum/account.php">Mon Compte</a>
