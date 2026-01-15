@@ -111,6 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <section class="hero-scene text-center text-white">
             <div class="hero-scene-content">
                 <h1 style="color: white;" class="hero-scene-text">Récuperation du votre mot de passe</h1>
+                <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
             </div>        
     </section>
 

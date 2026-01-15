@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['numero_du_sujet'])) {
         mysqli_query($base, $sql) or die('Erreur SQL !'.$sql.'<br />'.mysqli_error($base));
 
         mysqli_close($base);
-        header('Location: lire_sujet.php?id_sujet_a_lire=' . urlencode($numero));
+        header('Location: /lireS?id_sujet_a_lire=' . urlencode($numero));
         exit;
     }
 }
@@ -182,8 +182,8 @@ if (isset ($_POST['go']) && $_POST['go']=='Poster') {
 		// on ferme la connexion à la base de données
 		mysqli_close($base);
 
-		// on redirige vers la page de lecture du sujet en cours
-		header('Location: lire_sujet.php?id_sujet_a_lire='.$_GET['numero_du_sujet']);
+    // on redirige vers la page de lecture du sujet en cours
+    header('Location: /lireS?id_sujet_a_lire='.$_GET['numero_du_sujet']);
 
 		// on termine le script courant
 		exit;
@@ -196,7 +196,7 @@ if (isset ($_POST['go']) && $_POST['go']=='Poster') {
 
 
 <!-- on fait pointer le formulaire vers la page traitant les données -->
-<form action="insert_reponse.php?numero_du_sujet=<?php echo $_GET['numero_du_sujet']; ?>" method="post">
+<form action="/forum/insert_reponse.php?numero_du_sujet=<?php echo $_GET['numero_du_sujet']; ?>" method="post">
 	<table style="width: 100%; max-width: 100%; margin: 0 auto; border-collapse: collapse;">
 		<tr style="border: 1px solid rgb(196, 29, 29); padding: 8px; text-align: left; background-color:  rgb(227, 227, 227);">
 			<td style="border: 1px solid rgb(196, 29, 29); padding: 8px; text-align: left;">

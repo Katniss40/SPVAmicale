@@ -21,7 +21,7 @@ $dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
 <div class="hero-scene admin-hero text-center text-white">
     <div class="hero-scene-content">
         <h1 class="hero-scene-text">Gestion des Membres</h1>
-        <div><a href="/admin" class="btn btn-primary">Retour Accueil</a></div>
+        <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
     </div>
 </div>
 

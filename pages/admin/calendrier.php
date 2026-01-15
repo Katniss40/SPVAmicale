@@ -20,7 +20,7 @@ $dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
 <div class="hero-scene admin-hero text-center text-white">
     <div class="hero-scene-content">
         <h1 class="hero-scene-text">Calendrier des gardes et formations</h1>
-        <div><a href="/admin" class="btn btn-outline-light">Retour Accueil</a></div>
+        <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
     </div>
 </div>
 

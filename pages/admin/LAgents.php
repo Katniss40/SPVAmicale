@@ -1,7 +1,7 @@
 <div class="hero-scene text-center text-white">
         <div class="hero-scene-content">
-                <h1 class="hero-scene-text">Calendrier des Gardes</h1>
-                <div><a href="/admin" class="btn btn-primary" data-show="admin">Retour au Tableau de bord</a></div>
+                <h1 class="hero-scene-text">Liste des Agents</h1>
+                <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
         </div>
 </div>
 

@@ -1,7 +1,7 @@
 <div class="hero-scene text-center text-white">
     <div class="hero-scene-content">
             <h1 class="hero-scene-text">Vide Grenier 2025</h1>
-            <div><a href="/admin" class="btn btn-primary" data-show="admin">Retour au Tableau de bord</a></div>
+            <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
     </div>
 </div>
 
@@ -36,8 +36,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="reservationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Réservations</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reservationsDropdown">
+                                <li><a class="dropdown-item" href="/fendeuse">Fendeuse</a></li>
+                                <li><a class="dropdown-item" href="/reservation-vl">VL</a></li>
+                                <li><a class="dropdown-item" href="/admin/reservations-vl">Historique</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/forum/account.php">Mon Compte</a>

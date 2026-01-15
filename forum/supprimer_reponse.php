@@ -37,7 +37,7 @@ try {
         // Rien à supprimer
         mysqli_commit($base);
         mysqli_close($base);
-        if ($id_sujet) header('Location: lire_sujet.php?id_sujet_a_lire=' . urlencode($id_sujet));
+        if ($id_sujet) header('Location: /lireS?id_sujet_a_lire=' . urlencode($id_sujet));
         else header('Location: /Blog');
         exit;
     }
@@ -77,7 +77,7 @@ try {
     mysqli_close($base);
 
     // Rediriger vers la lecture du sujet
-    if ($id_sujet) header('Location: lire_sujet.php?id_sujet_a_lire=' . urlencode($id_sujet));
+    if ($id_sujet) header('Location: /lireS?id_sujet_a_lire=' . urlencode($id_sujet));
     else header('Location: /Blog');
     exit;
 } catch (Exception $e) {
