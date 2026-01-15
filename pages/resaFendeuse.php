@@ -43,7 +43,7 @@ $message = "";
     </div>
 </div>
 <section>
-    <nav class="navbar navbar-expand-lg bg-public admin-subnav" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
             <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
@@ -51,7 +51,7 @@ $message = "";
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item" data-show="admin"><a class="nav-link" href="/spv">Liste des membres</a></li>
                     <li class="nav-item"><a class="nav-link" href="/liens">Liens Utiles</a></li>
                     <li class="nav-item"><a class="nav-link" href="/calendrier">Calendrier des Gardes</a></li>

@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['numero_du_sujet'])) {
             </div>        
     </section>
 
-    <nav class="navbar navbar-expand-lg bg-public" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
     <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['numero_du_sujet'])) {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item" data-show="admin">
           <a class="nav-link" href="/spv">Liste des membres</a>
         </li>
