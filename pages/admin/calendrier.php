@@ -12,7 +12,7 @@
 <div class="hero-scene admin-hero text-center text-white">
     <div class="hero-scene-content">
         <h1 class="hero-scene-text">Calendrier des Gardes</h1>
-        <div><a href="/admin" class="btn btn-primary">Retour Accueil</a></div>
+        <div><a href="/admin" class="btn btn-outline-light">Retour Accueil</a></div>
     </div>
 </div>
 
@@ -26,7 +26,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item" data-show="admin">
                             <a class="nav-link" href="/spv">Liste des membres</a>
                         </li>
@@ -56,11 +56,7 @@
         </div>
     </nav>
 
-    </section>
-    </body>
-    </html>
-
-<section class="container admin-card">
+    <section class="container admin-card">
     <div class="full-page">
         <p class="cal-info" style="margin-bottom:1.2em;">Le calendrier est mis à jour régulièrement. Vous pouvez consulter les gardes prévues pour les prochaines semaines.</p>
     </div>
