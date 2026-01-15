@@ -1,29 +1,17 @@
-<div class="hero-scene text-center text-white">
-    <div class="hero-scene-content">
-        <h1 class="hero-scene-text">Mon compte</h1>
-        <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
-    </div>
-</div>
-
 <!-- Styles globaux pour les titres harmonisés -->
 <link rel="stylesheet" href="/scss/main.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.0/font/bootstrap-icons.min.css">
 
-
 <section>
-    <nav class="navbar navbar-expand-lg bg-pompier " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+            <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
                         <li class="nav-item" data-show="admin">
                             <a class="nav-link" href="/spv">Liste des membres</a>
                         </li>
@@ -62,6 +50,15 @@
     </nav>
 
 </section>
+
+<!-- Hero (moved after header to avoid overlap) -->
+<div class="hero-scene text-center text-white">
+    <div class="hero-scene-content">
+        <h1 class="hero-scene-text">Mon compte</h1>
+        <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
+    </div>
+</div>
+
 <section class="admin-page">
     <article class="bg-white text-black">
         <div class="container p-4">
