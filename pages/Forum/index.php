@@ -4,12 +4,13 @@
 <div class="hero-scene text-center text-white">
         <div class="hero-scene-content">
                 <h1 class="hero-scene-text">Forum de Discussion</h1>
+                <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
         </div>
 </div>
 
 
 <section>
-    <nav class="navbar navbar-expand-lg bg-public " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
 
@@ -18,7 +19,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item" data-show="admin">
                             <a class="nav-link" href="/spv">Liste des membres</a>
                         </li>
@@ -37,8 +38,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="reservationsDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">Réservations</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reservationsDropdownAdmin">
+                                <li><a class="dropdown-item" href="/fendeuse">Fendeuse</a></li>
+                                <li><a class="dropdown-item" href="/reservation-vl">VL</a></li>
+                                <li><a class="dropdown-item" href="/admin/reservations-vl">Historique</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/forum/account.php">Mon Compte</a>
@@ -80,9 +86,10 @@
 
 
 
-// on se connecte à notre base de données via le helper centralisé
-require_once __DIR__ . '/../controleurs/db_mysqli.php';
-$base = $mysqli;
+// on se connecte à notre base de données
+$base = mysqli_connect ('mysql-pompiers-leon.alwaysdata.net', '408942', '@Admin-2025@');
+mysqli_select_db ($base, 'pompiers-leon_admin') ;
+//include("connexion.php");
 
 // préparation de la requete
 $sql = 'SELECT id, auteur, titre, date_derniere_reponse FROM forum_sujets ORDER BY date_derniere_reponse DESC';
