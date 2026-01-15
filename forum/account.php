@@ -3,6 +3,9 @@
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
+// Normalisation défensive des clés de session
+$user_role = $_SESSION['Role'] ?? $_SESSION['role'] ?? '';
+$prenom_connected = $_SESSION['PrenomInput'] ?? $_SESSION['prenomInput'] ?? $_SESSION['NomInput'] ?? $_SESSION['nomInput'] ?? '';
 ?>
 <!-- --- Interface HTML --- -->
 
@@ -79,9 +82,12 @@ if (session_status() === PHP_SESSION_NONE) {
     </section>
 
     <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
-  <div class="container-fluid">
+    <div class="container-fluid">
     <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
     <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
+    <?php if (!empty($prenom_connected)): ?>
+      <span class="navbar-text text-light ms-3">Bienvenue, <?php echo htmlspecialchars($prenom_connected); ?></span>
+    <?php endif; ?>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
