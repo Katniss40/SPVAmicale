@@ -1,9 +1,46 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+}
+?>
+
 <!-- Styles globaux pour les titres harmonisés -->
 <link rel="stylesheet" href="/scss/main.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.0/font/bootstrap-icons.min.css">
 
+<header>
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32; width:100vw; margin-left:0; margin-right:0;">
+    <div class="container-fluid">
+        <a class="navbar-brand policeNav" href="/">
+            <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top"><span style="color: rgb(196, 29, 29); font-weight:bold; font-size:1.5rem; margin-left:8px;">Amicale des Sapeurs-Pompiers de Léon</span>
+        </a>
+        <?php if (!empty($_SESSION['PrenomInput'])): ?>
+            <span class="navbar-welcome" style="margin-left:24px; font-size:1.1rem; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($_SESSION['PrenomInput']); ?></span>
+        <?php endif; ?>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link policeNav" href="/">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link policeNav" href="/galerie">Galerie</a></li>
+                <li class="nav-item"><a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a></li>
+                <li class="nav-item"><a class="nav-link policeNav" href="/recrutement">Recrutement</a></li>
+                <li class="nav-item"><a class="nav-link policeNav" href="/infos">Manifestations</a></li>
+                <li class="nav-item dropdown" data-show="connected">
+                    <li><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
+                    <li><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
+                </li>
+                <li class="nav-item" data-show="disconnected"><a class="nav-link policeNav" href="/signin">Connexion</a></li>
+                <li class="nav-item" data-show="connected"><button class="nav-link policeNav" id="btnSignout">Déconnexion</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
+
 <section>
-    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
             <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
