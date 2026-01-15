@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+// Support des deux variantes de clé de session utilisées ailleurs (`Role` ou `role`)
+$user_role = $_SESSION['Role'] ?? $_SESSION['role'] ?? '';
+$dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
+?>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendrier des Gardes</title>
+    <title>Calendrier des gardes et formations</title>
     <link rel="stylesheet" href="/assets/css/global.css">
     <link rel="stylesheet" href="/assets/css/admin-custom.css">
     <link rel="stylesheet" href="/assets/css/calendrier-custom.css">
@@ -11,7 +19,7 @@
 <body>
 <div class="hero-scene admin-hero text-center text-white">
     <div class="hero-scene-content">
-        <h1 class="hero-scene-text">Calendrier des Gardes</h1>
+        <h1 class="hero-scene-text">Calendrier des gardes et formations</h1>
         <div><a href="/admin" class="btn btn-outline-light">Retour Accueil</a></div>
     </div>
 </div>
@@ -20,43 +28,51 @@
     <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
-
-            <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
+            <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item" data-show="admin">
-                            <a class="nav-link" href="/spv">Liste des membres</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/liens">Liens Utiles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/VideGrenier">Vide grenier</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Blog">Discussions</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item" data-show="admin">
+                        <a class="nav-link" href="/spv">Liste des membres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/liens">Liens Utiles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/calendrier">Calendrier des gardes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/VideGrenier">Vide grenier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Blog">Discussions</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="reservationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Réservations</a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="reservationsDropdown">
+                            <li><a class="dropdown-item" href="/reservation-fendeuse">Fendeuse</a></li>
+                            <li><a class="dropdown-item" href="/reservations-vl">VL</a></li>
+                            <li><a class="dropdown-item" href="/reservations-historique">Historique</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forum/account.php">Mon Compte</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <section class="container admin-card">
+    <div class="visible-page-title" style="margin-top:1rem; margin-bottom:1rem;">
+        <h2 class="titre-section">Calendrier des gardes et formations</h2>
+    </div>
     <div class="full-page">
         <p class="cal-info" style="margin-bottom:1.2em;">Le calendrier est mis à jour régulièrement. Vous pouvez consulter les gardes prévues pour les prochaines semaines.</p>
     </div>

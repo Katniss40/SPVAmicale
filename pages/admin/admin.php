@@ -16,7 +16,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item" data-show="admin">
                             <a class="nav-link" href="/spv">Liste des membres</a>
                         </li>
@@ -35,9 +35,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/Blog">Discussions</a>
                         </li>
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="reservationsDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">Réservations</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reservationsDropdownAdmin">

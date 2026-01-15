@@ -2,7 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$user_role = $_SESSION['Role'] ?? '';
+// Support des deux variantes de clé de session (`Role` ou `role`)
+$user_role = $_SESSION['Role'] ?? $_SESSION['role'] ?? '';
 $dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
 ?>
 <!DOCTYPE html>
@@ -28,9 +29,8 @@ $dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
 <section>
     <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="<?php echo htmlspecialchars($dashboard_href); ?>" data-show="admin">Tableau de bord Administrateur</a>
-
-            <a class="navbar-brand" href="/Blog" data-show="actif" >Tableau de bord </a>
+            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+            <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
