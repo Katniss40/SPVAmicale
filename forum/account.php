@@ -6,6 +6,14 @@ if (session_status() === PHP_SESSION_NONE) {
 // Normalisation défensive des clés de session
 $user_role = $_SESSION['Role'] ?? $_SESSION['role'] ?? '';
 $prenom_connected = $_SESSION['PrenomInput'] ?? $_SESSION['prenomInput'] ?? $_SESSION['NomInput'] ?? $_SESSION['nomInput'] ?? '';
+
+// Debug temporaire: affiche la session si on passe ?debug_session=1
+if (isset($_GET['debug_session']) && $_GET['debug_session'] === '1') {
+  echo '<pre style="background:#fff;color:#000;padding:1rem;">';
+  var_dump($_SESSION);
+  echo '</pre>';
+  exit;
+}
 ?>
 <!-- --- Interface HTML --- -->
 
