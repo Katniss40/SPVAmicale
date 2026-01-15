@@ -84,12 +84,17 @@
 
                         <?php
                 include("connexion.php");
+                require_once __DIR__ . '/../controleurs/hidden_accounts.php';
 
                 $sql = "SELECT * FROM Users";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
+                        // Ne pas afficher les comptes masqués
+                        if (is_hidden_user($row)) {
+                            continue;
+                        }
                         echo "<tr>";
                         //echo "<td>" . htmlspecialchars(string: $row['ID']) . "</td>";
                         //echo "<td>" . htmlspecialchars($row['Role']) . "</td>";

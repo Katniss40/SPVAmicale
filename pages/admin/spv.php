@@ -106,10 +106,15 @@ $dashboard_href = ($user_role === 'admin') ? '/admin' : '/Blog';
                         <?php
                         // Utiliser le helper mysqli centralisé
                         require_once __DIR__ . '/../controleurs/db_mysqli.php';
+                        require_once __DIR__ . '/../controleurs/hidden_accounts.php';
                         $sql = "SELECT * FROM Users";
                         $result = $mysqli->query($sql);
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
+                                // Ne pas afficher les comptes masqués
+                                if (is_hidden_user($row)) {
+                                    continue;
+                                }
                                 echo "<tr>";
                                 echo "<td data-label='ID'>" . htmlspecialchars($row['ID']) . "</td>";
                                 echo "<td data-label='Rôle'>" . htmlspecialchars($row['Role']) . "</td>";
