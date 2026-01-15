@@ -78,15 +78,15 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>        
     </section>
 
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-  <div class="container-fluid"  style="background-color: #2E7D32; border-bottom: 2px solid #2E7D32;">
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
+  <div class="container-fluid">
     <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
     <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item" data-show="admin">
           <a class="nav-link" href="/spv">Liste des membres</a>
         </li>
@@ -207,10 +207,9 @@ if (session_status() === PHP_SESSION_NONE) {
                             echo "<tbody><tr><td colspan='3'>Aucun résultat trouvé pour ce code agent.</td></tr></tbody>";
                         }
 
-                        $stmt->close();
-                    }
-                }
-                $conn->close();
+                            $stmt->close();
+                          }
+                        }
                 ?>
                     
                     </table>
@@ -269,10 +268,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" || isset($_GET['CAgent'])) {
             echo "<tbody><tr><td colspan='3'>Aucun résultat trouvé pour ce code agent.</td></tr></tbody>";
         }
 
-        $stmt->close();
-    }
-}
-$conn->close();
+            $stmt->close();
+          }
+        }
 ?>
                     
                 </table>
@@ -338,9 +336,8 @@ $conn->close();
                                 }
 
                                 $stmt->close();
+                              }
                             }
-                        }
-                        $conn->close();
                     ?>
                     
                     </table>
