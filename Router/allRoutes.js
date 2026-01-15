@@ -19,6 +19,7 @@ export const allRoutes = [
 
     new Route("/reponse", "reponse", "/pages/Forum/insert_reponse.php", ["actif", "admin"]),
     new Route("/Lsujet", "Article", "/pages/Forum/lire_sujet.php", ["actif", "admin"]),   
+    new Route("/lireS", "Article", "/pages/Forum/lire_sujet.php", ["actif", "admin"]),
     new Route("/Isujet", "sujet", "/pages/Forum/insert_sujet.php", ["actif", "admin"]),
     new Route("/Blog", "Forum de discussion", "/pages/Forum/index.php", ["actif", "admin"]),    
 
