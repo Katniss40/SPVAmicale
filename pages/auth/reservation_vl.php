@@ -302,7 +302,6 @@ $stmt->close();
       <script type="module" src="/JS/auth/reservation.js"></script>
       <script type="module" src="/JS/auth/roleManager.js"></script>
       <script type="module" src="/JS/auth/signout.js"></script>
-      <script src="/JS/auth/auto_logout_on_close.js"></script>
 
       <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -458,7 +457,7 @@ $stmt->close();
 <script type="module" src="/JS/auth/reservation.js"></script>
 <script type="module" src="/JS/auth/roleManager.js"></script>
 <script type="module" src="/JS/auth/signout.js"></script>
-<script src="/JS/auth/auto_logout_on_close.js"></script>
+<!-- auto-logout removed for demo stability -->
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

@@ -556,7 +556,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" || isset($_GET['CAgent'])) {
       <script type="module" src="/JS/auth/roleManager.js"></script>
       <script type="module" src="/JS/auth/signin-script.js"></script>
       <script type="module" src="/JS/auth/signout.js"></script>
-      <script src="/JS/auth/auto_logout_on_close.js"></script>
       <script type="module" src="/Router/router.js"></script>
       <script type="module" src="/JS/auth/reservation.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>

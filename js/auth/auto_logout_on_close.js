@@ -1,28 +1,53 @@
 // Auto-logout on tab/window close: uses navigator.sendBeacon or fetch keepalive
 (function(){
-  async function signoutKeepalive() {
-    const url = '/php/signout.php';
+  const SIGNOUT_PATH = '/php/signout.php';
+  const signoutUrl = (function(){
+    try { return new URL(SIGNOUT_PATH, window.location.origin).toString(); }
+    catch(e){ return SIGNOUT_PATH; }
+  })();
+
+  function sendSignoutViaBeacon() {
     try {
       if (navigator.sendBeacon) {
-        navigator.sendBeacon(url);
-      } else {
-        await fetch(url, { method: 'POST', keepalive: true });
+        // sendBeacon uses POST and sends cookies on same-origin
+        navigator.sendBeacon(signoutUrl);
+        console.debug('auto-logout: sendBeacon sent to', signoutUrl);
+        return true;
       }
-    } catch(e) {
-      // ignore errors
+    } catch(e){ console.debug('auto-logout: sendBeacon failed', e); }
+    return false;
+  }
+
+  async function sendSignoutViaFetch() {
+    try {
+      await fetch(signoutUrl, { method: 'POST', keepalive: true, credentials: 'same-origin' });
+      console.debug('auto-logout: fetch keepalive sent to', signoutUrl);
+      return true;
+    } catch(e){ console.debug('auto-logout: fetch failed', e); }
+    return false;
+  }
+
+  function signoutTry() {
+    // Try sendBeacon first, then fetch keepalive
+    if (!sendSignoutViaBeacon()) {
+      // best-effort async call
+      sendSignoutViaFetch();
     }
   }
 
-  // pagehide fires on tab close / navigation; reliable for sendBeacon
+  // pagehide: fired on tab close / page unload in most browsers
   window.addEventListener('pagehide', function(ev){
-    // Only sign out when page is being unloaded (not when navigating within SPA)
-    signoutKeepalive();
+    signoutTry();
   }, {capture: true});
 
-  // also try beforeunload as fallback
-  window.addEventListener('beforeunload', function(ev){
-    try { if (navigator.sendBeacon) navigator.sendBeacon('/php/signout.php');
-          else navigator.fetch && fetch('/php/signout.php', { method:'POST', keepalive:true });
-    } catch(e){}
+  // visibilitychange: when tab becomes hidden (e.g., user switches app)
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'hidden') signoutTry();
   });
+
+  // fallback: beforeunload
+  window.addEventListener('beforeunload', function(){
+    signoutTry();
+  });
+
 })();

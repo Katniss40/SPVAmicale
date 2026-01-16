@@ -42,7 +42,9 @@ const LoadContentPage = async () => {
 
   // --- 📄 Chargement du contenu HTML ---
   try {
-    const html = await fetch(actualRoute.pathHtml).then((res) => res.text());
+    // Si l'URL contient une query string, la transmettre au fetch
+    const fetchUrl = actualRoute.pathHtml + (window.location.search || '');
+    const html = await fetch(fetchUrl).then((res) => res.text());
     document.getElementById("main-page").innerHTML = html;
   } catch (err) {
     document.getElementById("main-page").innerHTML =

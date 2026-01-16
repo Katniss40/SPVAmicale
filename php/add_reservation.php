@@ -24,11 +24,17 @@ if ($data) {
             $prix_total = $diff * 15; // 15 €/jour
 
             // Insertion
-            $stmt = $conn->prepare("INSERT INTO reservations (user_id, nom_reservant, date_debut, date_fin, prix_total) VALUES (?, ?, ?, ?, ?)");
-            $user_id = null; // si tu veux récupérer l'id connecté, à adapter
-            $stmt->bind_param("isssd", $user_id, $nom, $debut, $fin, $prix_total);
+            // Si on a l'id utilisateur, l'insérer, sinon faire un insert sans user_id
+            $user_id = null; // si tu veux récupérer l'id connecté, à adapter (ex: $_SESSION['UserId'])
+            if ($user_id === null) {
+                $stmt = $conn->prepare("INSERT INTO reservations (nom_reservant, date_debut, date_fin, prix_total) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param("sssd", $nom, $debut, $fin, $prix_total);
+            } else {
+                $stmt = $conn->prepare("INSERT INTO reservations (user_id, nom_reservant, date_debut, date_fin, prix_total) VALUES (?, ?, ?, ?, ?)");
+                $stmt->bind_param("isssd", $user_id, $nom, $debut, $fin, $prix_total);
+            }
 
-            if ($stmt->execute()) {
+            if ($stmt && $stmt->execute()) {
                 $response['success'] = true;
                 $response['message'] = "Réservation ajoutée avec succès !";
 

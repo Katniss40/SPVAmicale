@@ -17,11 +17,11 @@ export const allRoutes = [
     new Route("/editPassword", "Modification", "/pages/auth/editPassword.php",["actif", "admin"]),
     new Route("/infosPerso", "Mes infos", "/pages/auth/infosPerso.php",["actif", "admin"]),
 
-    new Route("/reponse", "reponse", "/pages/Forum/insert_reponse.php", ["actif", "admin"]),
-    new Route("/Lsujet", "Article", "/pages/Forum/lire_sujet.php", ["actif", "admin"]),   
-    new Route("/lireS", "Article", "/pages/Forum/lire_sujet.php", ["actif", "admin"]),
-    new Route("/Isujet", "sujet", "/pages/Forum/insert_sujet.php", ["actif", "admin"]),
-    new Route("/Blog", "Forum de discussion", "/pages/Forum/index.php", ["actif", "admin"]),    
+    new Route("/reponse", "reponse", "/forum/insert_reponse.php", ["actif", "admin"]),
+    new Route("/Lsujet", "Article", "/forum/lire_sujet.php", ["actif", "admin"]),   
+    new Route("/lireS", "Article", "/forum/lire_sujet.php", ["actif", "admin"]),
+    new Route("/Isujet", "sujet", "/forum/insert_sujet.php", ["actif", "admin"]),
+    new Route("/Blog", "Forum de discussion", "/forum/index.php", ["actif", "admin"]),    
 
     new Route("/GalerieSPV", "Photos", "/pages/galerie/galerieSPV.php", ["actif", "admin"], "/JS/galerieSPV-upload.js"),
     new Route("/VideGrenier", "Vide Grenier 2025", "/pages/admin/VideGrenier.php", ["actif", "admin"]),  

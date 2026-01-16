@@ -13,16 +13,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['numero_du_sujet'])) {
     $message = $_POST['message'] ?? '';
     $numero = $_GET['numero_du_sujet'];
     if (trim($auteur) !== '' && trim($message) !== '' && trim($numero) !== '') {
-        $date = date("Y-m-d H:i:s");
-        $sql = 'INSERT INTO forum_reponses VALUES("", "'.mysqli_real_escape_string($base, $auteur).'", "'.mysqli_real_escape_string($base, $message).'", "'.$date.'", "'.mysqli_real_escape_string($base, $numero).'")';
-        mysqli_query($base, $sql) or die('Erreur SQL !'.$sql.'<br />'.mysqli_error($base));
-
+      $date = date("Y-m-d H:i:s");
+      $sql = 'INSERT INTO forum_reponses VALUES("", "'.mysqli_real_escape_string($base, $auteur).'", "'.mysqli_real_escape_string($base, $message).'", "'.$date.'", "'.mysqli_real_escape_string($base, $numero).'")';
+      $res = mysqli_query($base, $sql);
+      if (!$res) {
+        $sqlErr = mysqli_error($base);
+        error_log("[forum/insert_reponse] INSERT failed: $sqlErr | SQL: $sql");
+        $erreur = 'Erreur serveur lors de l\'enregistrement (voir logs).';
+      } else {
         $sql = 'UPDATE forum_sujets SET date_derniere_reponse="'.$date.'" WHERE id="'.mysqli_real_escape_string($base, $numero).'"';
-        mysqli_query($base, $sql) or die('Erreur SQL !'.$sql.'<br />'.mysqli_error($base));
-
-        mysqli_close($base);
-        header('Location: /lireS?id_sujet_a_lire=' . urlencode($numero));
-        exit;
+        $res2 = mysqli_query($base, $sql);
+        if (!$res2) {
+          $sqlErr = mysqli_error($base);
+          error_log("[forum/insert_reponse] UPDATE failed: $sqlErr | SQL: $sql");
+          $erreur = 'Erreur serveur lors de la mise à jour (voir logs).';
+        } else {
+          mysqli_close($base);
+          // Redirection serveur vers la page PHP (navigation complète, pas via router client)
+          header('Location: /forum/lire_sujet.php?id_sujet_a_lire=' . urlencode($numero));
+          // Fallback JS redirect si les headers ont déjà été envoyés (navigation complète)
+          echo '<script>try{ window.location.replace("/forum/lire_sujet.php?id_sujet_a_lire='.urlencode($numero).'"); }catch(e){ console.error(e); }</script>';
+          exit;
+        }
+      }
     }
 }
 ?>
@@ -216,23 +229,31 @@ if (isset ($_POST['go']) && $_POST['go']=='Poster') {
 		// préparation de la requête d'insertion (table forum_reponses)
 		$sql = 'INSERT INTO forum_reponses VALUES("", "'.mysqli_real_escape_string($base, $_POST['auteur']).'", "'.mysqli_real_escape_string($base, $_POST['message']).'", "'.$date.'", "'.$_GET['numero_du_sujet'].'")';
 
-		// on lance la requête (mysql_query) et on impose un message d'erreur si la requête ne se passe pas bien (or die)
-		mysqli_query($base, $sql) or die('Erreur SQL !'.$sql.'<br />'.mysqli_error($base));
-
-		// préparation de la requête de modification de la date de la dernière réponse postée (dans la table forum_sujets)
-		$sql = 'UPDATE forum_sujets SET date_derniere_reponse="'.$date.'" WHERE id="'.$_GET['numero_du_sujet'].'"';
-
-		// on lance la requête (mysql_query) et on impose un message d'erreur si la requête ne se passe pas bien (or die)
-		mysqli_query($base, $sql) or die('Erreur SQL !'.$sql.'<br />'.mysqli_error($base));
-
-		// on ferme la connexion à la base de données
-		mysqli_close($base);
-
-    // on redirige vers la page de lecture du sujet en cours
-    header('Location: /lireS?id_sujet_a_lire='.$_GET['numero_du_sujet']);
-
-		// on termine le script courant
-		exit;
+    // on lance la requête (mysql_query) et on gère les erreurs pour debug
+    $res = mysqli_query($base, $sql);
+    if (!$res) {
+      $sqlErr = mysqli_error($base);
+      error_log("[forum/insert_reponse] INSERT failed: $sqlErr | SQL: $sql");
+      $erreur = 'Erreur serveur lors de l\'enregistrement (voir logs).';
+    } else {
+      // préparation de la requête de modification de la date de la dernière réponse postée (dans la table forum_sujets)
+      $sql = 'UPDATE forum_sujets SET date_derniere_reponse="'.$date.'" WHERE id="'.$_GET['numero_du_sujet'].'"';
+      $res2 = mysqli_query($base, $sql);
+      if (!$res2) {
+        $sqlErr = mysqli_error($base);
+        error_log("[forum/insert_reponse] UPDATE failed: $sqlErr | SQL: $sql");
+        $erreur = 'Erreur serveur lors de la mise à jour (voir logs).';
+      } else {
+                mysqli_close($base);
+                // on redirige vers la page de lecture du sujet en cours
+                // Redirection serveur vers la page PHP (navigation complète, pas via router client)
+                header('Location: /forum/lire_sujet.php?id_sujet_a_lire=' . urlencode($_GET['numero_du_sujet']));
+                // Fallback JS redirect si les headers ont déjà été envoyés (navigation complète)
+                echo '<script>try{ window.location.replace("/forum/lire_sujet.php?id_sujet_a_lire='.htmlspecialchars($_GET['numero_du_sujet']).'"); }catch(e){ console.error(e); }</script>';
+                // on termine le script courant
+                exit;
+      }
+    }
 	}
 	}
 }
@@ -341,7 +362,6 @@ if (isset($erreur)) echo '<div class="alert alert-danger">',$erreur,'</div>';
       <script type="module" src="/JS/auth/roleManager.js"></script>
       <script type="module" src="/JS/auth/signin-script.js"></script>
       <script type="module" src="/JS/auth/signout.js"></script>
-      <script src="/JS/auth/auto_logout_on_close.js"></script>
       <script type="module" src="/Router/router.js"></script>
 
 <script>

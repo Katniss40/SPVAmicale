@@ -205,6 +205,7 @@ $message = "";
 <script type="module" src="/JS/auth/reservation.js"></script>
 <script type="module" src="/JS/auth/roleManager.js"></script>
 <script type="module" src="/JS/auth/signout.js"></script>
+<!-- auto-logout removed for demo stability -->
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

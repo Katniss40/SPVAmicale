@@ -137,8 +137,17 @@ if (session_status() === PHP_SESSION_NONE) {
         echo '<div class="admin-card"><h2 class="titre-section">Sujet non défini.</h2></div>';
     } else {
         // Connexion à la base pour récupérer le titre (helper centralisé)
-        require_once __DIR__ . '/../pages/controleurs/db_mysqli.php';
-        $base = $mysqli;
+        try {
+            require_once __DIR__ . '/../pages/controleurs/db_mysqli.php';
+            $base = $mysqli;
+        } catch (Throwable $e) {
+            // Log and show friendly message so the page isn't completely blank
+            error_log('[forum/lire_sujet] DB helper load failed: ' . $e->getMessage());
+            echo '<div class="admin-card"><h2 class="titre-section">Erreur serveur : impossible de se connecter à la base de données.</h2><p>Vérifiez les logs serveur.</p></div>';
+            // Stop further processing
+            echo '</div></main></body></html>';
+            exit;
+        }
         $id_sujet = mysqli_real_escape_string($base, $_GET['id_sujet_a_lire']);
         $sql_titre = 'SELECT titre FROM forum_sujets WHERE id="' . $id_sujet . '"';
         $req_titre = mysqli_query($base, $sql_titre);
@@ -161,7 +170,16 @@ if (session_status() === PHP_SESSION_NONE) {
             $base = $mysqli;
         }
         $sql = 'SELECT id, auteur, message, date_reponse FROM forum_reponses WHERE correspondance_sujet="' . $id_sujet . '" ORDER BY date_reponse ASC';
-        $req = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+        $req = mysqli_query($base, $sql);
+        if (!$req) {
+            $sqlErr = mysqli_error($base);
+            error_log('[forum/lire_sujet] SELECT failed: ' . $sqlErr . ' | SQL: ' . $sql);
+            echo '<div class="admin-card"><h2 class="titre-section">Erreur serveur lors de la récupération des réponses.</h2><p>Voir les logs pour plus de détails.</p></div>';
+            // cleanup
+            if ($base) mysqli_close($base);
+            echo '</div></main></body></html>';
+            exit;
+        }
         $nb_reponses = 0;
         while ($data = mysqli_fetch_array($req)) {
             $nb_reponses++;
@@ -204,10 +222,9 @@ if (session_status() === PHP_SESSION_NONE) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="module" src="/JS/auth/roleManager.js"></script>
-      <script type="module" src="/JS/auth/signin-script.js"></script>
-      <script type="module" src="/JS/auth/signout.js"></script>
-            <script src="/JS/auth/auto_logout_on_close.js"></script>
-      <script type="module" src="/Router/router.js"></script>
+    <script type="module" src="/JS/auth/signin-script.js"></script>
+    <script type="module" src="/JS/auth/signout.js"></script>
+    <script type="module" src="/Router/router.js"></script>
 
 <script>
 // Bouton retour haut
