@@ -341,6 +341,7 @@ if (isset($erreur)) echo '<div class="alert alert-danger">',$erreur,'</div>';
       <script type="module" src="/JS/auth/roleManager.js"></script>
       <script type="module" src="/JS/auth/signin-script.js"></script>
       <script type="module" src="/JS/auth/signout.js"></script>
+      <script src="/JS/auth/auto_logout_on_close.js"></script>
       <script type="module" src="/Router/router.js"></script>
 
 <script>

@@ -131,6 +131,7 @@ initReservationPage();
 </script>
 <script type="module" src="/JS/auth/roleManager.js"></script>
 <script type="module" src="/JS/auth/signout.js"></script>
+<script src="/JS/auth/auto_logout_on_close.js"></script>
 <script>
 // ... JS du formulaire et du calendrier (identique à l'existant) ...
 </script>
