@@ -66,6 +66,28 @@ $stmt->close();
   <style>
     .card-resa { max-width: 900px; margin: 24px auto; }
     .status-badge { font-size: 0.95rem; }
+    /* FullCalendar appearance overrides to match fendeuse reservation */
+    .resa-container .fc {
+      font-family: inherit;
+    }
+    .resa-container .fc .fc-toolbar-title { color: #2E7D32; font-weight:700; }
+    .resa-container .fc .fc-button-primary { background:#2E7D32; border-color:#2E7D32; color:#fff; }
+    .resa-container .fc .fc-button { border-radius:6px; }
+    .resa-container .fc .fc-col-header-cell-cushion { color:#2E7D32; font-weight:600; }
+    .resa-container .fc .fc-daygrid-day-number { color:#2E7D32; font-weight:600; }
+    .resa-container .fc .fc-daygrid-day { background: #ffffff; }
+    .resa-container .fc .fc-daygrid-day-frame { min-height: 90px; }
+    .resa-container .fc .fc-daygrid-event {
+      background-color: #b30000 !important;
+      color: #fff !important;
+      border-radius: 6px;
+      padding: 2px 6px;
+      box-shadow: none !important;
+    }
+    .resa-container .fc .fc-daygrid-block-event .fc-event-main { padding: 0 6px; }
+    .resa-container .fc .fc-daygrid-day.fc-day-today { box-shadow: inset 0 0 0 4px rgba(46,125,50,0.08); }
+    /* Ensure numbers and headers aren't overridden by global color rules */
+    .resa-container .fc, .resa-container .fc * { color: inherit !important; }
   </style>
 </head>
 <body>
@@ -116,20 +138,66 @@ $stmt->close();
 </nav>
 </header>
 
-<section>
-<!-- Hero (moved after header to avoid overlap) -->
-<div class="hero-scene text-center text-white">
+<div class="hero-scene admin-hero text-center text-white">
     <div class="hero-scene-content">
-        <h1 class="hero-scene-text">Mon compte</h1>
+        <h1 class="hero-scene-text">Espace Administrateur</h1>
         <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
     </div>
 </div>
+<section>
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav navbar-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item" data-show="admin">
+                            <a class="nav-link" href="/spv">Liste des membres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/liens">Liens Utiles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/VideGrenier">Vide grenier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Blog">Discussions</a>
+                        </li>
+                        <!--<li class="nav-item">
+                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
+                        </li>-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="reservationsDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">Réservations</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reservationsDropdownAdmin">
+                                <li><a class="dropdown-item" href="/fendeuse">Fendeuse</a></li>
+                                <li><a class="dropdown-item" href="/reservation-vl">VL</a></li>
+                                <li><a class="dropdown-item" href="/admin/reservations-vl">Historique</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
+                        </li>
+                        <!-- 'Réponses supprimées' moved to admin page actions (button near forum subjects) -->
+                    </ul>
+                </div>
+        </div>
+    </nav>
+
+</section>
 
 <section class="admin-page">
     <article class="bg-white text-black">
         <div class="container p-4">
             <div class="page-title-container text-center">
-                <h1 class="page-title"><i class="bi bi-person-badge me-3"></i>📅 Réservation de la VL</h1>
+                <h1 class="page-title">📅  Réservation de la VL  <i class="bi bi-person-badge me-3"></i></h1>
                 <div class="page-title-underline"></div>
             </div>
         </div>
