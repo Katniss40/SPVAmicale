@@ -115,8 +115,31 @@ $stmt->close();
   </div>
 </nav>
 </header>
+
+<section>
+<!-- Hero (moved after header to avoid overlap) -->
+<div class="hero-scene text-center text-white">
+    <div class="hero-scene-content">
+        <h1 class="hero-scene-text">Mon compte</h1>
+        <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
+    </div>
+</div>
+
+<section class="admin-page">
+    <article class="bg-white text-black">
+        <div class="container p-4">
+            <div class="page-title-container text-center">
+                <h1 class="page-title"><i class="bi bi-person-badge me-3"></i>📅 Réservation de la VL</h1>
+                <div class="page-title-underline"></div>
+            </div>
+        </div>
+    </article>
+
+</section>
+
+
 <main class="resa-container" style="padding-top:100px;">
-  <h2 class="mb-4">📅 Réservation VL</h2>
+ 
   <div id="calendar"></div>
 
   <form id="formResa">

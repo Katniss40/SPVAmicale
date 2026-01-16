@@ -30,9 +30,15 @@ export default function initReservationVL() {
         // Optionally allow cancel if owner; handled via server check
         if (confirm('Voulez-vous annuler cette réservation ?')) {
           fetch('/php/delete_reservation_vl.php', {
-            method: 'POST', headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({ id: info.event.id })
-          }).then(r=>r.json()).then(d=>{ alert(d.message); if(d.success) calendar.refetchEvents(); });
+              method: 'POST', headers: {'Content-Type':'application/json'},
+              body: JSON.stringify({ id: info.event.id })
+            })
+            .then(async r => {
+              const text = await r.text();
+              try { const json = JSON.parse(text); alert(json.message || text); if (r.ok && json.success) calendar.refetchEvents(); }
+              catch (e) { alert('Erreur serveur ('+r.status+'):\n'+text); }
+            })
+            .catch(err => { alert('Erreur réseau: ' + err.message); });
         }
       }
     });
@@ -46,8 +52,15 @@ export default function initReservationVL() {
       if (new Date(end) < new Date(start)) { [start,end] = [end,start]; }
       try {
         const resp = await fetch('/php/add_reservation_vl.php', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ date_debut: start, date_fin: end }) });
-        const data = await resp.json(); alert(data.message); if (data.success) calendar.refetchEvents();
-      } catch (err) { alert('Erreur réseau.'); }
+        const text = await resp.text();
+        try {
+          const data = JSON.parse(text);
+          alert(data.message || text);
+          if (resp.ok && data.success) calendar.refetchEvents();
+        } catch (e) {
+          alert('Erreur serveur ('+resp.status+'):\n'+text);
+        }
+      } catch (err) { alert('Erreur réseau: ' + err.message); }
     });
     return;
   }
