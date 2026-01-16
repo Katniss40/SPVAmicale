@@ -39,6 +39,11 @@ export default function initReservationPage() {
   inputDebut.addEventListener('change', updateMontant);
   inputFin.addEventListener('change', updateMontant);
 
+  // Format YYYY-MM-DD en heure locale (évite les décalages UTC lors du toISOString)
+  function formatLocal(date) {
+    return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+  }
+
   // --- FullCalendar ---
   // Détecter mobile
 
@@ -53,11 +58,13 @@ export default function initReservationPage() {
       headerToolbar: { left: 'prev,next today', center: 'title', right: '' },
       events: '/php/get_reservations.php',
       select: function(info) {
+        // FullCalendar returns an exclusive end date; convert to inclusive by subtracting 1 day
         let endInclusive = new Date(info.end);
-        endInclusive.setDate(endInclusive.getDate() + 1);
+        endInclusive.setDate(endInclusive.getDate() - 1);
         if (endInclusive < info.start) endInclusive = new Date(info.start);
-        inputDebut.value = info.start.toISOString().split('T')[0];
-        inputFin.value = endInclusive.toISOString().split('T')[0];
+        // Use FullCalendar's startStr (no UTC conversion) and local formatter
+        inputDebut.value = info.startStr;
+        inputFin.value = formatLocal(endInclusive);
         updateMontant();
       },
       eventClick: function(info) {

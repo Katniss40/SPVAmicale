@@ -14,31 +14,48 @@ export default function initReservationVL() {
   // --- FullCalendar ---
   const isMobile = window.innerWidth <= 600;
   if (!isMobile) {
+    // helper to format local date YYYY-MM-DD
+    function formatLocal(date) {
+      return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+    }
+
     const calendar = new FullCalendar.Calendar(calendarEl, {
       locale: 'fr',
       selectable: true,
+      selectMirror: true,
       initialView: 'dayGridMonth',
       headerToolbar: { left: 'prev,next today', center: 'title', right: '' },
       events: '/php/get_reservations_vl.php',
+      eventColor: '#b30000',
+      eventTextColor: '#ffffff',
+      eventDisplay: 'block',
       select: function(info) {
-        const endIncl = new Date(info.end);
-        endIncl.setDate(endIncl.getDate()-1);
+        // FullCalendar end is exclusive; convert to inclusive
+        let endInclusive = new Date(info.end);
+        endInclusive.setDate(endInclusive.getDate() - 1);
+        if (endInclusive < info.start) endInclusive = new Date(info.start);
         inputDebut.value = info.startStr;
-        inputFin.value = endIncl.toISOString().split('T')[0];
+        inputFin.value = formatLocal(endInclusive);
       },
       eventClick: function(info) {
-        // Optionally allow cancel if owner; handled via server check
+        // Populate form with original stored dates when available to avoid timezone shifts
+        const props = info.event.extendedProps || {};
+        const start = props.date_debut || props.reserved_at || info.event.startStr;
+        const end = props.date_fin || props.reserved_at || (info.event.end ? info.event.endStr : start);
+        inputDebut.value = start;
+        inputFin.value = end;
+
         if (confirm('Voulez-vous annuler cette réservation ?')) {
           fetch('/php/delete_reservation_vl.php', {
-              method: 'POST', headers: {'Content-Type':'application/json'},
-              body: JSON.stringify({ id: info.event.id })
-            })
-            .then(async r => {
-              const text = await r.text();
-              try { const json = JSON.parse(text); alert(json.message || text); if (r.ok && json.success) calendar.refetchEvents(); }
-              catch (e) { alert('Erreur serveur ('+r.status+'):\n'+text); }
-            })
-            .catch(err => { alert('Erreur réseau: ' + err.message); });
+            method: 'POST', headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ id: info.event.id })
+          })
+          .then(async r => {
+            const text = await r.text();
+            try { const json = JSON.parse(text); alert(json.message || text); if (r.ok && json.success) calendar.refetchEvents(); }
+            catch (e) { alert('Erreur serveur ('+r.status+'):\n'+text); }
+          })
+          .catch(err => { alert('Erreur réseau: ' + err.message); });
         }
       }
     });
