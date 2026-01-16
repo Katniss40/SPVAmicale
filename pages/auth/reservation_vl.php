@@ -11,7 +11,7 @@ require_once __DIR__ . '/../controleurs/db_mysqli.php';
 $conn = $mysqli;
 
 $author_email = $_SESSION['EmailInput'];
-$author_name = $_SESSION['PrenomInput'] ?? '';
+$author_name = $_SESSION['PrenomInput'] ?? $_SESSION['prenomInput'] ?? $_SESSION['NomInput'] ?? $_SESSION['nomInput'] ?? '';
 
 // Créer la table si elle n'existe pas (simple gestion d'une seule réservation pour le VL)
 $createSql = "CREATE TABLE IF NOT EXISTS reservations_vl (
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     header('Location: /pages/auth/reservation_vl.php');
-    exit;
+    header('Location: /reservation-vl');
 }
 
 // Récupérer l'état courant
@@ -66,62 +66,79 @@ $stmt->close();
   <style>
     .card-resa { max-width: 900px; margin: 24px auto; }
     .status-badge { font-size: 0.95rem; }
-    /* Petit arrondi non-destructif pour le calendrier (si présent) */
-    #calendar, #calendar .fc, .card-resa #calendar {
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    /* arrondir les cellules si FullCalendar est utilisé */
-    #calendar .fc-daygrid-day-frame { border-radius: 6px; }
   </style>
 </head>
 <body>
-<?php include __DIR__ . '/../..//pages/controleurs/nav_stub.php' ?? ''; ?>
-<main class="container">
-  <div class="card card-resa shadow-sm">
-    <div class="card-body">
-      <h3 class="card-title">Réservation du véhicule VL</h3>
-      <p class="text-muted">Page réservée aux membres connectés. Vous pouvez réserver le véhicule si personne ne l'a déjà pris. Vous seul(e) pouvez annuler votre réservation.</p>
+<header>
 
-      <div class="row">
-        <div class="col-md-8">
-          <?php if ($reservation): ?>
-            <div class="mb-3">
-              <p><strong>Statut :</strong> <span class="badge bg-danger status-badge">Réservé</span></p>
-              <p><strong>Réservé par :</strong> <?php echo htmlspecialchars($reservation['author_name'] ?: $reservation['author_email']); ?></p>
-              <p><strong>Depuis :</strong> <?php echo htmlspecialchars($reservation['reserved_at']); ?></p>
-            </div>
-          <?php else: ?>
-            <div class="mb-3">
-              <p><strong>Statut :</strong> <span class="badge bg-success status-badge">Disponible</span></p>
-              <p>Le véhicule est actuellement disponible.</p>
-            </div>
-          <?php endif; ?>
-        </div>
-
-        <div class="col-md-4 text-md-end">
-          <?php if (!$reservation): ?>
-            <form method="post">
-              <input type="hidden" name="action" value="reserve">
-              <button type="submit" class="btn btn-primary">Réserver le VL</button>
-            </form>
-          <?php elseif ($reservation['author_email'] === $author_email): ?>
-            <form method="post">
-              <input type="hidden" name="action" value="cancel">
-              <button type="submit" class="btn btn-warning">Annuler ma réservation</button>
-            </form>
-          <?php else: ?>
-            <button class="btn btn-secondary" disabled>Réservé par un autre membre</button>
-          <?php endif; ?>
-        </div>
-      </div>
-
-      <hr>
-      <a href="/forum/account.php" class="btn btn-link">Retour à mon compte</a>
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
+  <div class="container-fluid">
+    <a class="navbar-brand policeNav" href="/">
+      <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
+      <?php if (!empty($author_name)): ?>
+        <span class="navbar-welcome" style="margin-left:90px; font-size:1.1rem; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($author_name); ?></span>
+      <?php endif; ?>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/galerie">Galerie</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/recrutement">Recrutement</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/infos">Manifestations</a>
+        </li>
+        
+        <li class="nav-item dropdown" data-show="connected">
+          <li><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
+          <li><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
+        </li>
+        
+        <li class="nav-item" data-show="disconnected">
+          <a class="nav-link policeNav" href="/signin">Connexion</a>
+        </li>
+        <li class="nav-item" data-show="connected">
+          <button class="nav-link policeNav" id="btnSignout">Déconnexion</button>
+        </li>
+      </ul>
     </div>
   </div>
+</nav>
+</header>
+<main class="resa-container" style="padding-top:100px;">
+  <h2 class="mb-4">📅 Réservation VL</h2>
+  <div id="calendar"></div>
+
+  <form id="formResa">
+    <div class="mb-3">
+      <label for="nom_reservant" class="form-label">Votre nom :</label>
+      <input type="text" id="nom_reservant" name="nom_reservant" class="form-control" placeholder="Votre nom" value="<?php echo htmlspecialchars($author_name); ?>" required>
+    </div>
+    <div class="mb-3">
+      <label for="date_debut" class="form-label">Du :</label>
+      <input type="date" id="date_debut" name="date_debut" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="date_fin" class="form-label">Au :</label>
+      <input type="date" id="date_fin" name="date_fin" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success w-100">Réserver</button>
+    <button type="button" id="btnAnnuler" class="btn btn-danger w-100 mt-2">🗑️ Annuler ma réservation</button>
+  </form>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script type="module" src="/JS/auth/reservation_vl.js"></script>
 </body>
 </html>
