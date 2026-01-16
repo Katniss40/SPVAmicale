@@ -79,6 +79,10 @@ $stmt->close();
 </head>
 <body>
 <header>
+  <script>
+    // Shim to prevent errors when third-party scripts expect `s3gt` global
+    window.s3gt = window.s3gt || {};
+  </script>
 
 <nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
   <div class="container-fluid">
