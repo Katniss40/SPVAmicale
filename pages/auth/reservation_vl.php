@@ -11,7 +11,7 @@ require_once __DIR__ . '/../controleurs/db_mysqli.php';
 $conn = $mysqli;
 
 $author_email = $_SESSION['EmailInput'];
-$author_name = $_SESSION['PrenomInput'] ?? $_SESSION['prenomInput'] ?? $_SESSION['NomInput'] ?? $_SESSION['nomInput'] ?? '';
+$author_name = $_SESSION['PrenomInput'] ?? '';
 
 // Créer la table si elle n'existe pas (simple gestion d'une seule réservation pour le VL)
 $createSql = "CREATE TABLE IF NOT EXISTS reservations_vl (
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     header('Location: /pages/auth/reservation_vl.php');
-    header('Location: /reservation-vl');
+    exit;
 }
 
 // Récupérer l'état courant
@@ -63,193 +63,58 @@ $stmt->close();
   <title>Réservation VL - Caserne de Léon</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/global.css">
-  <link rel="stylesheet" href="/assets/css/reservation.css">
-  <link rel="stylesheet" href="/scss/main.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.0/font/bootstrap-icons.min.css">
   <style>
     .card-resa { max-width: 900px; margin: 24px auto; }
     .status-badge { font-size: 0.95rem; }
-    /* FullCalendar appearance overrides to match fendeuse reservation */
-    .resa-container .fc {
-      font-family: inherit;
-    }
-    .resa-container .fc .fc-toolbar-title { color: #2E7D32; font-weight:700; }
-    .resa-container .fc .fc-button-primary { background:#2E7D32; border-color:#2E7D32; color:#fff; }
-    .resa-container .fc .fc-button { border-radius:6px; }
-    .resa-container .fc .fc-col-header-cell-cushion { color:#2E7D32; font-weight:600; }
-    .resa-container .fc .fc-daygrid-day-number { color:#2E7D32; font-weight:600; }
-    .resa-container .fc .fc-daygrid-day { background: #ffffff; }
-    .resa-container .fc .fc-daygrid-day-frame { min-height: 90px; }
-    /* Rounded card and calendar wrapper */
-    .card-resa { border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); border: 2px solid #e9e0d1; background:#fff; padding:18px; }
-    .card-resa .fc { border-radius: 10px; overflow: hidden; }
-    .resa-container .fc .fc-daygrid-day-frame { border-radius:8px; }
-    .resa-container .fc .fc-daygrid-event {
-      background-color: #b30000 !important;
-      color: #fff !important;
-      border-radius: 6px;
-      padding: 2px 6px;
-      box-shadow: none !important;
-    }
-    .resa-container .fc .fc-daygrid-block-event .fc-event-main { padding: 0 6px; }
-    .resa-container .fc .fc-daygrid-day.fc-day-today { box-shadow: inset 0 0 0 4px rgba(46,125,50,0.08); }
-    /* Ensure numbers and headers aren't overridden by global color rules */
-    .resa-container .fc, .resa-container .fc * { color: inherit !important; }
   </style>
-</header>
+</head>
+<body>
+<?php include __DIR__ . '/../..//pages/controleurs/nav_stub.php' ?? ''; ?>
+<main class="container">
+  <div class="card card-resa shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title">Réservation du véhicule VL</h3>
+      <p class="text-muted">Page réservée aux membres connectés. Vous pouvez réserver le véhicule si personne ne l'a déjà pris. Vous seul(e) pouvez annuler votre réservation.</p>
 
-<section class="admin-page">
-  <article class="bg-white text-black">
-    <div class="container p-4">
-      <div class="page-title-container text-center">
-        <h1 class="page-title"><i class="bi bi-calendar3 me-3"></i>Réservation VL</h1>
-        <div class="page-title-underline"></div>
+      <div class="row">
+        <div class="col-md-8">
+          <?php if ($reservation): ?>
+            <div class="mb-3">
+              <p><strong>Statut :</strong> <span class="badge bg-danger status-badge">Réservé</span></p>
+              <p><strong>Réservé par :</strong> <?php echo htmlspecialchars($reservation['author_name'] ?: $reservation['author_email']); ?></p>
+              <p><strong>Depuis :</strong> <?php echo htmlspecialchars($reservation['reserved_at']); ?></p>
+            </div>
+          <?php else: ?>
+            <div class="mb-3">
+              <p><strong>Statut :</strong> <span class="badge bg-success status-badge">Disponible</span></p>
+              <p>Le véhicule est actuellement disponible.</p>
+            </div>
+          <?php endif; ?>
+        </div>
+
+        <div class="col-md-4 text-md-end">
+          <?php if (!$reservation): ?>
+            <form method="post">
+              <input type="hidden" name="action" value="reserve">
+              <button type="submit" class="btn btn-primary">Réserver le VL</button>
+            </form>
+          <?php elseif ($reservation['author_email'] === $author_email): ?>
+            <form method="post">
+              <input type="hidden" name="action" value="cancel">
+              <button type="submit" class="btn btn-warning">Annuler ma réservation</button>
+            </form>
+          <?php else: ?>
+            <button class="btn btn-secondary" disabled>Réservé par un autre membre</button>
+          <?php endif; ?>
+        </div>
       </div>
-    </div>
-  </article>
-</section>
 
-<main class="resa-container card-resa" style="padding-top:100px;">
-  <h2 class="mb-4 visually-hidden">📅 Réservation VL</h2>
-  <div id="calendar"></div>
-    <a class="navbar-brand policeNav" href="/">
-      <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
-      <?php if (!empty($author_name)): ?>
-        <span class="navbar-welcome" style="margin-left:90px; font-size:1.1rem; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($author_name); ?></span>
-      <?php endif; ?>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/">Accueil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/galerie">Galerie</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/recrutement">Recrutement</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link policeNav" href="/infos">Manifestations</a>
-        </li>
-        
-        <li class="nav-item dropdown" data-show="connected">
-          <li><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
-          <li><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
-        </li>
-        
-        <li class="nav-item" data-show="disconnected">
-          <a class="nav-link policeNav" href="/signin">Connexion</a>
-        </li>
-        <li class="nav-item" data-show="connected">
-          <button class="nav-link policeNav" id="btnSignout">Déconnexion</button>
-        </li>
-      </ul>
+      <hr>
+      <a href="/forum/account.php" class="btn btn-link">Retour à mon compte</a>
     </div>
   </div>
-</nav>
-</header>
-
-<div class="hero-scene admin-hero text-center text-white">
-    <div class="hero-scene-content">
-        <h1 class="hero-scene-text">Espace Administrateur</h1>
-        <div><a href="/" class="btn btn-primary">Retour Accueil</a></div>
-    </div>
-</div>
-<section>
-    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav navbar-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item" data-show="admin">
-                            <a class="nav-link" href="/spv">Liste des membres</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/liens">Liens Utiles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/calendrier">Calendrier des Gardes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/VideGrenier">Vide grenier</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/GalerieSPV">Gestion des Photos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Blog">Discussions</a>
-                        </li>
-                        <!--<li class="nav-item">
-                            <a class="nav-link" href="/fendeuse">Réservation fendeuse</a>
-                        </li>-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="reservationsDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">Réservations</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reservationsDropdownAdmin">
-                                <li><a class="dropdown-item" href="/fendeuse">Fendeuse</a></li>
-                                <li><a class="dropdown-item" href="/reservation-vl">VL</a></li>
-                                <li><a class="dropdown-item" href="/admin/reservations-vl">Historique</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/forum/account.php">Mon Compte</a>
-                        </li>
-                        <!-- 'Réponses supprimées' moved to admin page actions (button near forum subjects) -->
-                    </ul>
-                </div>
-        </div>
-    </nav>
-
-</section>
-
-<section class="admin-page">
-    <article class="bg-white text-black">
-        <div class="container p-4">
-            <div class="page-title-container text-center">
-                <h1 class="page-title">📅  Réservation de la VL  <i class="bi bi-person-badge me-3"></i></h1>
-                <div class="page-title-underline"></div>
-            </div>
-        </div>
-    </article>
-
-</section>
-
-
-<main class="resa-container" style="padding-top:100px;">
- 
-  <div id="calendar"></div>
-
-  <form id="formResa">
-    <div class="mb-3">
-      <label for="nom_reservant" class="form-label">Votre nom :</label>
-      <input type="text" id="nom_reservant" name="nom_reservant" class="form-control" placeholder="Votre nom" value="<?php echo htmlspecialchars($author_name); ?>" required>
-    </div>
-    <div class="mb-3">
-      <label for="date_debut" class="form-label">Du :</label>
-      <input type="date" id="date_debut" name="date_debut" class="form-control" required>
-    </div>
-    <div class="mb-3">
-      <label for="date_fin" class="form-label">Au :</label>
-      <input type="date" id="date_fin" name="date_fin" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-success w-100">Réserver</button>
-    <button type="button" id="btnAnnuler" class="btn btn-danger w-100 mt-2">🗑️ Annuler ma réservation</button>
-  </form>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-<script type="module" src="/JS/auth/reservation_vl.js"></script>
-  <script src="/JS/auth/roleManager.js"></script>
 </body>
 </html>
