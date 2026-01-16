@@ -1,5 +1,6 @@
 {
-    "livePreview.defaultPreviewPath": "/pages/home.html"
+    "livePreview.defaultPreviewPath": "/pages/home.html",
+    "window.autoDetectColorScheme": true
 } //{
     //"liveServer.settings.port": 3880//5501
 //}

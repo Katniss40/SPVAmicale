@@ -37,14 +37,14 @@ if (!$isAdmin) {
   </div>
 </div>
 <!-- Navbar verte -->
-<nav class="navbar navbar-expand-lg bg-success admin-subnav" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-success admin-subnav navbar-dark" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/admin">Tableau de bord Administrateur</a>
     <a class="navbar-brand" href="/fendeuse">Réservation fendeuse</a>
     <a class="navbar-brand" href="/">Retour site</a>
   </div>
 </nav>
-  <nav class="navbar navbar-expand-lg bg-success admin-subnav" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-success admin-subnav navbar-dark" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/admin">Tableau de bord Administrateur</a>
       <a class="navbar-brand" href="/fendeuse">Réservation fendeuse</a>

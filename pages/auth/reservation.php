@@ -81,7 +81,7 @@ $message = "";
     </div>        
 </section>
 
-<nav class="navbar navbar-expand-lg bg-pompier" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-pompier navbar-dark" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
     <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>

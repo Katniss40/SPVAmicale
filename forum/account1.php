@@ -39,7 +39,7 @@ if (isset($_GET['debug_session']) && $_GET['debug_session'] === '1') {
 
 <body>
 <header>
-<nav class="navbar navbar-expand-lg fixed-top bg-pompier admin-subnav" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg fixed-top bg-pompier admin-subnav navbar-dark" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand policeNav" href="/">
       <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top"><span style="color:    color: rgb(196, 29, 29); font-weight:bold; font-size:1.5rem; margin-left:8px;">Amicale des Sapeurs-Pompiers de Léon</span></a>
@@ -90,7 +90,7 @@ if (isset($_GET['debug_session']) && $_GET['debug_session'] === '1') {
             </div>        
     </section>
 
-    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-pompier admin-subnav navbar-dark" data-bs-theme="dark">
     <div class="container-fluid">
     <a class="navbar-brand" href="/admin" data-show="admin">Tableau de bord Administrateur</a>
     <a class="navbar-brand" href="/Blog" data-show="actif">Tableau de bord</a>
