@@ -86,42 +86,42 @@
                         <div class="row">                                                       
                             <div class="col-md-6"> 
                                 <div class="form-group">
-                                    <label for="Role">Rôle</label>
-                                    <select class="form-control" id="Role", name="Role">
+                                    <label for="Role_add">Rôle</label>
+                                    <select class="form-control" id="Role_add" name="Role">
                                         <option value="admin">admin</option>
                                         <option value="actif">actif</option>
                                     </select>    
                                 </div>
                                 <div class="form-group">
-                                    <label for="NomInput">Nom</label>
-                                    <input type="text" class="form-control" id="NomInput" name="NomInput" value="" required>
+                                    <label for="NomInput_add">Nom</label>
+                                    <input type="text" class="form-control" id="NomInput_add" name="NomInput" value="" required autocomplete="family-name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="PrenomInput">Prénom</label>
-                                    <input type="text" class="form-control" id="PrenomInput" name="PrenomInput" value="" required>                              
+                                    <label for="PrenomInput_add">Prénom</label>
+                                    <input type="text" class="form-control" id="PrenomInput_add" name="PrenomInput" value="" required autocomplete="given-name">                              
                                 </div>
                                 <div class="form-group">
-                                    <label for="Adresse">Adresse</label>
-                                    <input type="text" class="form-control" id="Adresse" name="Adresse" value="" required>
+                                    <label for="Adresse_add">Adresse</label>
+                                    <input type="text" class="form-control" id="Adresse_add" name="Adresse" value="" required autocomplete="street-address">
                                 </div>                                                                                                                                                     
                             </div>
 
                             <div class="col-md-6">   
                                 <div class="form-group">
-                                    <label for="CAgent">Code Agent</label>
-                                    <input type="number" class="form-control" id="CAgent", name="CAgent", value="" required>
+                                    <label for="CAgent_add">Code Agent</label>
+                                    <input type="number" class="form-control" id="CAgent_add" name="CAgent" value="" required>
                                 </div>                             
                                 <div class="form-group">
-                                    <label for="PasswordInput">Mot de passe</label>
-                                    <input type="password" class="form-control" id="PasswordInput" name="PasswordInput" value="" required>
+                                    <label for="PasswordInput_add">Mot de passe</label>
+                                    <input type="password" class="form-control" id="PasswordInput_add" name="PasswordInput" value="" required autocomplete="new-password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="EmailInput">Email</label>
-                                    <input type="email" class="form-control" id="EmailInput" name="EmailInput" value="" required>
+                                    <label for="EmailInput_add">Email</label>
+                                    <input type="email" class="form-control" id="EmailInput_add" name="EmailInput" value="" required autocomplete="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Telephone">Téléphone</label>
-                                    <input type="text" class="form-control" id="Telephone" name="Telephone" value="" required>
+                                    <label for="Telephone_add">Téléphone</label>
+                                    <input type="text" class="form-control" id="Telephone_add" name="Telephone" value="" required autocomplete="tel">
                                 </div>                          
                             </div>
                         </div>
@@ -145,48 +145,48 @@
                     <form action="/pages/admin/modif_spv.php" method="POST" class="form-contact">
                         <div class="row">
                             <div class="form-group">
-                                    <label for="ID">ID</label>
-                                    <input type="number" class="form-control" id="ID" name="ID" autocomplete="off" placeholder="" required>
+                                    <label for="ID_edit">ID</label>
+                                    <input type="number" class="form-control" id="ID_edit" name="ID" autocomplete="off" placeholder="" required>
                                 </div>
                             
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="Cagent">Code Agent</label>
-                                    <input type="number" class="form-control" id="CAgent" name="CAgent" value="" required>
+                                    <label for="CAgent_edit">Code Agent</label>
+                                    <input type="number" class="form-control" id="CAgent_edit" name="CAgent" value="" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="NomInput">Nom</label>
-                                    <input type="text" class="form-control" id="NomInput" name="NomInput" value="" required>
+                                    <label for="NomInput_edit">Nom</label>
+                                    <input type="text" class="form-control" id="NomInput_edit" name="NomInput" value="" required autocomplete="family-name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="PrenomInput">Prénom</label>
-                                    <input type="text" class="form-control" id="PrenomInput" name="PrenomInput" value="" required>                              
+                                    <label for="PrenomInput_edit">Prénom</label>
+                                    <input type="text" class="form-control" id="PrenomInput_edit" name="PrenomInput" value="" required autocomplete="given-name">                              
                                 </div>
                                 <div class="form-group">
-                                    <label for="Adresse">Adresse</label>
-                                    <input type="text" class="form-control" id="Adresse" name="Adresse" value="" required>
+                                    <label for="Adresse_edit">Adresse</label>
+                                    <input type="text" class="form-control" id="Adresse_edit" name="Adresse" value="" required autocomplete="street-address">
                                 </div>                                                                                                                                                     
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="Role">Rôle</label>
-                                    <select class="form-control" id="Role", name="Role">
+                                    <label for="Role_edit">Rôle</label>
+                                    <select class="form-control" id="Role_edit" name="Role">
                                         <option value="admin">admin</option>
                                         <option value="actif">actif</option>
                                     </select>    
                                 </div>
                                 <div class="form-group">
-                                    <label for="PasswordInput">Mot de passe</label>
-                                    <input type="password" class="form-control" id="PasswordInput" name="PasswordInput" value="" required>
+                                    <label for="PasswordInput_edit">Mot de passe</label>
+                                    <input type="password" class="form-control" id="PasswordInput_edit" name="PasswordInput" value="" required autocomplete="current-password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="EmailInput">Email</label>
-                                    <input type="email" class="form-control" id="EmailInput" name="EmailInput" value="" required>
+                                    <label for="EmailInput_edit">Email</label>
+                                    <input type="email" class="form-control" id="EmailInput_edit" name="EmailInput" value="" required autocomplete="email">
                                 </div> 
                                 <div class="form-group">
-                                    <label for="Telephone">Téléphone</label>
-                                    <input type="text" class="form-control" id="Telephone" name="Telephone" value="" required>
+                                    <label for="Telephone_edit">Téléphone</label>
+                                    <input type="text" class="form-control" id="Telephone_edit" name="Telephone" value="" required autocomplete="tel">
                                 </div>                       
                             </div>
                         </div>
@@ -206,8 +206,8 @@
                     <form action="/pages/admin/supp_spv.php" method="POST" class="form-contact">
                         <div class="row">
                             <div class="form-group">
-                                    <label for="ID">ID</label>
-                                    <input type="number" class="form-control" id="ID" name="ID" placeholder="" required>
+                                    <label for="ID_delete">ID</label>
+                                    <input type="number" class="form-control" id="ID_delete" name="ID" placeholder="" required>
                                 </div>
                             <!--<div class="col-md-6">
                                 <div class="form-group">
