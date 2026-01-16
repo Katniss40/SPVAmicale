@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     header('Location: /pages/auth/reservation_vl.php');
-    exit;
+    header('Location: /reservation-vl');
 }
 
 // Récupérer l'état courant
@@ -70,7 +70,7 @@ $stmt->close();
 </head>
 <body>
 <?php include __DIR__ . '/../..//pages/controleurs/nav_stub.php' ?? ''; ?>
-<main class="container">
+<?php include __DIR__ . '/../controleurs/nav_stub.php'; ?>
   <div class="card card-resa shadow-sm">
     <div class="card-body">
       <h3 class="card-title">Réservation du véhicule VL</h3>
