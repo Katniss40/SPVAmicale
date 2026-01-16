@@ -18,6 +18,12 @@ $is_admin = (isset($_SESSION['Role']) && $_SESSION['Role'] === 'admin');
 $date = $data['date_debut'] ?? null;
 $id = $data['id'] ?? null;
 
+// detect schema
+$col = $conn->query("SHOW COLUMNS FROM reservations_vl LIKE 'date_debut'");
+$has_date_debut = ($col && $col->num_rows > 0);
+$col2 = $conn->query("SHOW COLUMNS FROM reservations_vl LIKE 'date_fin'");
+$has_date_fin = ($col2 && $col2->num_rows > 0);
+
 if ($id) {
     // Delete by id if admin or owner
     if (!$is_admin) {
@@ -44,12 +50,23 @@ if ($id) {
 if ($date) {
     // delete reservations that include this date and belong to user (or admin)
     $d = $date;
-    if ($is_admin) {
-        $del = $conn->prepare("DELETE FROM reservations_vl WHERE date_debut <= ? AND date_fin >= ?");
-        $del->bind_param('ss', $d, $d);
+    if ($has_date_debut && $has_date_fin) {
+        if ($is_admin) {
+            $del = $conn->prepare("DELETE FROM reservations_vl WHERE date_debut <= ? AND date_fin >= ?");
+            $del->bind_param('ss', $d, $d);
+        } else {
+            $del = $conn->prepare("DELETE FROM reservations_vl WHERE date_debut <= ? AND date_fin >= ? AND author_email = ?");
+            $del->bind_param('sss', $d, $d, $author_email);
+        }
     } else {
-        $del = $conn->prepare("DELETE FROM reservations_vl WHERE date_debut <= ? AND date_fin >= ? AND author_email = ?");
-        $del->bind_param('sss', $d, $d, $author_email);
+        // fallback to single-date schema using reserved_at
+        if ($is_admin) {
+            $del = $conn->prepare("DELETE FROM reservations_vl WHERE DATE(reserved_at) = ?");
+            $del->bind_param('s', $d);
+        } else {
+            $del = $conn->prepare("DELETE FROM reservations_vl WHERE DATE(reserved_at) = ? AND author_email = ?");
+            $del->bind_param('ss', $d, $author_email);
+        }
     }
     if ($del->execute()) {
         $resp['success'] = true; $resp['message'] = 'Réservation annulée.';

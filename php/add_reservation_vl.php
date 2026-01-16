@@ -47,9 +47,36 @@ $create = "CREATE TABLE IF NOT EXISTS reservations_vl (
 );";
 $conn->query($create);
 
-// Check conflicts: overlapping ranges
-$stmt = $conn->prepare("SELECT COUNT(*) as cnt FROM reservations_vl WHERE NOT (date_fin < ? OR date_debut > ?)");
-$stmt->bind_param('ss', $s, $e);
+// --- light migration: if old column `reserved_at` exists, add date_debut/date_fin and migrate values ---
+$col = $conn->query("SHOW COLUMNS FROM reservations_vl LIKE 'date_debut'");
+$has_date_debut = ($col && $col->num_rows > 0);
+$col2 = $conn->query("SHOW COLUMNS FROM reservations_vl LIKE 'date_fin'");
+$has_date_fin = ($col2 && $col2->num_rows > 0);
+$col_old = $conn->query("SHOW COLUMNS FROM reservations_vl LIKE 'reserved_at'");
+$has_reserved_at = ($col_old && $col_old->num_rows > 0);
+if ((!$has_date_debut || !$has_date_fin) && $has_reserved_at) {
+    if (!$has_date_debut) $conn->query("ALTER TABLE reservations_vl ADD COLUMN date_debut DATE NULL");
+    if (!$has_date_fin) $conn->query("ALTER TABLE reservations_vl ADD COLUMN date_fin DATE NULL");
+    // migrate reserved_at -> date_debut/date_fin
+    $conn->query("UPDATE reservations_vl SET date_debut = DATE(reserved_at), date_fin = DATE(reserved_at) WHERE date_debut IS NULL OR date_fin IS NULL");
+    // don't drop reserved_at to be safe
+    $has_date_debut = true; $has_date_fin = true;
+}
+
+$conflict_sql = "";
+// Check conflicts: overlapping ranges (support old schema)
+$col = $conn->query("SHOW COLUMNS FROM reservations_vl LIKE 'date_debut'");
+$has_date_debut = ($col && $col->num_rows > 0);
+$col2 = $conn->query("SHOW COLUMNS FROM reservations_vl LIKE 'date_fin'");
+$has_date_fin = ($col2 && $col2->num_rows > 0);
+if ($has_date_debut && $has_date_fin) {
+    $stmt = $conn->prepare("SELECT COUNT(*) as cnt FROM reservations_vl WHERE NOT (date_fin < ? OR date_debut > ?)");
+    $stmt->bind_param('ss', $s, $e);
+} else {
+    // fallback for old single-date schema
+    $stmt = $conn->prepare("SELECT COUNT(*) as cnt FROM reservations_vl WHERE DATE(reserved_at) BETWEEN ? AND ?");
+    $stmt->bind_param('ss', $s, $e);
+}
 $stmt->execute();
 $res = $stmt->get_result()->fetch_assoc();
 if ($res && intval($res['cnt']) > 0) {
