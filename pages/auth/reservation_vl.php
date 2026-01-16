@@ -63,6 +63,11 @@ $stmt->close();
   <title>Réservation VL - Caserne de Léon</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/reservation.css">
+  <link rel="stylesheet" href="/scss/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.0/font/bootstrap-icons.min.css">
   <style>
     .card-resa { max-width: 900px; margin: 24px auto; }
     .status-badge { font-size: 0.95rem; }
@@ -77,6 +82,10 @@ $stmt->close();
     .resa-container .fc .fc-daygrid-day-number { color:#2E7D32; font-weight:600; }
     .resa-container .fc .fc-daygrid-day { background: #ffffff; }
     .resa-container .fc .fc-daygrid-day-frame { min-height: 90px; }
+    /* Rounded card and calendar wrapper */
+    .card-resa { border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); border: 2px solid #e9e0d1; background:#fff; padding:18px; }
+    .card-resa .fc { border-radius: 10px; overflow: hidden; }
+    .resa-container .fc .fc-daygrid-day-frame { border-radius:8px; }
     .resa-container .fc .fc-daygrid-event {
       background-color: #b30000 !important;
       color: #fff !important;
@@ -89,12 +98,22 @@ $stmt->close();
     /* Ensure numbers and headers aren't overridden by global color rules */
     .resa-container .fc, .resa-container .fc * { color: inherit !important; }
   </style>
-</head>
-<body>
-<header>
+</header>
 
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
-  <div class="container-fluid">
+<section class="admin-page">
+  <article class="bg-white text-black">
+    <div class="container p-4">
+      <div class="page-title-container text-center">
+        <h1 class="page-title"><i class="bi bi-calendar3 me-3"></i>Réservation VL</h1>
+        <div class="page-title-underline"></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<main class="resa-container card-resa" style="padding-top:100px;">
+  <h2 class="mb-4 visually-hidden">📅 Réservation VL</h2>
+  <div id="calendar"></div>
     <a class="navbar-brand policeNav" href="/">
       <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
       <?php if (!empty($author_name)): ?>
@@ -231,5 +250,6 @@ $stmt->close();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 <script type="module" src="/JS/auth/reservation_vl.js"></script>
+  <script src="/JS/auth/roleManager.js"></script>
 </body>
 </html>
