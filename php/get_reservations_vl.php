@@ -32,7 +32,10 @@ if ($has_date_debut && $has_date_fin) {
                 'id' => $row['id'],
                 'title' => $row['author_name'] ?: $row['author_email'],
                 'start' => $row['date_debut'],
-                'end' => (new DateTime($row['date_fin']))->modify('+1 day')->format('Y-m-d')
+                'end' => (new DateTime($row['date_fin']))->modify('+1 day')->format('Y-m-d'),
+                'allDay' => true,
+                'date_debut' => $row['date_debut'],
+                'date_fin' => $row['date_fin']
             ];
         }
     }
@@ -46,7 +49,9 @@ if ($has_date_debut && $has_date_fin) {
                 'id' => $row['id'],
                 'title' => $row['author_name'] ?: $row['author_email'],
                 'start' => $d,
-                'end' => (new DateTime($d))->modify('+1 day')->format('Y-m-d')
+                'end' => (new DateTime($d))->modify('+1 day')->format('Y-m-d'),
+                'allDay' => true,
+                'reserved_at' => $row['reserved_at']
             ];
         }
     }
