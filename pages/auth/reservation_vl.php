@@ -115,51 +115,30 @@ $stmt->close();
   </div>
 </nav>
 </header>
-<main class="container" style="padding-top:100px;">
-  <div class="card card-resa shadow-sm">
-    <div class="card-body">
-      <h3 class="card-title">Réservation du véhicule VL</h3>
-      <p class="text-muted">Page réservée aux membres connectés. Vous pouvez réserver le véhicule si personne ne l'a déjà pris. Vous seul(e) pouvez annuler votre réservation.</p>
+<main class="resa-container" style="padding-top:100px;">
+  <h2 class="mb-4">📅 Réservation VL</h2>
+  <div id="calendar"></div>
 
-      <div class="row">
-        <div class="col-md-8">
-          <?php if ($reservation): ?>
-            <div class="mb-3">
-              <p><strong>Statut :</strong> <span class="badge bg-danger status-badge">Réservé</span></p>
-              <p><strong>Réservé par :</strong> <?php echo htmlspecialchars($reservation['author_name'] ?: $reservation['author_email']); ?></p>
-              <p><strong>Depuis :</strong> <?php echo htmlspecialchars($reservation['reserved_at']); ?></p>
-            </div>
-          <?php else: ?>
-            <div class="mb-3">
-              <p><strong>Statut :</strong> <span class="badge bg-success status-badge">Disponible</span></p>
-              <p>Le véhicule est actuellement disponible.</p>
-            </div>
-          <?php endif; ?>
-        </div>
-
-        <div class="col-md-4 text-md-end">
-          <?php if (!$reservation): ?>
-            <form method="post">
-              <input type="hidden" name="action" value="reserve">
-              <button type="submit" class="btn btn-primary">Réserver le VL</button>
-            </form>
-          <?php elseif ($reservation['author_email'] === $author_email): ?>
-            <form method="post">
-              <input type="hidden" name="action" value="cancel">
-              <button type="submit" class="btn btn-warning">Annuler ma réservation</button>
-            </form>
-          <?php else: ?>
-            <button class="btn btn-secondary" disabled>Réservé par un autre membre</button>
-          <?php endif; ?>
-        </div>
-      </div>
-
-      <hr>
-      <a href="/forum/account.php" class="btn btn-link">Retour à mon compte</a>
+  <form id="formResa">
+    <div class="mb-3">
+      <label for="nom_reservant" class="form-label">Votre nom :</label>
+      <input type="text" id="nom_reservant" name="nom_reservant" class="form-control" placeholder="Votre nom" value="<?php echo htmlspecialchars($author_name); ?>" required>
     </div>
-  </div>
+    <div class="mb-3">
+      <label for="date_debut" class="form-label">Du :</label>
+      <input type="date" id="date_debut" name="date_debut" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="date_fin" class="form-label">Au :</label>
+      <input type="date" id="date_fin" name="date_fin" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success w-100">Réserver</button>
+    <button type="button" id="btnAnnuler" class="btn btn-danger w-100 mt-2">🗑️ Annuler ma réservation</button>
+  </form>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script type="module" src="/JS/auth/reservation_vl.js"></script>
 </body>
 </html>
