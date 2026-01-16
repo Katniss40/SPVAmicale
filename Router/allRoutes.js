@@ -28,7 +28,7 @@ export const allRoutes = [
     new Route("/calendrier", "Calendrier", "/pages/admin/calendrier.php", ["actif", "admin"], "/JS/admin-dates.js"),
     new Route("/agents", "Listes des Agents", "/pages/admin/LAgents.php", ["actif", "admin"]),
     new Route("/fendeuse", "Réservation fendeuse", "/pages/reservation-fendeuse.php", [], "/JS/auth/reservation.js"),
-    new Route("/reservation-vl", "Réservation VL", "/pages/auth/reservation_vl.php", ["actif","admin"], "/JS/auth/reservation_vl.js"),
+    new Route("/reservation-vl", "Réservation VL", "/pages/auth/reservation_vl.php", ["actif","admin"], "/JS/auth/reservation.js"),
     new Route("/liens", "Liens", "/pages/admin/liens.php", ["actif", "admin"]),
     new Route("/admin", "Administrateur", "/pages/admin/admin.php",["admin"]),
     new Route("/spv", "SPV", "/pages/admin/spv.php",["admin"]),
