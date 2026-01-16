@@ -11,7 +11,7 @@ require_once __DIR__ . '/../controleurs/db_mysqli.php';
 $conn = $mysqli;
 
 $author_email = $_SESSION['EmailInput'];
-$author_name = $_SESSION['PrenomInput'] ?? '';
+$author_name = $_SESSION['PrenomInput'] ?? $_SESSION['prenomInput'] ?? $_SESSION['NomInput'] ?? $_SESSION['nomInput'] ?? '';
 
 // Créer la table si elle n'existe pas (simple gestion d'une seule réservation pour le VL)
 $createSql = "CREATE TABLE IF NOT EXISTS reservations_vl (
@@ -71,13 +71,13 @@ $stmt->close();
 <body>
 <?php include __DIR__ . '/../..//pages/controleurs/nav_stub.php' ?? ''; ?>
 <header>
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
+<!--<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
   <div class="container-fluid">
     <a class="navbar-brand policeNav" href="/">
       <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top"><span style="color: rgb(196, 29, 29); font-weight:bold; font-size:20px; margin-left:8px;">Amicale des Sapeurs-Pompiers de Léon</span>
     </a>
-    <?php if(isset($_SESSION['PrenomInput'])): ?>
-      <span class="navbar-welcome" style="margin-left:24px; font-size:16px; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($_SESSION['PrenomInput']); ?></span>
+    <?php if (!empty($author_name)): ?>
+      <span class="navbar-welcome" style="margin-left:24px; font-size:16px; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($author_name); ?></span>
     <?php endif; ?>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -96,8 +96,53 @@ $stmt->close();
       </ul>
     </div>
   </div>
+</nav>-->
+
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(255,255,255); border-bottom: 2px solid #2E7D32;">
+  <div class="container-fluid">
+    <a class="navbar-brand policeNav" href="/">
+      <img src="/Images/Logo_SPleon3.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">Amicale des Sapeurs-Pompiers de Léon</a>
+      <?php if (!empty($author_name)): ?>
+        <span class="navbar-welcome" style="margin-left:90px; font-size:1.1rem; color:#2E7D32; font-weight:bold;">Bienvenue, <?php echo htmlspecialchars($author_name); ?></span>
+      <?php endif; ?>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/galerie">Galerie</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/manifestations">Bal/Vide-grenier</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/recrutement">Recrutement</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link policeNav" href="/infos">Manifestations</a>
+        </li>
+        
+        <li class="nav-item dropdown" data-show="connected">
+          <li><a class="nav-link policeDrop" href="/Blog" data-show="actif">SPV</a></li>
+          <li><a class="nav-link policeDrop" href="/admin" data-show="admin">Administrateur</a></li>
+        </li>
+        
+        <li class="nav-item" data-show="disconnected">
+          <a class="nav-link policeNav" href="/signin">Connexion</a>
+        </li>
+        <li class="nav-item" data-show="connected">
+          <button class="nav-link policeNav" id="btnSignout">Déconnexion</button>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
 </header>
+<main class="container" style="padding-top:100px;">
   <div class="card card-resa shadow-sm">
     <div class="card-body">
       <h3 class="card-title">Réservation du véhicule VL</h3>
