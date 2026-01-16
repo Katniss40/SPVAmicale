@@ -66,6 +66,14 @@ $stmt->close();
   <style>
     .card-resa { max-width: 900px; margin: 24px auto; }
     .status-badge { font-size: 0.95rem; }
+    /* FullCalendar visibility tweaks: force readable colors for headers, days and buttons */
+    .fc .fc-toolbar-title { color: #2E7D32 !important; font-weight:700; }
+    .fc .fc-col-header-cell-cushion { color: #2E7D32 !important; font-weight:600; }
+    .fc .fc-daygrid-day-number { color: #2E7D32 !important; font-weight:600; }
+    .fc .fc-button-primary { background: #2E7D32 !important; border-color:#2E7D32 !important; color:#fff !important; }
+    .fc .fc-button { color: #fff !important; }
+    .fc .fc-daygrid-event { background-color: #b30000 !important; color: #fff !important; border: none !important; border-radius:6px !important; }
+    .fc .fc-daygrid-day { background: #fff !important; }
   </style>
 </head>
 <body>
