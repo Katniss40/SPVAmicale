@@ -66,6 +66,13 @@ $stmt->close();
   <style>
     .card-resa { max-width: 900px; margin: 24px auto; }
     .status-badge { font-size: 0.95rem; }
+    /* Petit arrondi non-destructif pour le calendrier (si présent) */
+    #calendar, #calendar .fc, .card-resa #calendar {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    /* arrondir les cellules si FullCalendar est utilisé */
+    #calendar .fc-daygrid-day-frame { border-radius: 6px; }
   </style>
 </head>
 <body>
